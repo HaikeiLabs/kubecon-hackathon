@@ -22,9 +22,13 @@ dev = [
     "ruff>=0.9,<1",
 ]
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+markers = ["live: needs real Elastic/OpenAI credentials (run with -m live)"]
 
 [tool.ruff]
 line-length = 100
