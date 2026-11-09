@@ -20,3 +20,5 @@ Authoring rules, all enforced by the tests:
 - After editing the `.ttl`, rerun `compile.py`. The test suite fails if `build/` is stale.
 
 Concepts describe facilities, services and problems, never attributes of people. For example, "prayer room unavailable" is a facility issue and says nothing about anyone's religion.
+
+How each SKOS property becomes an Elastic field, synonym rule, or ancestor closure: [docs/ontology-skos-to-elastic.md](../docs/ontology-skos-to-elastic.md).
