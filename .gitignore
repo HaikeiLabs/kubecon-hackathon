@@ -6,3 +6,7 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .DS_Store
+
+# Terraform working directory and saved plans
+**/.terraform/
+*.tfplan

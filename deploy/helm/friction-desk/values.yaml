@@ -16,8 +16,37 @@ api:
       cpu: 500m
       memory: 512Mi
 
+frontend:
+  enabled: true
+  replicas: 1
+  servicePort: 80
+  image:
+    # Empty reuses image.repository (the existing ECR repo); tags keep images distinct.
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 25m
+      memory: 32Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
 elasticsearch:
-  # Hosted Elastic deployment URL. The API key stays in a Kubernetes Secret.
+  # Hosted Elastic deployment URL. The API key stays in Secrets Manager/Kubernetes Secret.
   url: ""
-  apiKeySecretName: ""
+  secretName: friction-desk-elasticsearch
+  secretStoreName: aws-secrets-manager
+  remoteSecretName: kubecon-hackathon/friction-desk-elasticsearch
   apiKeySecretKey: api-key
+
+keiRuntime:
+  # Off until T201 provisions the Kei runtime token in Secrets Manager; an
+  # ExternalSecret for an empty remote secret would fail to sync. No workload
+  # consumes this Secret yet. Enable with KEI_RUNTIME_ENABLED=true in make release.
+  enabled: false
+  secretName: friction-desk-kei-runtime
+  secretStoreName: aws-secrets-manager
+  remoteSecretName: kubecon-hackathon/friction-desk-kei-runtime
+  tokenSecretKey: KEI_RUNTIME_TOKEN

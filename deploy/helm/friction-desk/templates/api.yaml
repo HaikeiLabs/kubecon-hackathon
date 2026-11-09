@@ -34,13 +34,11 @@ spec:
           env:
             - name: ELASTICSEARCH_URL
               value: {{ required "Set elasticsearch.url to the hosted Elasticsearch HTTPS endpoint" .Values.elasticsearch.url | quote }}
-{{- if .Values.elasticsearch.apiKeySecretName }}
             - name: ELASTICSEARCH_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.elasticsearch.apiKeySecretName | quote }}
+                  name: {{ .Values.elasticsearch.secretName | quote }}
                   key: {{ .Values.elasticsearch.apiKeySecretKey | quote }}
-{{- end }}
           startupProbe:
             httpGet:
               path: /health/ready
