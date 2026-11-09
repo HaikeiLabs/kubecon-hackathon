@@ -40,7 +40,7 @@ The agent should not invent conference facts: recommendations must be grounded i
 
 ## Data and API boundaries
 
-Use one canonical source for reports and buckets; Elasticsearch should support retrieval and indexing, not become an unexamined second source of truth. For a small demo, Elasticsearch may hold canonical documents if persistence/update semantics are kept simple; otherwise use a primary database and treat Elasticsearch as a search index. Choose this early based on the team's available stack and Elasticsearch access.
+Use the hosted Elasticsearch deployment as the canonical store for reports and buckets for the hackathon, avoiding a second database. The application runs in Kubernetes and connects to the hosted cluster over HTTPS using an API key read from a Kubernetes Secret. The Elasticsearch deployment and its stored data are external to this repo's Kubernetes release; deleting the app release must not delete the hosted cluster or its data.
 
 Agree on the frontend contract before parallel implementation. Minimum operations are:
 
@@ -49,11 +49,11 @@ Agree on the frontend contract before parallel implementation. Minimum operation
 - Get report/bucket detail.
 - Confirm or correct a proposed bucket assignment.
 
-Exact routes and schema depend on the selected backend framework. Validate all inputs server-side and keep model-generated fields explicitly marked as proposals.
+The initial implementation uses Python/FastAPI. The first API surface is `POST /api/reports`, `GET /api/reports`, `GET /api/buckets`, and `GET /api/buckets/search`. Validate all inputs server-side and keep model-generated fields explicitly marked as proposals.
 
 ## Kei integration boundary
 
-Kei governs the agent's tool calls and records authorization decisions; it is not the report database, vector store, or LLM. Keep tool definitions narrow and explicit (for example, search relevant buckets, create a proposed bucket, attach a report to a confirmed bucket). The user/organizer identity and allowed action must be represented correctly. Test both allowed and denied paths; if Kei authorization is unavailable, do not execute governed mutations. Confirm the actual runtime, agent, policies, and available integration path before implementation rather than assuming a specific endpoint or SDK is already configured.
+Kei governs the agent's tool calls and records authorization decisions; it is not the report database, vector store, or LLM. Keep tool definitions narrow and explicit (for example, search relevant buckets, create a proposed bucket, attach a report to a confirmed bucket). The user/organizer identity and allowed action must be represented correctly. Test both allowed and denied paths; if Kei authorization is unavailable, do not execute governed mutations. The runtime will be deployed in Kubernetes following the existing `kei-chat-harness` pattern. Confirm its agent, policies, token Secret source, and model-profile configuration before wiring model calls; do not put credentials in Helm values or the repository.
 
 ## Acceptance criteria
 

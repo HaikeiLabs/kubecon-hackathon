@@ -4,19 +4,23 @@ This plan separates the **core demo** from **stretch features**. Do not start st
 
 ## Milestone 0 — Align and unblock
 
-- [ ] Confirm the repo's implementation language/framework and available starter code.
-- [ ] Choose the canonical persistence approach: Elasticsearch as the demo source of truth, or a primary database plus Elasticsearch search index.
-- [ ] Confirm Elasticsearch access, embedding/model access, and Kei workspace/runtime/agent/policy availability.
-- [ ] Define the shared `Report`, `Bucket`, and `TriageResult` schema and API contract.
+- [x] Select Python/FastAPI to reuse existing triage code and scaffold the backend API.
+- [x] Use the existing hosted Elasticsearch deployment as the canonical store for reports and buckets; app teardown must leave the hosted cluster/data untouched.
+- [x] Confirm hosted Elasticsearch, Kei workspace, and configured model providers are available. Keep credentials in Kubernetes Secrets; wire the runtime in the cluster following `kei-chat-harness`.
+- [x] Define initial `Report`/`Bucket` schemas and API boundary (`POST/GET /api/reports`, `GET /api/buckets`, `GET /api/buckets/search`). TriageResult remains to be defined with the agent integration.
 - [ ] Create seeded reports and buckets, including same-issue reports phrased differently, unrelated reports, and one ambiguous case.
-- [ ] Agree on privacy: collect only information needed to resolve an issue; do not request sensitive personal information.
+- [x] Keep attendee intake anonymous; the submission schema rejects identity/contact fields.
 
-**Exit:** both sides can use a mock/API fixture and the team knows how the core demo will run.
+- [x] Add Helm deployment scaffolding and local Make targets; the release runs in a dedicated namespace and teardown leaves hosted Elasticsearch untouched.
+- [ ] Confirm the image registry, hosted Elasticsearch endpoint, and Kubernetes Secret name/key; deploy and verify API connectivity.
+- [ ] Add Kei runtime/token Secret wiring following the existing `kei-chat-harness` Kubernetes pattern before model-backed triage.
+
+**Exit:** the API can be deployed from local to the existing cluster, connects to hosted Elasticsearch, and can be removed without affecting the hosted Elasticsearch deployment.
 
 ## Milestone 1 — Thin end-to-end vertical slice (core)
 
 - [ ] Build attendee report form and submission confirmation.
-- [ ] Implement backend report submission and persistence.
+- [x] Implement initial report submission and persistence in hosted Elasticsearch.
 - [ ] Build organizer page with a basic report inbox and bucket list.
 - [ ] Return a temporary deterministic triage result (seeded rules/mock) so the entire UI flow works before model integration.
 
@@ -24,9 +28,9 @@ This plan separates the **core demo** from **stretch features**. Do not start st
 
 ## Milestone 2 — Search and bucket triage (core)
 
-- [ ] Create Elasticsearch mappings/index setup for reports and buckets.
+- [x] Add Elasticsearch mappings and index initialization for reports and buckets.
 - [ ] Index seeded and newly submitted reports/buckets.
-- [ ] Implement hybrid candidate-bucket retrieval.
+- [ ] Implement hybrid candidate-bucket retrieval (initial lexical candidate search is scaffolded; embeddings/vector search remains).
 - [ ] Add structured agent classification: update an existing bucket or propose a new one, with rationale and confidence.
 - [ ] Add confidence/ambiguity handling; avoid silent merges when uncertain.
 - [ ] Show the match/new-bucket explanation in the organizer UI.

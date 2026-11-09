@@ -1,0 +1,23 @@
+nameOverride: ""
+
+image:
+  repository: ""
+  tag: latest
+  pullPolicy: IfNotPresent
+
+api:
+  replicas: 1
+  port: 8080
+  resources:
+    requests:
+      cpu: 100m
+      memory: 192Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+elasticsearch:
+  # Hosted Elastic deployment URL. The API key stays in a Kubernetes Secret.
+  url: ""
+  apiKeySecretName: ""
+  apiKeySecretKey: api-key
