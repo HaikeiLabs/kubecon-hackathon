@@ -1,0 +1,61 @@
+{
+  "schema": "kei.tool-manifest/v3",
+  "tools": [
+    {
+      "name": "friction.assign_report",
+      "service": "friction-desk",
+      "source": "friction-desk",
+      "operation_class": "write",
+      "route": {
+        "harness_executor": {
+          "executor": "friction-desk-triage",
+          "registration": "friction.assign_report"
+        }
+      },
+      "description": "Assign a report to a bucket, optionally creating the bucket first.",
+      "enabled": true
+    },
+    {
+      "name": "friction.link_concepts",
+      "service": "friction-desk",
+      "source": "friction-desk",
+      "operation_class": "read",
+      "route": {
+        "harness_executor": {
+          "executor": "friction-desk-triage",
+          "registration": "friction.link_concepts"
+        }
+      },
+      "description": "Link report text to friction ontology concepts (read-only).",
+      "enabled": true
+    },
+    {
+      "name": "friction.propose_bucket",
+      "service": "friction-desk",
+      "source": "friction-desk",
+      "operation_class": "write",
+      "route": {
+        "harness_executor": {
+          "executor": "friction-desk-triage",
+          "registration": "friction.propose_bucket"
+        }
+      },
+      "description": "Record a proposal for a new issue bucket. Does not create or assign.",
+      "enabled": true
+    },
+    {
+      "name": "friction.search_buckets",
+      "service": "friction-desk",
+      "source": "friction-desk",
+      "operation_class": "read",
+      "route": {
+        "harness_executor": {
+          "executor": "friction-desk-triage",
+          "registration": "friction.search_buckets"
+        }
+      },
+      "description": "Retrieve candidate issue buckets for report text (read-only).",
+      "enabled": true
+    }
+  ]
+}

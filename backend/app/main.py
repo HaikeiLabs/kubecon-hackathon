@@ -1,6 +1,10 @@
+import logging
 import os
+from collections.abc import Callable
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
 from uuid import uuid4
 
 from elastic_transport import TransportError
@@ -8,10 +12,12 @@ from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import ApiError
 from fastapi import FastAPI, HTTPException, Query, Request, status
 
-from app.models import Bucket, BucketSearchResult, Report, ReportSubmission
+from app import search
+from app.models import Bucket, BucketSearchResult, Report, ReportSubmission, TriageResult
+from app.search import BUCKETS_INDEX, REPORTS_INDEX
+from app.triage.router import router as triage_router
 
-REPORTS_INDEX = "friction-desk-reports-v1"
-BUCKETS_INDEX = "friction-desk-buckets-v1"
+logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
@@ -22,42 +28,10 @@ async def lifespan(app: FastAPI):
     )
     app.state.elasticsearch = client
     try:
-        ensure_indices(client)
+        search.ensure_indices(client)
         yield
     finally:
         client.close()
-
-
-def ensure_indices(client: Elasticsearch) -> None:
-    indexes = {
-        REPORTS_INDEX: {
-            "mappings": {
-                "properties": {
-                    "id": {"type": "keyword"},
-                    "description": {"type": "text"},
-                    "location": {"type": "text", "fields": {"keyword": {"type": "keyword"}}},
-                    "created_at": {"type": "date"},
-                    "status": {"type": "keyword"},
-                    "bucket_id": {"type": "keyword"},
-                }
-            }
-        },
-        BUCKETS_INDEX: {
-            "mappings": {
-                "properties": {
-                    "id": {"type": "keyword"},
-                    "title": {"type": "text", "fields": {"keyword": {"type": "keyword"}}},
-                    "summary": {"type": "text"},
-                    "status": {"type": "keyword"},
-                    "report_count": {"type": "integer"},
-                    "updated_at": {"type": "date"},
-                }
-            }
-        },
-    }
-    for name, body in indexes.items():
-        if not client.indices.exists(index=name):
-            client.indices.create(index=name, **body)
 
 
 def get_client(request: Request) -> Elasticsearch:
@@ -70,6 +44,7 @@ app = FastAPI(
     description="Anonymous attendee reports and organizer search API.",
     lifespan=lifespan,
 )
+app.include_router(triage_router)
 
 
 @app.get("/health/live", tags=["health"])
@@ -100,7 +75,8 @@ def readiness(request: Request) -> dict[str, str]:
     tags=["reports"],
 )
 def submit_report(submission: ReportSubmission, request: Request) -> Report:
-    """Persist an anonymous report; triage assignment is intentionally a later step."""
+    """Persist an anonymous report with linked concepts and, when available, a triage proposal."""
+    client = get_client(request)
     report = Report(
         id=str(uuid4()),
         description=submission.description.strip(),
@@ -108,14 +84,28 @@ def submit_report(submission: ReportSubmission, request: Request) -> Report:
         created_at=datetime.now(UTC),
     )
     try:
-        get_client(request).index(
-            index=REPORTS_INDEX,
-            id=report.id,
-            document=report.model_dump(mode="json"),
-        )
+        report = search.apply_concept_tags(report, search.link_concepts(client, report.description))
+        search.index_report(client, report)
     except (ApiError, TransportError) as exc:
         raise HTTPException(status_code=503, detail="could not save report") from exc
+
+    triage = _load_triage()
+    if triage is not None:
+        try:
+            result = triage(client, report)
+            report = report.model_copy(update={"triage": result, "status": "proposed"})
+            search.index_report(client, report)
+        except Exception:  # triage is advisory; the report is already saved
+            logger.exception("triage failed for report %s", report.id)
     return report
+
+
+def _load_triage() -> Callable[[Any, Report], TriageResult] | None:
+    try:
+        from app.triage.service import triage_report
+    except ImportError:
+        return None
+    return triage_report
 
 
 @app.get("/api/reports", response_model=list[Report], tags=["reports"])
@@ -130,6 +120,17 @@ def list_reports(request: Request, limit: int = Query(default=100, ge=1, le=500)
     except (ApiError, TransportError) as exc:
         raise HTTPException(status_code=503, detail="could not list reports") from exc
     return [Report.model_validate(hit["_source"]) for hit in result["hits"]["hits"]]
+
+
+@app.get("/api/reports/{report_id}", response_model=Report, tags=["reports"])
+def get_report(report_id: str, request: Request) -> Report:
+    try:
+        report = search.get_report(get_client(request), report_id)
+    except (ApiError, TransportError) as exc:
+        raise HTTPException(status_code=503, detail="could not load report") from exc
+    if report is None:
+        raise HTTPException(status_code=404, detail="report not found")
+    return report
 
 
 @app.get("/api/buckets", response_model=list[Bucket], tags=["buckets"])
@@ -152,23 +153,20 @@ def search_buckets(
     q: str = Query(min_length=2, max_length=500),
     limit: int = Query(default=10, ge=1, le=50),
 ) -> list[BucketSearchResult]:
-    """Retrieve candidate buckets with lexical relevance; agent triage comes later."""
+    """Hybrid (lexical + synonyms + concepts, semantic) RRF retrieval of open buckets."""
+    client = get_client(request)
     try:
-        result = get_client(request).search(
-            index=BUCKETS_INDEX,
-            size=limit,
-            query={
-                "bool": {
-                    "must": [
-                        {"term": {"status": "open"}},
-                        {"multi_match": {"query": q, "fields": ["title^2", "summary"]}},
-                    ]
-                }
-            },
-        )
+        concept_ids = [tag.concept_id for tag in search.link_concepts(client, q)]
+        return search.search_candidate_buckets(client, q, concept_ids, k=limit)
     except (ApiError, TransportError) as exc:
         raise HTTPException(status_code=503, detail="could not search issue buckets") from exc
-    return [
-        BucketSearchResult(bucket=Bucket.model_validate(hit["_source"]), score=hit["_score"])
-        for hit in result["hits"]["hits"]
-    ]
+
+
+@app.post("/api/admin/reset", tags=["admin"])
+def reset(request: Request) -> dict[str, int]:
+    """Recreate the v2 indices and reseed concepts, buckets, and reports."""
+    seed_dir = Path(os.getenv("FD_SEED_DIR") or search.DEFAULT_SEED_DIR)
+    try:
+        return search.reset_and_seed(get_client(request), seed_dir)
+    except (ApiError, TransportError) as exc:
+        raise HTTPException(status_code=503, detail="could not reset search data") from exc

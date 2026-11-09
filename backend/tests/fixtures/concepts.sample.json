@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fd:Accessibility",
+    "iri": "https://haikei.dev/ontology/friction#Accessibility",
+    "pref_label": "Accessibility",
+    "alt_labels": ["a11y", "accessible"],
+    "definition": "Barriers that prevent attendees with disabilities from fully participating.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Accessibility",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:BlockedStepFreeAccess",
+    "iri": "https://haikei.dev/ontology/friction#BlockedStepFreeAccess",
+    "pref_label": "Blocked step-free access",
+    "alt_labels": ["blocked ramp", "ramp blocked", "accessible entrance blocked", "wheelchair entrance blocked"],
+    "definition": "A ramp, lift, or step-free entrance is obstructed or unusable.",
+    "broader": ["fd:StepFreeAccess"],
+    "ancestors": ["fd:Accessibility", "fd:StepFreeAccess"],
+    "path": "Accessibility/StepFreeAccess/BlockedStepFreeAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:Connectivity",
+    "iri": "https://haikei.dev/ontology/friction#Connectivity",
+    "pref_label": "Connectivity",
+    "alt_labels": ["network", "internet access"],
+    "definition": "Problems getting online or connecting devices at the venue.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Connectivity",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:StepFreeAccess",
+    "iri": "https://haikei.dev/ontology/friction#StepFreeAccess",
+    "pref_label": "Step-free access",
+    "alt_labels": ["ramp", "lift access", "wheelchair access"],
+    "definition": "Routes into and around the venue that avoid stairs.",
+    "broader": ["fd:Accessibility"],
+    "ancestors": ["fd:Accessibility"],
+    "path": "Accessibility/StepFreeAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:Wifi",
+    "iri": "https://haikei.dev/ontology/friction#Wifi",
+    "pref_label": "Wi-Fi",
+    "alt_labels": ["wifi", "wireless", "wlan"],
+    "definition": "The venue wireless network provided to attendees.",
+    "broader": ["fd:Connectivity"],
+    "ancestors": ["fd:Connectivity"],
+    "path": "Connectivity/Wifi",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:WifiOutage",
+    "iri": "https://haikei.dev/ontology/friction#WifiOutage",
+    "pref_label": "Wi-Fi outage",
+    "alt_labels": ["wifi down", "wifi outage", "wi-fi down", "no internet", "wifi not working", "cannot connect to wifi"],
+    "definition": "The venue wireless network is down, unreachable, or not providing internet access.",
+    "broader": ["fd:Wifi"],
+    "ancestors": ["fd:Connectivity", "fd:Wifi"],
+    "path": "Connectivity/Wifi/WifiOutage",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  }
+]

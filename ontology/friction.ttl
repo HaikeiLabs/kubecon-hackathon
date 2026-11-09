@@ -1,0 +1,775 @@
+@prefix fd:   <https://haikei.dev/ontology/friction#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# Conference Friction Desk vocabulary.
+# Source of truth for concept tagging; ontology/compile.py projects it into
+# ontology/build/concepts.json and ontology/build/synonyms.json.
+# Concepts describe facilities, services and problems -- never attributes of
+# individual people (no health, religion or identity inference).
+
+fd:FrictionScheme a skos:ConceptScheme ;
+    dct:title "Conference attendee friction"@en ;
+    skos:hasTopConcept fd:Venue , fd:Accessibility , fd:Schedule , fd:Connectivity ,
+        fd:FoodAndBeverage , fd:Registration , fd:Content , fd:SafetyAndConduct ,
+        fd:Transport , fd:SponsorsAndExpo , fd:Comfort .
+
+#################################################################### Venue
+
+fd:Venue a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Venue"@en ;
+    skos:altLabel "building"@en , "facility"@en , "conference center"@en , "convention center"@en ;
+    skos:definition "Problems with the physical building: rooms, signage, crowding, climate, restrooms and seating."@en .
+
+fd:Wayfinding a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Wayfinding"@en ;
+    skos:altLabel "getting lost"@en , "lost"@en , "directions"@en , "navigation"@en , "can't find"@en , "cant find"@en ;
+    skos:definition "Difficulty finding rooms, halls or services inside the venue."@en .
+
+fd:MissingSignage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wayfinding ;
+    skos:prefLabel "Missing signage"@en ;
+    skos:altLabel "no signs"@en , "no signage"@en , "signs missing"@en , "unsigned"@en ;
+    skos:definition "Signs pointing to rooms or services are absent."@en .
+
+fd:ConfusingSignage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wayfinding ;
+    skos:prefLabel "Confusing signage"@en ;
+    skos:altLabel "wrong signs"@en , "misleading signs"@en , "signage confusing"@en , "signs point wrong way"@en ;
+    skos:definition "Signs exist but are wrong, contradictory or hard to follow."@en ;
+    skos:related fd:LowContrastSignage .
+
+fd:HardToFindRoom a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wayfinding ;
+    skos:prefLabel "Hard to find room"@en ;
+    skos:altLabel "can't find room"@en , "cant find the room"@en , "where is room"@en , "room hidden"@en , "which floor"@en ;
+    skos:definition "A specific session room is hard to locate."@en ;
+    skos:related fd:RoomChange .
+
+fd:Crowding a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Crowding"@en ;
+    skos:altLabel "crowded"@en , "packed"@en , "too many people"@en , "congestion"@en ;
+    skos:definition "Too many people for the space available."@en .
+
+fd:OvercrowdedHallway a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Crowding ;
+    skos:prefLabel "Overcrowded hallway"@en ;
+    skos:altLabel "hallway packed"@en , "corridor blocked"@en , "bottleneck"@en , "can't get through"@en , "foot traffic jam"@en ;
+    skos:definition "Corridors or foyers are congested between sessions."@en .
+
+fd:RoomOverCapacity a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Crowding ;
+    skos:prefLabel "Room over capacity"@en ;
+    skos:altLabel "room overflowing"@en , "standing room only"@en , "fire capacity"@en , "too small room"@en , "room too small"@en ;
+    skos:definition "A session room holds more people than it was sized for."@en ;
+    skos:related fd:TalkFull , fd:NotEnoughSeating .
+
+fd:Temperature a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Temperature"@en ;
+    skos:altLabel "climate"@en , "hvac"@en , "air conditioning"@en , "a/c"@en , "ac"@en , "heating"@en ;
+    skos:definition "The room climate is uncomfortable."@en .
+
+fd:RoomTooHot a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Temperature ;
+    skos:prefLabel "Room too hot"@en ;
+    skos:altLabel "too hot"@en , "stuffy"@en , "sweltering"@en , "no air"@en , "ac broken"@en , "boiling"@en ;
+    skos:definition "A room is too warm or poorly ventilated."@en .
+
+fd:RoomTooCold a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Temperature ;
+    skos:prefLabel "Room too cold"@en ;
+    skos:altLabel "too cold"@en , "freezing"@en , "ac too high"@en , "chilly"@en , "frigid"@en ;
+    skos:definition "A room is too cold."@en .
+
+fd:Restrooms a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Restrooms"@en ;
+    skos:altLabel "bathroom"@en , "toilets"@en , "washroom"@en , "restroom"@en , "loo"@en , "wc"@en ;
+    skos:definition "Problems with restroom facilities."@en .
+
+fd:RestroomQueue a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Restrooms ;
+    skos:prefLabel "Restroom queue"@en ;
+    skos:altLabel "bathroom line"@en , "toilet queue"@en , "restroom line"@en , "not enough bathrooms"@en ;
+    skos:definition "Long waits to use the restrooms."@en .
+
+fd:RestroomOutOfSupplies a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Restrooms ;
+    skos:prefLabel "Restroom out of supplies"@en ;
+    skos:altLabel "no toilet paper"@en , "no soap"@en , "no paper towels"@en , "dirty bathroom"@en , "restroom unclean"@en ;
+    skos:definition "Restrooms lack supplies or are unclean."@en .
+
+fd:RestroomOutOfOrder a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Restrooms ;
+    skos:prefLabel "Restroom out of order"@en ;
+    skos:altLabel "bathroom closed"@en , "toilet broken"@en , "flooded bathroom"@en , "restroom closed"@en ;
+    skos:definition "A restroom is closed, broken or flooded."@en .
+
+fd:Seating a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Seating"@en ;
+    skos:altLabel "seats"@en , "chairs"@en ;
+    skos:definition "Problems with seats in session rooms or common areas."@en .
+
+fd:NotEnoughSeating a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Seating ;
+    skos:prefLabel "Not enough seating"@en ;
+    skos:altLabel "no seats"@en , "no chairs"@en , "nowhere to sit"@en , "had to stand"@en , "standing only"@en ;
+    skos:definition "There are too few seats for the people present."@en ;
+    skos:related fd:ReservedSeatingMissing .
+
+fd:UncomfortableSeating a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Seating ;
+    skos:prefLabel "Uncomfortable seating"@en ;
+    skos:altLabel "bad chairs"@en , "chairs too close"@en , "uncomfortable chairs"@en , "broken chair"@en ;
+    skos:definition "Seats are broken, cramped or uncomfortable."@en .
+
+fd:VenueNoise a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Venue noise"@en ;
+    skos:altLabel "noisy room"@en , "sound bleed"@en , "loud next door"@en , "too loud"@en , "noise from hallway"@en , "thin walls"@en ;
+    skos:definition "Noise from neighbouring rooms, hallways or building systems disrupts a space."@en ;
+    skos:related fd:ExpoTooLoud , fd:CantHearSpeaker .
+
+fd:Lighting a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
+    skos:prefLabel "Lighting"@en ;
+    skos:altLabel "too dark"@en , "lights off"@en , "too bright"@en , "glare"@en , "lights flickering"@en ;
+    skos:definition "Room lighting is too dark, too bright or faulty."@en ;
+    skos:related fd:SlidesUnreadable .
+
+#################################################################### Accessibility
+
+fd:Accessibility a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Accessibility"@en ;
+    skos:altLabel "a11y"@en , "accessible"@en , "ada"@en , "disability access"@en , "inclusive access"@en ;
+    skos:definition "Barriers that prevent people from accessing spaces, sessions or information."@en .
+
+fd:StepFreeAccess a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Accessibility ;
+    skos:prefLabel "Step-free access"@en ;
+    skos:altLabel "step free"@en , "wheelchair access"@en , "level access"@en , "stairs only"@en ;
+    skos:definition "Routes that avoid stairs are missing or blocked."@en .
+
+fd:BlockedAccessibleEntrance a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:StepFreeAccess ;
+    skos:prefLabel "Blocked accessible entrance"@en ;
+    skos:altLabel "accessible entrance blocked"@en , "accessible door locked"@en , "wheelchair entrance blocked"@en , "ramp blocked"@en , "accessible door closed"@en ;
+    skos:definition "The accessible entrance to a room or building is locked, obstructed or closed."@en ;
+    skos:related fd:BlockedEmergencyExit .
+
+fd:ElevatorOutOfService a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:StepFreeAccess ;
+    skos:prefLabel "Elevator out of service"@en ;
+    skos:altLabel "elevator broken"@en , "lift broken"@en , "lift out of order"@en , "elevator down"@en , "escalator broken"@en ;
+    skos:definition "An elevator or lift needed for step-free access is not working."@en .
+
+fd:MissingRamp a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:StepFreeAccess ;
+    skos:prefLabel "Missing ramp"@en ;
+    skos:altLabel "no ramp"@en , "stage not accessible"@en , "no ramp to stage"@en , "steps only"@en ;
+    skos:definition "A stage, room or area has steps and no ramp."@en .
+
+fd:HearingAccess a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Accessibility ;
+    skos:prefLabel "Hearing access"@en ;
+    skos:altLabel "deaf access"@en , "hard of hearing access"@en , "hearing accessibility"@en ;
+    skos:definition "Sessions or announcements lack support for people who are deaf or hard of hearing."@en .
+
+fd:MissingCaptions a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:HearingAccess ;
+    skos:prefLabel "Missing captions"@en ;
+    skos:altLabel "no captions"@en , "no subtitles"@en , "cart missing"@en , "live captioning down"@en , "captions broken"@en , "no transcription"@en ;
+    skos:definition "Live captions or transcription are absent or broken."@en ;
+    skos:related fd:CantHearSpeaker .
+
+fd:HearingLoopUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:HearingAccess ;
+    skos:prefLabel "Hearing loop unavailable"@en ;
+    skos:altLabel "no hearing loop"@en , "induction loop"@en , "t-coil"@en , "assistive listening"@en , "hearing loop broken"@en ;
+    skos:definition "An induction loop or assistive listening system is missing or not working."@en .
+
+fd:SignLanguageMissing a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:HearingAccess ;
+    skos:prefLabel "Sign language interpretation missing"@en ;
+    skos:altLabel "no interpreter"@en , "asl"@en , "no sign language"@en , "interpreter missing"@en ;
+    skos:definition "Requested sign language interpretation is not provided."@en .
+
+fd:VisualAccess a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Accessibility ;
+    skos:prefLabel "Visual access"@en ;
+    skos:altLabel "low vision access"@en , "blind access"@en , "visual accessibility"@en ;
+    skos:definition "Information is not accessible to people who are blind or have low vision."@en .
+
+fd:LowContrastSignage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:VisualAccess ;
+    skos:prefLabel "Low contrast signage"@en ;
+    skos:altLabel "hard to read signs"@en , "tiny signs"@en , "small print signs"@en , "low contrast"@en ;
+    skos:definition "Signs use small text or poor contrast."@en .
+
+fd:NoScreenReaderSupport a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:VisualAccess ;
+    skos:prefLabel "No screen reader support"@en ;
+    skos:altLabel "screen reader"@en , "app not accessible"@en , "voiceover broken"@en , "no alt text"@en ;
+    skos:definition "Event app, site or materials do not work with screen readers."@en ;
+    skos:related fd:AppScheduleWrong .
+
+fd:SensoryAccess a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Accessibility ;
+    skos:prefLabel "Sensory access"@en ;
+    skos:altLabel "sensory friendly"@en , "neurodivergent access"@en , "overstimulation"@en ;
+    skos:definition "Spaces lack options for reducing sensory load."@en .
+
+fd:QuietRoomUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SensoryAccess ;
+    skos:prefLabel "Quiet room unavailable"@en ;
+    skos:altLabel "no quiet room"@en , "quiet room closed"@en , "quiet space"@en , "quiet room full"@en , "decompression room"@en ;
+    skos:definition "The designated quiet room is missing, closed, occupied for other uses or hard to find."@en ;
+    skos:related fd:ExpoTooLoud , fd:VenueNoise .
+
+fd:FlashingLights a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SensoryAccess ;
+    skos:prefLabel "Flashing lights"@en ;
+    skos:altLabel "strobe"@en , "strobe lights"@en , "flashing screen"@en , "flicker"@en ;
+    skos:definition "Strobe or flashing effects are used without warning."@en ;
+    skos:related fd:Lighting .
+
+fd:MobilityAccess a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Accessibility ;
+    skos:prefLabel "Mobility access"@en ;
+    skos:altLabel "mobility"@en , "walking distance"@en , "mobility aid"@en ;
+    skos:definition "Layout or services are hard to use for people with limited mobility."@en .
+
+fd:LongWalkingDistances a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:MobilityAccess ;
+    skos:prefLabel "Long walking distances"@en ;
+    skos:altLabel "too far to walk"@en , "rooms far apart"@en , "long walk"@en , "no time between sessions"@en ;
+    skos:definition "Distances between rooms are too long to cover in the time allowed."@en ;
+    skos:related fd:Wayfinding .
+
+fd:ReservedSeatingMissing a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:MobilityAccess ;
+    skos:prefLabel "Accessible seating missing"@en ;
+    skos:altLabel "no wheelchair space"@en , "no accessible seating"@en , "reserved seating taken"@en , "no aisle seat"@en ;
+    skos:definition "Reserved accessible seating or wheelchair spaces are missing or taken."@en .
+
+#################################################################### Schedule
+
+fd:Schedule a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Schedule"@en ;
+    skos:altLabel "agenda"@en , "timetable"@en , "program"@en , "programme"@en , "sched"@en ;
+    skos:definition "Problems with session timing, rooms or schedule information."@en .
+
+fd:ScheduleChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Schedule ;
+    skos:prefLabel "Schedule change"@en ;
+    skos:altLabel "schedule changed"@en , "last minute change"@en , "agenda change"@en ;
+    skos:definition "A session moved, changed time or was cancelled."@en .
+
+fd:RoomChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleChange ;
+    skos:prefLabel "Room change"@en ;
+    skos:altLabel "room changed"@en , "session moved"@en , "talk moved"@en , "wrong room"@en , "moved rooms"@en , "relocated"@en ;
+    skos:definition "A session was moved to a different room."@en ;
+    skos:related fd:HardToFindRoom , fd:AppScheduleWrong .
+
+fd:TimeChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleChange ;
+    skos:prefLabel "Time change"@en ;
+    skos:altLabel "time changed"@en , "rescheduled"@en , "moved earlier"@en , "moved later"@en ;
+    skos:definition "A session was moved to a different time."@en .
+
+fd:SessionCancelled a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleChange ;
+    skos:prefLabel "Session cancelled"@en ;
+    skos:altLabel "talk cancelled"@en , "canceled"@en , "cancelled"@en , "speaker no show"@en , "no-show"@en ;
+    skos:definition "A session was cancelled or the speaker did not appear."@en .
+
+fd:Timing a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Schedule ;
+    skos:prefLabel "Session timing"@en ;
+    skos:altLabel "timing"@en , "running late"@en , "behind schedule"@en ;
+    skos:definition "Sessions do not start or end on time."@en .
+
+fd:SessionOverrun a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Timing ;
+    skos:prefLabel "Session overrun"@en ;
+    skos:altLabel "overrun"@en , "ran over"@en , "went over time"@en , "ran long"@en , "overtime"@en ;
+    skos:definition "A session ran past its scheduled end."@en .
+
+fd:SessionStartedLate a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Timing ;
+    skos:prefLabel "Session started late"@en ;
+    skos:altLabel "started late"@en , "late start"@en , "delayed start"@en , "waiting for speaker"@en ;
+    skos:definition "A session began after its scheduled start time."@en .
+
+fd:ScheduleConflict a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Schedule ;
+    skos:prefLabel "Schedule conflict"@en ;
+    skos:altLabel "clash"@en , "overlap"@en , "conflict"@en ;
+    skos:definition "Sessions or bookings collide in time or space."@en .
+
+fd:DoubleBookedRoom a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleConflict ;
+    skos:prefLabel "Double-booked room"@en ;
+    skos:altLabel "double booked"@en , "double-booked"@en , "two talks same room"@en , "room conflict"@en ;
+    skos:definition "Two sessions are scheduled in the same room at the same time."@en .
+
+fd:NoBreakBetweenSessions a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleConflict ;
+    skos:prefLabel "No break between sessions"@en ;
+    skos:altLabel "no break"@en , "back to back"@en , "back-to-back"@en , "no time for lunch"@en ;
+    skos:definition "The schedule leaves no time to move, eat or rest between sessions."@en ;
+    skos:related fd:LongWalkingDistances .
+
+fd:ScheduleInformation a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Schedule ;
+    skos:prefLabel "Schedule information"@en ;
+    skos:altLabel "schedule info"@en , "agenda info"@en , "event app"@en ;
+    skos:definition "The published schedule is wrong, out of date or unavailable."@en .
+
+fd:AppScheduleWrong a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleInformation ;
+    skos:prefLabel "App schedule wrong"@en ;
+    skos:altLabel "app wrong"@en , "app out of date"@en , "sched app wrong"@en , "app shows wrong room"@en , "app crashed"@en , "app not loading"@en ;
+    skos:definition "The event app or website shows incorrect or stale schedule data."@en ;
+    skos:related fd:RoomChange , fd:WifiOutage .
+
+fd:PrintedScheduleWrong a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleInformation ;
+    skos:prefLabel "Printed schedule wrong"@en ;
+    skos:altLabel "printed agenda wrong"@en , "board wrong"@en , "door sign wrong"@en , "screen schedule wrong"@en ;
+    skos:definition "Printed agendas, door signs or display boards disagree with the real schedule."@en ;
+    skos:related fd:ConfusingSignage .
+
+#################################################################### Connectivity
+
+fd:Connectivity a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Connectivity"@en ;
+    skos:altLabel "internet"@en , "network"@en , "connection"@en , "online"@en ;
+    skos:definition "Problems with Wi-Fi, power or mobile signal."@en .
+
+fd:Wifi a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Connectivity ;
+    skos:prefLabel "Wi-Fi"@en ;
+    skos:altLabel "wifi"@en , "wi fi"@en , "wireless"@en , "ssid"@en , "wlan"@en ;
+    skos:definition "Problems with the venue wireless network."@en .
+
+fd:WifiOutage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wifi ;
+    skos:prefLabel "Wi-Fi outage"@en ;
+    skos:altLabel "wifi outage"@en , "wifi down"@en , "wi-fi down"@en , "no internet"@en , "no wifi"@en , "wifi not working"@en , "internet down"@en , "network down"@en ;
+    skos:definition "The Wi-Fi network is unavailable."@en .
+
+fd:SlowWifi a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wifi ;
+    skos:prefLabel "Slow Wi-Fi"@en ;
+    skos:altLabel "slow wifi"@en , "slow internet"@en , "wifi slow"@en , "laggy wifi"@en , "wifi keeps dropping"@en , "spotty wifi"@en , "flaky wifi"@en ;
+    skos:definition "The Wi-Fi works but is slow or intermittent."@en .
+
+fd:WifiLoginProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wifi ;
+    skos:prefLabel "Wi-Fi login problem"@en ;
+    skos:altLabel "wifi password"@en , "wifi password wrong"@en , "captive portal"@en , "can't connect to wifi"@en , "which ssid"@en , "wifi login"@en ;
+    skos:definition "Attendees cannot find the network name, password or get past the login page."@en .
+
+fd:Power a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Connectivity ;
+    skos:prefLabel "Power"@en ;
+    skos:altLabel "electricity"@en , "charging"@en ;
+    skos:definition "Problems charging devices."@en .
+
+fd:NoPowerOutlets a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Power ;
+    skos:prefLabel "No power outlets"@en ;
+    skos:altLabel "no outlets"@en , "no power"@en , "no plugs"@en , "no sockets"@en , "can't charge"@en , "dead battery"@en , "power strip"@en ;
+    skos:definition "There are no or too few power outlets for charging devices."@en .
+
+fd:CellSignal a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Connectivity ;
+    skos:prefLabel "Cell signal"@en ;
+    skos:altLabel "mobile signal"@en , "cell reception"@en , "phone signal"@en ;
+    skos:definition "Problems with mobile phone coverage."@en .
+
+fd:PoorCellSignal a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:CellSignal ;
+    skos:prefLabel "Poor cell signal"@en ;
+    skos:altLabel "no signal"@en , "no bars"@en , "no reception"@en , "no service"@en , "no 5g"@en , "no lte"@en , "dead zone"@en ;
+    skos:definition "Mobile phones get little or no signal in the venue."@en .
+
+#################################################################### FoodAndBeverage
+
+fd:FoodAndBeverage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Food and beverage"@en ;
+    skos:altLabel "food"@en , "f&b"@en , "catering"@en , "lunch"@en , "drinks"@en , "snacks"@en , "meals"@en ;
+    skos:definition "Problems with meals, snacks, drinks and catering."@en .
+
+fd:DietaryOptions a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodAndBeverage ;
+    skos:prefLabel "Dietary options"@en ;
+    skos:altLabel "dietary"@en , "special diet"@en , "dietary restrictions"@en , "dietary needs"@en ;
+    skos:definition "Catering does not cover common dietary requirements."@en .
+
+fd:NoVegetarianOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
+    skos:prefLabel "No vegetarian option"@en ;
+    skos:altLabel "no vegetarian"@en , "no veggie"@en , "vegetarian ran out"@en , "only meat"@en ;
+    skos:definition "No vegetarian meal is available."@en .
+
+fd:NoVeganOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
+    skos:prefLabel "No vegan option"@en ;
+    skos:altLabel "no vegan"@en , "vegan ran out"@en , "plant based"@en , "plant-based"@en ;
+    skos:definition "No vegan meal is available."@en .
+
+fd:NoGlutenFreeOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
+    skos:prefLabel "No gluten-free option"@en ;
+    skos:altLabel "no gluten free"@en , "gluten-free"@en , "gf"@en , "celiac option"@en ;
+    skos:definition "No gluten-free meal is available."@en .
+
+fd:NoHalalOrKosherOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
+    skos:prefLabel "No halal or kosher option"@en ;
+    skos:altLabel "halal"@en , "kosher"@en , "no halal"@en , "no kosher"@en ;
+    skos:definition "Halal or kosher meals that were offered on the menu are not available."@en .
+
+fd:MissingAllergenInfo a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
+    skos:prefLabel "Missing allergen information"@en ;
+    skos:altLabel "allergens"@en , "allergy"@en , "allergen labels"@en , "no ingredient list"@en , "nut free"@en , "contains nuts"@en , "unlabeled food"@en ;
+    skos:definition "Food is not labelled with allergens or ingredients."@en .
+
+fd:FoodQueues a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodAndBeverage ;
+    skos:prefLabel "Food queues"@en ;
+    skos:altLabel "food line"@en , "lunch line"@en , "lunch queue"@en , "long line for food"@en , "catering queue"@en ;
+    skos:definition "Long waits to get food or drinks."@en ;
+    skos:related fd:NoBreakBetweenSessions .
+
+fd:FoodSupply a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodAndBeverage ;
+    skos:prefLabel "Food supply"@en ;
+    skos:altLabel "food quantity"@en , "not enough food"@en ;
+    skos:definition "Food or drinks are insufficient or run out."@en .
+
+fd:FoodRanOut a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodSupply ;
+    skos:prefLabel "Food ran out"@en ;
+    skos:altLabel "out of food"@en , "lunch ran out"@en , "no food left"@en , "food gone"@en , "empty buffet"@en ;
+    skos:definition "Food ran out before everyone was served."@en .
+
+fd:CoffeeRanOut a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodSupply ;
+    skos:prefLabel "Coffee ran out"@en ;
+    skos:altLabel "no coffee"@en , "out of coffee"@en , "coffee gone"@en , "no tea"@en , "caffeine"@en ;
+    skos:definition "Coffee or tea service ran out or was not available."@en .
+
+fd:DrinkingWater a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:FoodAndBeverage ;
+    skos:prefLabel "Drinking water"@en ;
+    skos:altLabel "water"@en , "hydration"@en ;
+    skos:definition "Problems getting drinking water."@en .
+
+fd:NoDrinkingWater a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DrinkingWater ;
+    skos:prefLabel "No drinking water"@en ;
+    skos:altLabel "no water"@en , "water station empty"@en , "no water fountain"@en , "no refill station"@en , "thirsty"@en ;
+    skos:definition "Water stations are missing or empty."@en .
+
+#################################################################### Registration
+
+fd:Registration a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Registration"@en ;
+    skos:altLabel "check-in"@en , "checkin"@en , "check in"@en , "reg"@en , "registration desk"@en ;
+    skos:definition "Problems checking in and getting or keeping a badge."@en .
+
+fd:BadgePickup a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Registration ;
+    skos:prefLabel "Badge pickup"@en ;
+    skos:altLabel "badge pick up"@en , "pick up badge"@en , "badge collection"@en ;
+    skos:definition "Problems collecting a badge at registration."@en .
+
+fd:RegistrationLine a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
+    skos:prefLabel "Registration line"@en ;
+    skos:altLabel "registration queue"@en , "check-in line"@en , "badge line"@en , "long line at registration"@en , "reg queue"@en ;
+    skos:definition "Long waits at the registration or badge desk."@en .
+
+fd:BadgeNotFound a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
+    skos:prefLabel "Badge not found"@en ;
+    skos:altLabel "not in system"@en , "can't find my registration"@en , "no badge for me"@en , "ticket not found"@en , "qr code not working"@en ;
+    skos:definition "Registration staff cannot find the attendee's ticket or badge."@en .
+
+fd:BadgeMisprinted a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
+    skos:prefLabel "Badge misprinted"@en ;
+    skos:altLabel "wrong name on badge"@en , "name misspelled"@en , "badge typo"@en , "wrong pronouns on badge"@en , "badge error"@en ;
+    skos:definition "Badge shows wrong or misspelled details."@en .
+
+fd:LostBadge a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Registration ;
+    skos:prefLabel "Lost badge"@en ;
+    skos:altLabel "badge lost"@en , "lost my badge"@en , "badge replacement"@en , "reprint badge"@en , "forgot badge"@en ;
+    skos:definition "An attendee lost their badge and needs a replacement."@en ;
+    skos:related fd:LostAndFound .
+
+fd:CheckInSystemDown a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Registration ;
+    skos:prefLabel "Check-in system down"@en ;
+    skos:altLabel "badge printer down"@en , "printer broken"@en , "check-in kiosk down"@en , "scanner not working"@en , "registration system down"@en ;
+    skos:definition "Registration kiosks, scanners or badge printers are not working."@en ;
+    skos:related fd:WifiOutage .
+
+#################################################################### Content
+
+fd:Content a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Content"@en ;
+    skos:altLabel "session"@en , "talk"@en , "talks"@en , "presentation"@en , "keynote"@en , "workshop"@en ;
+    skos:definition "Problems experiencing session content: audio, video, slides, capacity and recordings."@en .
+
+fd:AudioVisual a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Content ;
+    skos:prefLabel "Audio/visual"@en ;
+    skos:altLabel "a/v"@en , "av"@en , "audio visual"@en , "audio-visual"@en , "tech issues"@en ;
+    skos:definition "Problems with sound, microphones, projectors or screens during a session."@en .
+
+fd:CantHearSpeaker a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
+    skos:prefLabel "Can't hear speaker"@en ;
+    skos:altLabel "can't hear"@en , "cant hear"@en , "cannot hear"@en , "too quiet"@en , "audio too low"@en , "no sound"@en , "audio problem"@en , "speakers too quiet"@en ;
+    skos:definition "The audience cannot hear the speaker clearly."@en ;
+    skos:related fd:VenueNoise , fd:MissingCaptions .
+
+fd:MicrophoneProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
+    skos:prefLabel "Microphone problem"@en ;
+    skos:altLabel "mic"@en , "mic broken"@en , "mic not working"@en , "mic cutting out"@en , "feedback"@en , "no mic"@en , "mike"@en , "audience mic"@en ;
+    skos:definition "Microphones are missing, cutting out or causing feedback."@en .
+
+fd:ProjectorProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
+    skos:prefLabel "Projector problem"@en ;
+    skos:altLabel "projector"@en , "no hdmi"@en , "hdmi"@en , "screen black"@en , "display not working"@en , "laptop won't connect"@en , "no adapter"@en , "dongle"@en ;
+    skos:definition "Projectors, screens or display connections are not working."@en .
+
+fd:SlidesUnreadable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
+    skos:prefLabel "Slides unreadable"@en ;
+    skos:altLabel "can't read slides"@en , "slides too small"@en , "font too small"@en , "screen too small"@en , "slides washed out"@en ;
+    skos:definition "Slides cannot be read from the audience."@en ;
+    skos:related fd:LowContrastSignage , fd:Lighting .
+
+fd:TalkCapacity a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Content ;
+    skos:prefLabel "Talk capacity"@en ;
+    skos:altLabel "capacity"@en , "popular talk"@en ;
+    skos:definition "People cannot get into sessions they want to attend."@en .
+
+fd:TalkFull a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:TalkCapacity ;
+    skos:prefLabel "Talk full"@en ;
+    skos:altLabel "session full"@en , "turned away"@en , "room full"@en , "couldn't get in"@en , "doors closed"@en , "at capacity"@en ;
+    skos:definition "Attendees were turned away because a session reached capacity."@en ;
+    skos:related fd:RoomOverCapacity .
+
+fd:WorkshopSignupFull a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:TalkCapacity ;
+    skos:prefLabel "Workshop signup full"@en ;
+    skos:altLabel "workshop full"@en , "waitlist"@en , "rsvp full"@en , "lab full"@en ;
+    skos:definition "Workshop or lab registration filled up or the waitlist is unclear."@en .
+
+fd:Recordings a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Content ;
+    skos:prefLabel "Recordings"@en ;
+    skos:altLabel "recording"@en , "video"@en , "livestream"@en , "stream"@en ;
+    skos:definition "Problems with session recordings or livestreams."@en .
+
+fd:RecordingUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Recordings ;
+    skos:prefLabel "Recording unavailable"@en ;
+    skos:altLabel "no recording"@en , "not recorded"@en , "where are the videos"@en , "slides not posted"@en ;
+    skos:definition "A session recording or slide deck is not available afterwards."@en .
+
+fd:LivestreamDown a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Recordings ;
+    skos:prefLabel "Livestream down"@en ;
+    skos:altLabel "stream down"@en , "livestream broken"@en , "overflow room stream"@en , "stream lagging"@en ;
+    skos:definition "A livestream or overflow-room feed is down or broken."@en ;
+    skos:related fd:TalkFull , fd:WifiOutage .
+
+fd:TalkQuality a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Content ;
+    skos:prefLabel "Talk quality"@en ;
+    skos:altLabel "content quality"@en , "talk level"@en ;
+    skos:definition "A session differs from what its listing promised."@en .
+
+fd:TalkMismatchAbstract a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:TalkQuality ;
+    skos:prefLabel "Talk did not match abstract"@en ;
+    skos:altLabel "misleading abstract"@en , "wrong level"@en , "too basic"@en , "too advanced"@en , "vendor pitch"@en , "sales pitch"@en ;
+    skos:definition "The session content, level or style did not match its description."@en ;
+    skos:related fd:AggressiveSponsorPitch .
+
+#################################################################### SafetyAndConduct
+
+fd:SafetyAndConduct a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Safety and conduct"@en ;
+    skos:altLabel "safety"@en , "conduct"@en , "trust and safety"@en , "unsafe"@en ;
+    skos:definition "Code of conduct, physical safety and security concerns."@en .
+
+fd:CodeOfConduct a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SafetyAndConduct ;
+    skos:prefLabel "Code of conduct"@en ;
+    skos:altLabel "coc"@en , "code-of-conduct"@en , "conduct policy"@en ;
+    skos:definition "Behaviour that breaches the event code of conduct, or problems reporting it."@en .
+
+fd:HarassmentReport a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:CodeOfConduct ;
+    skos:prefLabel "Harassment report"@en ;
+    skos:altLabel "harassment"@en , "harassed"@en , "inappropriate behavior"@en , "inappropriate behaviour"@en , "unwanted contact"@en , "made uncomfortable"@en , "coc violation"@en ;
+    skos:definition "A report of harassment or code-of-conduct violation; route to the conduct team, never auto-assign."@en .
+
+fd:ConductContactUnclear a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:CodeOfConduct ;
+    skos:prefLabel "Conduct contact unclear"@en ;
+    skos:altLabel "who do i report to"@en , "coc contact"@en , "no conduct team"@en , "how to report"@en ;
+    skos:definition "Attendees cannot find how or to whom to report a conduct issue."@en .
+
+fd:PhotographyWithoutConsent a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:CodeOfConduct ;
+    skos:prefLabel "Photography without consent"@en ;
+    skos:altLabel "photo without consent"@en , "no photo lanyard"@en , "photographed"@en , "filming without consent"@en ;
+    skos:definition "Photos or video taken of people who opted out."@en .
+
+fd:EmergencySafety a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SafetyAndConduct ;
+    skos:prefLabel "Emergency safety"@en ;
+    skos:altLabel "emergency"@en , "fire safety"@en , "hazard"@en , "physical safety"@en ;
+    skos:definition "Physical hazards and emergency readiness."@en .
+
+fd:BlockedEmergencyExit a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:EmergencySafety ;
+    skos:prefLabel "Blocked emergency exit"@en ;
+    skos:altLabel "fire exit blocked"@en , "emergency exit blocked"@en , "exit locked"@en , "exit obstructed"@en ;
+    skos:definition "An emergency exit is locked or obstructed."@en ;
+    skos:related fd:BlockedAccessibleEntrance .
+
+fd:TripHazard a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:EmergencySafety ;
+    skos:prefLabel "Trip hazard"@en ;
+    skos:altLabel "cables on floor"@en , "loose cables"@en , "wet floor"@en , "slippery"@en , "tripped"@en ;
+    skos:definition "Loose cables, spills or uneven floors that could cause falls."@en .
+
+fd:FirstAidUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:EmergencySafety ;
+    skos:prefLabel "First aid unavailable"@en ;
+    skos:altLabel "first aid"@en , "medic"@en , "where is first aid"@en , "no first aid"@en ;
+    skos:definition "The first-aid station is missing, unstaffed or hard to find."@en .
+
+fd:Security a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SafetyAndConduct ;
+    skos:prefLabel "Security"@en ;
+    skos:altLabel "security staff"@en , "guards"@en ;
+    skos:definition "Security screening, theft and lost property."@en .
+
+fd:SecurityCheckDelay a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Security ;
+    skos:prefLabel "Security check delay"@en ;
+    skos:altLabel "bag check"@en , "bag check line"@en , "security line"@en , "screening queue"@en , "metal detector"@en ;
+    skos:definition "Long waits at security screening or bag checks."@en .
+
+fd:LostAndFound a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Security ;
+    skos:prefLabel "Lost and found"@en ;
+    skos:altLabel "lost property"@en , "lost item"@en , "left my laptop"@en , "lost and found desk"@en ;
+    skos:definition "Lost items and the lost-and-found service."@en ;
+    skos:related fd:LostBadge .
+
+fd:Theft a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Security ;
+    skos:prefLabel "Theft"@en ;
+    skos:altLabel "stolen"@en , "stolen laptop"@en , "stolen bag"@en , "pickpocket"@en ;
+    skos:definition "An attendee's belongings were stolen."@en .
+
+#################################################################### Transport
+
+fd:Transport a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Transport"@en ;
+    skos:altLabel "transportation"@en , "getting there"@en , "travel"@en , "commute"@en ;
+    skos:definition "Problems getting to, from or between venues."@en .
+
+fd:Shuttle a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Transport ;
+    skos:prefLabel "Shuttle"@en ;
+    skos:altLabel "shuttle bus"@en , "hotel shuttle"@en , "bus"@en ;
+    skos:definition "Problems with event shuttle buses."@en .
+
+fd:ShuttleDelay a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Shuttle ;
+    skos:prefLabel "Shuttle delay"@en ;
+    skos:altLabel "shuttle late"@en , "shuttle never came"@en , "missed shuttle"@en , "shuttle full"@en , "bus late"@en ;
+    skos:definition "Shuttles are late, full or did not arrive."@en .
+
+fd:ShuttleInfoUnclear a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Shuttle ;
+    skos:prefLabel "Shuttle information unclear"@en ;
+    skos:altLabel "shuttle schedule"@en , "where is the shuttle"@en , "shuttle stop"@en , "shuttle times"@en ;
+    skos:definition "Shuttle stops or timetables are hard to find."@en ;
+    skos:related fd:Wayfinding .
+
+fd:Parking a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Transport ;
+    skos:prefLabel "Parking"@en ;
+    skos:altLabel "car park"@en , "parking lot"@en , "parking garage"@en ;
+    skos:definition "Problems parking a car."@en .
+
+fd:ParkingFull a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Parking ;
+    skos:prefLabel "Parking full"@en ;
+    skos:altLabel "no parking"@en , "lot full"@en , "garage full"@en , "parking expensive"@en , "no accessible parking"@en ;
+    skos:definition "Parking is full, too expensive or lacks accessible spaces."@en .
+
+fd:Bike a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Transport ;
+    skos:prefLabel "Bike"@en ;
+    skos:altLabel "bicycle"@en , "cycling"@en , "scooter"@en ;
+    skos:definition "Problems arriving by bike or scooter."@en .
+
+fd:NoBikeParking a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Bike ;
+    skos:prefLabel "No bike parking"@en ;
+    skos:altLabel "no bike rack"@en , "bike rack full"@en , "nowhere to lock bike"@en , "bike storage"@en ;
+    skos:definition "There is no safe place to park a bike."@en .
+
+fd:PublicTransit a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Transport ;
+    skos:prefLabel "Public transit"@en ;
+    skos:altLabel "transit"@en , "train"@en , "metro"@en , "subway"@en , "tram"@en , "light rail"@en ;
+    skos:definition "Problems reaching the venue by public transport."@en .
+
+fd:TransitDirectionsUnclear a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:PublicTransit ;
+    skos:prefLabel "Transit directions unclear"@en ;
+    skos:altLabel "which train"@en , "nearest station"@en , "transit directions"@en , "how to get here"@en ;
+    skos:definition "Directions from transit stops to the venue are missing or confusing."@en .
+
+fd:Rideshare a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Transport ;
+    skos:prefLabel "Rideshare"@en ;
+    skos:altLabel "uber"@en , "lyft"@en , "taxi"@en , "cab"@en ;
+    skos:definition "Problems with taxi or rideshare pickup and drop-off."@en .
+
+fd:RideshareDropoffUnclear a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Rideshare ;
+    skos:prefLabel "Rideshare drop-off unclear"@en ;
+    skos:altLabel "pickup zone"@en , "drop off point"@en , "taxi line"@en , "uber pickup"@en ;
+    skos:definition "Pickup and drop-off points are unmarked or far from entrances."@en .
+
+#################################################################### SponsorsAndExpo
+
+fd:SponsorsAndExpo a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Sponsors and expo"@en ;
+    skos:altLabel "expo"@en , "expo hall"@en , "sponsor hall"@en , "booths"@en , "exhibitors"@en , "vendors"@en , "showcase"@en ;
+    skos:definition "Problems in the sponsor and exhibition area."@en .
+
+fd:BoothNoise a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SponsorsAndExpo ;
+    skos:prefLabel "Booth noise"@en ;
+    skos:altLabel "booth music"@en , "loud booth"@en , "booth speakers"@en ;
+    skos:definition "Noise from sponsor booths."@en ;
+    skos:related fd:VenueNoise .
+
+fd:ExpoTooLoud a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BoothNoise ;
+    skos:prefLabel "Expo too loud"@en ;
+    skos:altLabel "expo hall loud"@en , "can't talk in expo"@en , "booth too loud"@en , "blaring music"@en ;
+    skos:definition "The expo hall is too loud for conversation or bleeds into session rooms."@en ;
+    skos:related fd:QuietRoomUnavailable .
+
+fd:Swag a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SponsorsAndExpo ;
+    skos:prefLabel "Swag"@en ;
+    skos:altLabel "merch"@en , "giveaways"@en , "t-shirt"@en , "tshirt"@en , "stickers"@en ;
+    skos:definition "Problems with conference or sponsor giveaways."@en .
+
+fd:SwagRanOut a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Swag ;
+    skos:prefLabel "Swag ran out"@en ;
+    skos:altLabel "no swag"@en , "no t-shirts left"@en , "shirts ran out"@en , "wrong shirt size"@en , "no small sizes"@en ;
+    skos:definition "Giveaways ran out or came in limited sizes."@en .
+
+fd:ExpoLayout a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SponsorsAndExpo ;
+    skos:prefLabel "Expo layout"@en ;
+    skos:altLabel "floor plan"@en , "booth map"@en , "expo map"@en ;
+    skos:definition "The expo floor is hard to navigate."@en ;
+    skos:related fd:Wayfinding .
+
+fd:BoothHardToFind a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ExpoLayout ;
+    skos:prefLabel "Booth hard to find"@en ;
+    skos:altLabel "can't find booth"@en , "booth number wrong"@en , "map wrong"@en , "where is booth"@en ;
+    skos:definition "Attendees cannot locate a specific booth."@en .
+
+fd:ExpoAisleCrowded a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ExpoLayout ;
+    skos:prefLabel "Expo aisle crowded"@en ;
+    skos:altLabel "expo crowded"@en , "aisles too narrow"@en , "booth line blocking"@en , "expo packed"@en ;
+    skos:definition "Expo aisles are too narrow or blocked by booth queues."@en ;
+    skos:related fd:OvercrowdedHallway .
+
+fd:SponsorConduct a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SponsorsAndExpo ;
+    skos:prefLabel "Sponsor conduct"@en ;
+    skos:altLabel "booth staff"@en , "sponsor behavior"@en , "sponsor behaviour"@en ;
+    skos:definition "Problems with how sponsors engage attendees."@en ;
+    skos:related fd:CodeOfConduct .
+
+fd:AggressiveSponsorPitch a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:SponsorConduct ;
+    skos:prefLabel "Aggressive sponsor pitch"@en ;
+    skos:altLabel "pushy sales"@en , "badge scanning"@en , "scanned without asking"@en , "lead scan"@en , "spam after scan"@en ;
+    skos:definition "Booth staff pressure attendees or scan badges without consent."@en .
+
+#################################################################### Comfort
+
+fd:Comfort a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
+    skos:prefLabel "Comfort"@en ;
+    skos:altLabel "amenities"@en , "attendee services"@en , "facilities"@en ;
+    skos:definition "Support facilities such as lactation, prayer, coat check, lockers and childcare."@en .
+
+fd:LactationRoom a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Comfort ;
+    skos:prefLabel "Lactation room"@en ;
+    skos:altLabel "nursing room"@en , "mothers room"@en , "pumping room"@en , "parents room"@en ;
+    skos:definition "Problems with the lactation room facility."@en .
+
+fd:LactationRoomUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:LactationRoom ;
+    skos:prefLabel "Lactation room unavailable"@en ;
+    skos:altLabel "no lactation room"@en , "lactation room locked"@en , "nursing room occupied"@en , "no fridge in lactation room"@en ;
+    skos:definition "The lactation room is missing, locked, in use for other purposes or lacks basic supplies."@en .
+
+fd:PrayerRoom a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Comfort ;
+    skos:prefLabel "Prayer room"@en ;
+    skos:altLabel "multifaith room"@en , "multi-faith room"@en , "reflection room"@en , "meditation room"@en ;
+    skos:definition "Problems with the prayer or reflection room facility."@en .
+
+fd:PrayerRoomUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:PrayerRoom ;
+    skos:prefLabel "Prayer room unavailable"@en ;
+    skos:altLabel "no prayer room"@en , "prayer room locked"@en , "prayer room used for meetings"@en , "no reflection room"@en ;
+    skos:definition "The prayer or reflection room is missing, locked or being used for other purposes."@en .
+
+fd:CoatCheck a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Comfort ;
+    skos:prefLabel "Coat check"@en ;
+    skos:altLabel "cloakroom"@en , "coat room"@en , "bag drop"@en , "luggage storage"@en ;
+    skos:definition "Problems leaving coats or luggage."@en .
+
+fd:CoatCheckUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:CoatCheck ;
+    skos:prefLabel "Coat check unavailable"@en ;
+    skos:altLabel "no coat check"@en , "coat check full"@en , "coat check line"@en , "nowhere to leave luggage"@en , "coat check closed"@en ;
+    skos:definition "Coat or bag check is missing, full, closed early or has a long queue."@en .
+
+fd:Childcare a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Comfort ;
+    skos:prefLabel "Childcare"@en ;
+    skos:altLabel "kids"@en , "creche"@en , "daycare"@en , "child care"@en ;
+    skos:definition "Problems with on-site childcare services."@en .
+
+fd:ChildcareUnavailable a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Childcare ;
+    skos:prefLabel "Childcare unavailable"@en ;
+    skos:altLabel "no childcare"@en , "childcare full"@en , "childcare closed"@en ;
+    skos:definition "On-site childcare is full, closed or not offered as advertised."@en .
+
+fd:RestArea a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Comfort ;
+    skos:prefLabel "Rest area"@en ;
+    skos:altLabel "lounge"@en , "break area"@en , "hallway track"@en , "place to sit and work"@en ;
+    skos:definition "Problems with lounges and informal rest or work areas."@en .
+
+fd:NoRestArea a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:RestArea ;
+    skos:prefLabel "No rest area"@en ;
+    skos:altLabel "no lounge"@en , "nowhere to work"@en , "no tables"@en , "nowhere to take a call"@en , "no meeting space"@en ;
+    skos:definition "There is nowhere to rest, work or take a call between sessions."@en ;
+    skos:related fd:NotEnoughSeating , fd:NoPowerOutlets .

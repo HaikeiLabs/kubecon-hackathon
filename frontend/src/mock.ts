@@ -1,64 +1,85 @@
 // Seeded in-memory store persisted to localStorage, so the attendee page in one
-// tab and the organizer page in another share state during a demo.
-import { triage } from "./triage";
-import type { Assignment, Bucket, Report, ReportSubmission, TriageResult } from "./types";
+// tab and the organizer page in another share state during a demo. Implements
+// the same contract as the backend API (including the X-Role governance check).
+import { linkConcepts, topConceptLabel, triage } from "./triage";
+import type { Bucket, ConfirmRequest, GovernanceEvent, Report, ReportSubmission, Role, TriageResult } from "./types";
 
-const KEY = "friction-desk-mock-v1";
+const KEY = "friction-desk-mock-v2";
 
 interface Store {
   reports: Report[];
   buckets: Bucket[];
-  triage: Record<string, TriageResult>;
+  audit: GovernanceEvent[];
+}
+
+export class MockHttpError extends Error {
+  /** Mirrors the backend body, e.g. {governance: GovernanceEvent} on a 403. */
+  constructor(message: string, readonly status: number, readonly detail?: unknown) {
+    super(message);
+  }
 }
 
 const ago = (min: number) => new Date(Date.now() - min * 60_000).toISOString();
 
-function seed(): Store {
-  const buckets: Bucket[] = [
-    {
-      id: "b-hallb",
-      title: "Accessible entrance at Hall B blocked",
-      summary: "Step-free entrance to Hall B is obstructed by equipment carts; wheelchair users are being rerouted outside.",
-      status: "open",
-      report_count: 2,
-      updated_at: ago(25),
-    },
-    {
-      id: "b-wifi",
-      title: "Wi-Fi drops in Room 2A",
-      summary: "Attendees lose the conference Wi-Fi during sessions in Room 2A; demos and live polls fail.",
-      status: "open",
-      report_count: 3,
-      updated_at: ago(40),
-    },
-    {
-      id: "b-app",
-      title: "Schedule app shows wrong room for keynote",
-      summary: "The mobile schedule lists the Day 2 keynote in Room 1 instead of the main stage.",
-      status: "open",
-      report_count: 1,
-      updated_at: ago(90),
-    },
-  ];
-  const confirmed: Report[] = [
-    { id: "r1", description: "Couldn't get my wheelchair into Hall B, the ramp entrance is full of carts.", location: "Hall B", created_at: ago(60), status: "confirmed", bucket_id: "b-hallb" },
-    { id: "r2", description: "Accessible entrance to Hall B blocked by equipment, had to go around outside.", location: "Hall B east door", created_at: ago(25), status: "confirmed", bucket_id: "b-hallb" },
-    { id: "r3", description: "Wi-Fi keeps dropping during the talk in 2A.", location: "Room 2A", created_at: ago(120), status: "confirmed", bucket_id: "b-wifi" },
-    { id: "r4", description: "Live poll wouldn't load, network disconnected repeatedly.", location: "Room 2A", created_at: ago(70), status: "confirmed", bucket_id: "b-wifi" },
-    { id: "r5", description: "Speaker's demo failed because the wifi cut out.", location: "2A", created_at: ago(40), status: "confirmed", bucket_id: "b-wifi" },
-    { id: "r6", description: "App says the keynote is in Room 1 but it's on the main stage.", location: null, created_at: ago(90), status: "confirmed", bucket_id: "b-app" },
-  ];
-  const incoming: Report[] = [
-    { id: "r7", description: "Wi-Fi in room 2A disconnected three times during the session.", location: "Room 2A", created_at: ago(8), status: "proposed", bucket_id: null },
-    { id: "r8", description: "No vegetarian options left at the lunch station by 12:15.", location: "Expo hall food court", created_at: ago(5), status: "proposed", bucket_id: null },
-    { id: "r9", description: "The room schedule on the door doesn't match the app.", location: "Room 3C", created_at: ago(2), status: "proposed", bucket_id: null },
-  ];
-  const store: Store = { buckets, reports: [...incoming, ...confirmed], triage: {} };
-  for (const r of incoming) store.triage[r.id] = triage(r, buckets, confirmed);
-  return store;
+function bucket(id: string, title: string, summary: string, report_count: number, updatedMin: number, concept_ids: string[]): Bucket {
+  return {
+    id,
+    title,
+    summary,
+    status: "open",
+    report_count,
+    updated_at: ago(updatedMin),
+    concept_ids,
+    concept_ancestors: [],
+    category: topConceptLabel(concept_ids[0]),
+  };
 }
 
+function report(id: string, description: string, location: string | null, min: number, bucket_id: string | null): Report {
+  return {
+    id,
+    description,
+    location,
+    created_at: ago(min),
+    status: bucket_id ? "confirmed" : "proposed",
+    bucket_id,
+    ...linkConcepts(`${description} ${location ?? ""}`),
+    triage: null,
+  };
+}
+
+function seed(): Store {
+  const buckets: Bucket[] = [
+    bucket("b-hallb", "Accessible entrance at Hall B blocked", "Step-free entrance to Hall B is obstructed by equipment carts; wheelchair users are being rerouted outside.", 2, 25, ["fd:StepFreeAccess", "fd:BlockedEntrance"]),
+    bucket("b-wifi", "Wi-Fi drops in Room 2A", "Attendees lose the conference Wi-Fi during sessions in Room 2A; demos and live polls fail.", 3, 40, ["fd:WifiOutage"]),
+    bucket("b-app", "Schedule app shows wrong room for keynote", "The mobile schedule lists the Day 2 keynote in Room 1 instead of the main stage.", 1, 90, ["fd:ScheduleMismatch", "fd:EventApp"]),
+  ];
+  const confirmed: Report[] = [
+    report("r1", "Couldn't get my wheelchair into Hall B, the ramp entrance is full of carts.", "Hall B", 60, "b-hallb"),
+    report("r2", "Accessible entrance to Hall B blocked by equipment, had to go around outside.", "Hall B east door", 25, "b-hallb"),
+    report("r3", "Wi-Fi keeps dropping during the talk in 2A.", "Room 2A", 120, "b-wifi"),
+    report("r4", "Live poll wouldn't load, network disconnected repeatedly.", "Room 2A", 70, "b-wifi"),
+    report("r5", "Speaker's demo failed because the wifi cut out.", "2A", 40, "b-wifi"),
+    report("r6", "App says the keynote is in Room 1 but it's on the main stage.", null, 90, "b-app"),
+  ];
+  const incoming: Report[] = [
+    report("r7", "Wi-Fi in room 2A disconnected three times during the session.", "Room 2A", 8, null),
+    report("r8", "No vegetarian options left at the lunch station by 12:15.", "Expo hall food court", 5, null),
+    report("r9", "The room schedule on the door doesn't match the app.", "Room 3C", 2, null),
+  ];
+  const audit: GovernanceEvent[] = [];
+  for (const r of incoming) {
+    r.triage = triage(r, buckets, confirmed);
+    audit.push(...r.triage.governance);
+  }
+  return { buckets, reports: [...incoming, ...confirmed], audit };
+}
+
+// Fallback when localStorage is unavailable (private mode, tests).
+let memory: Store | null = null;
+
 function load(): Store {
+  if (memory) return memory;
   try {
     const raw = localStorage.getItem(KEY);
     if (raw) return JSON.parse(raw) as Store;
@@ -71,30 +92,31 @@ function load(): Store {
 }
 
 function save(s: Store) {
+  s.audit = s.audit.slice(-200);
   try {
     localStorage.setItem(KEY, JSON.stringify(s));
   } catch {
-    /* storage unavailable: state lives for this page only */
+    memory = s; // storage unavailable: state lives for this page only
   }
 }
 
 const delay = <T,>(v: T, ms = 350) => new Promise<T>((r) => setTimeout(() => r(v), ms));
 
+function find(s: Store, id: string): Report {
+  const r = s.reports.find((x) => x.id === id);
+  if (!r) throw new MockHttpError("Report not found", 404);
+  return r;
+}
+
 export const mock = {
   async submitReport(sub: ReportSubmission): Promise<Report> {
     const s = load();
-    const report: Report = {
-      id: crypto.randomUUID(),
-      description: sub.description.trim(),
-      location: sub.location?.trim() || null,
-      created_at: new Date().toISOString(),
-      status: "proposed",
-      bucket_id: null,
-    };
-    s.reports.unshift(report);
-    s.triage[report.id] = triage(report, s.buckets, s.reports);
+    const r = report(crypto.randomUUID(), sub.description.trim(), sub.location?.trim() || null, 0, null);
+    r.triage = triage(r, s.buckets, s.reports);
+    s.audit.push(...r.triage.governance);
+    s.reports.unshift(r);
     save(s);
-    return delay(report, 600);
+    return delay(r, 600);
   },
   async listReports(): Promise<Report[]> {
     return delay(load().reports);
@@ -102,31 +124,57 @@ export const mock = {
   async listBuckets(): Promise<Bucket[]> {
     return delay([...load().buckets].sort((a, b) => b.updated_at.localeCompare(a.updated_at)));
   },
-  async getTriage(reportId: string): Promise<TriageResult | null> {
-    return delay(load().triage[reportId] ?? null, 100);
-  },
-  async assign(reportId: string, a: Assignment): Promise<Report> {
+  async triageReport(id: string): Promise<TriageResult> {
     const s = load();
-    const report = s.reports.find((r) => r.id === reportId);
-    if (!report) throw new Error("Report not found");
-    let bucket: Bucket | undefined;
-    if (a.kind === "existing") {
-      bucket = s.buckets.find((b) => b.id === a.bucket_id);
-      if (!bucket) throw new Error("Issue not found");
-      bucket.report_count += 1;
-      bucket.updated_at = new Date().toISOString();
-    } else {
-      bucket = { id: `b-${crypto.randomUUID().slice(0, 8)}`, title: a.title, summary: a.summary, status: "open", report_count: 1, updated_at: new Date().toISOString() };
-      s.buckets.push(bucket);
-    }
-    report.status = "confirmed";
-    report.bucket_id = bucket.id;
-    delete s.triage[reportId];
+    const r = find(s, id);
+    r.triage = triage(r, s.buckets, s.reports.filter((x) => x.status === "confirmed"));
+    r.status = "proposed";
+    s.audit.push(...r.triage.governance);
     save(s);
-    return delay(report);
+    return delay(r.triage);
   },
-  reset() {
+  async confirm(id: string, req: ConfirmRequest, role: Role): Promise<Report> {
+    const s = load();
+    const r = find(s, id);
+    const at = new Date().toISOString();
+    if (role !== "organizer") {
+      const deny: GovernanceEvent = { tool: "friction.assign_report", decision: "deny", rule: "role-not-allowed", reason: `Role "${role}" may not call friction.assign_report; organizer required.`, at };
+      s.audit.push(deny);
+      save(s);
+      throw new MockHttpError("Denied by policy", 403, { governance: deny });
+    }
+    let b: Bucket | undefined;
+    if (req.bucket_id) {
+      b = s.buckets.find((x) => x.id === req.bucket_id);
+      if (!b) throw new MockHttpError("Bucket not found", 404);
+      b.report_count += 1;
+      b.updated_at = at;
+    } else {
+      b = {
+        id: `b-${crypto.randomUUID().slice(0, 8)}`,
+        title: req.new_bucket_title!,
+        summary: req.new_bucket_summary ?? "",
+        status: "open",
+        report_count: 1,
+        updated_at: at,
+        concept_ids: r.concept_ids,
+        concept_ancestors: r.concept_ancestors,
+        category: topConceptLabel(r.concept_ids[0]),
+      };
+      s.buckets.push(b);
+    }
+    s.audit.push({ tool: "friction.assign_report", decision: "allow", rule: "role-allowed", reason: "Organizer confirmed the assignment.", at });
+    r.status = "confirmed";
+    r.bucket_id = b.id;
+    save(s);
+    return delay(r);
+  },
+  async listAudit(limit: number): Promise<GovernanceEvent[]> {
+    return delay(load().audit.slice(-limit).reverse(), 100);
+  },
+  async reset(): Promise<void> {
     save(seed());
+    return delay(undefined);
   },
   storageKey: KEY,
 };
