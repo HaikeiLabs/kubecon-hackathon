@@ -120,8 +120,9 @@
       "can't find my registration",
       "no badge for me",
       "not in system",
+      "order not found",
       "qr code not working",
-      "ticket not found"
+      "registration not found"
     ],
     "definition": "Registration staff cannot find the attendee's ticket or badge.",
     "broader": [
@@ -273,11 +274,19 @@
     "iri": "https://haikei.dev/ontology/friction#CantHearSpeaker",
     "pref_label": "Can't hear speaker",
     "alt_labels": [
+      "audio is too quiet",
       "audio problem",
       "audio too low",
+      "barely hear",
       "can't hear",
+      "can't make out",
       "cannot hear",
       "cant hear",
+      "could not hear",
+      "couldn't hear",
+      "couldnt hear",
+      "hard to hear",
+      "impossible to make out",
       "no sound",
       "speakers too quiet",
       "too quiet"
@@ -454,8 +463,14 @@
     "alt_labels": [
       "caffeine",
       "coffee gone",
+      "coffee ran dry",
+      "coffee sold out",
+      "coffee urns",
+      "espresso ran out",
       "no coffee",
+      "no coffee left",
       "no tea",
+      "nothing left to pour",
       "out of coffee"
     ],
     "definition": "Coffee or tea service ran out or was not available.",
@@ -513,8 +528,12 @@
     "iri": "https://haikei.dev/ontology/friction#ConfusingSignage",
     "pref_label": "Confusing signage",
     "alt_labels": [
+      "confusing signs",
+      "direction signs",
       "misleading signs",
+      "room names don't match",
       "signage confusing",
+      "signs don't match",
       "signs point wrong way",
       "wrong signs"
     ],
@@ -554,12 +573,9 @@
     "iri": "https://haikei.dev/ontology/friction#Content",
     "pref_label": "Content",
     "alt_labels": [
-      "keynote",
-      "presentation",
-      "session",
-      "talk",
-      "talks",
-      "workshop"
+      "conference content",
+      "session content",
+      "talk content"
     ],
     "definition": "Problems experiencing session content: audio, video, slides, capacity and recordings.",
     "broader": [],
@@ -615,9 +631,14 @@
     "iri": "https://haikei.dev/ontology/friction#DoubleBookedRoom",
     "pref_label": "Double-booked room",
     "alt_labels": [
+      "booked twice",
       "double booked",
+      "double booking",
       "double-booked",
+      "room clash",
       "room conflict",
+      "same slot",
+      "two sessions same room",
       "two talks same room"
     ],
     "definition": "Two sessions are scheduled in the same room at the same time.",
@@ -657,9 +678,14 @@
     "pref_label": "Elevator out of service",
     "alt_labels": [
       "elevator broken",
+      "elevator closed",
       "elevator down",
+      "elevator is out of service",
+      "elevator not working",
       "escalator broken",
+      "escalator out of service",
       "lift broken",
+      "lift not working",
       "lift out of order"
     ],
     "definition": "An elevator or lift needed for step-free access is not working.",
@@ -747,8 +773,11 @@
     "pref_label": "Expo too loud",
     "alt_labels": [
       "blaring music",
+      "blasting music",
+      "booth audio",
       "booth too loud",
       "can't talk in expo",
+      "demo audio",
       "expo hall loud"
     ],
     "definition": "The expo hall is too loud for conversation or bleeds into session rooms.",
@@ -863,8 +892,15 @@
       "empty buffet",
       "food gone",
       "lunch ran out",
+      "lunch sold out",
       "no food left",
-      "out of food"
+      "nothing left to eat",
+      "out of food",
+      "ran out of food",
+      "ran out of snacks",
+      "sandwiches sold out",
+      "snacks gone",
+      "snacks ran out"
     ],
     "definition": "Food ran out before everyone was served.",
     "broader": [
@@ -928,7 +964,13 @@
     "pref_label": "Hard to find room",
     "alt_labels": [
       "can't find room",
+      "can't find the room",
       "cant find the room",
+      "could not find the room",
+      "couldn't find the room",
+      "find the right room",
+      "hard to find the room",
+      "locate the room",
       "room hidden",
       "where is room",
       "which floor"
@@ -1016,10 +1058,18 @@
     "iri": "https://haikei.dev/ontology/friction#LactationRoomUnavailable",
     "pref_label": "Lactation room unavailable",
     "alt_labels": [
+      "lactation room closed",
+      "lactation room is locked",
       "lactation room locked",
+      "lactation room occupied",
+      "lactation room was locked",
+      "mothers room locked",
       "no fridge in lactation room",
       "no lactation room",
-      "nursing room occupied"
+      "nursing room closed",
+      "nursing room locked",
+      "nursing room occupied",
+      "pumping room locked"
     ],
     "definition": "The lactation room is missing, locked, in use for other purposes or lacks basic supplies.",
     "broader": [
@@ -1063,9 +1113,14 @@
     "pref_label": "Livestream down",
     "alt_labels": [
       "livestream broken",
+      "livestream buffering",
       "overflow room stream",
+      "stream buffering",
       "stream down",
-      "stream lagging"
+      "stream keeps dying",
+      "stream lagging",
+      "streaming broken",
+      "video buffering"
     ],
     "definition": "A livestream or overflow-room feed is down or broken.",
     "broader": [
@@ -1182,11 +1237,18 @@
     "pref_label": "Microphone problem",
     "alt_labels": [
       "audience mic",
-      "feedback",
+      "audio feedback",
+      "feedback squeal",
       "mic",
       "mic broken",
+      "mic buzzing",
+      "mic crackling",
+      "mic cut out",
       "mic cutting out",
+      "mic dropping out",
+      "mic feedback",
       "mic not working",
+      "microphone",
       "mike",
       "no mic"
     ],
@@ -1258,8 +1320,11 @@
     "iri": "https://haikei.dev/ontology/friction#MissingRamp",
     "pref_label": "Missing ramp",
     "alt_labels": [
+      "no alternative ramp",
       "no ramp",
       "no ramp to stage",
+      "no wheelchair ramp",
+      "ramp missing",
       "stage not accessible",
       "steps only"
     ],
@@ -1280,10 +1345,16 @@
     "iri": "https://haikei.dev/ontology/friction#MissingSignage",
     "pref_label": "Missing signage",
     "alt_labels": [
+      "no directional signs",
+      "no room numbers",
       "no signage",
       "no signs",
+      "nothing is labeled",
+      "nothing labeled",
       "signs missing",
-      "unsigned"
+      "unlabeled rooms",
+      "unsigned",
+      "zero signage"
     ],
     "definition": "Signs pointing to rooms or services are absent.",
     "broader": [
@@ -1440,7 +1511,11 @@
       "no outlets",
       "no plugs",
       "no power",
+      "no power socket",
       "no sockets",
+      "nowhere to charge",
+      "outlet not working",
+      "outlets dead",
       "power strip"
     ],
     "definition": "There are no or too few power outlets for charging devices.",
@@ -1513,7 +1588,12 @@
       "no vegan",
       "plant based",
       "plant-based",
-      "vegan ran out"
+      "vegan",
+      "vegan lunch",
+      "vegan option",
+      "vegan options",
+      "vegan ran out",
+      "vegan sold out"
     ],
     "definition": "No vegan meal is available.",
     "broader": [
@@ -1535,7 +1615,10 @@
       "no vegetarian",
       "no veggie",
       "only meat",
-      "vegetarian ran out"
+      "vegetarian",
+      "vegetarian options",
+      "vegetarian ran out",
+      "veggie options"
     ],
     "definition": "No vegetarian meal is available.",
     "broader": [
@@ -1555,9 +1638,16 @@
     "pref_label": "Not enough seating",
     "alt_labels": [
       "had to stand",
+      "leaning on walls",
       "no chairs",
+      "no free chair",
+      "no free seats",
       "no seats",
+      "not enough chairs",
+      "not enough seats",
       "nowhere to sit",
+      "sit on the floor",
+      "sitting on the floor",
       "standing only"
     ],
     "definition": "There are too few seats for the people present.",
@@ -1734,8 +1824,11 @@
     "alt_labels": [
       "no prayer room",
       "no reflection room",
+      "prayer room closed",
+      "prayer room is locked",
       "prayer room locked",
-      "prayer room used for meetings"
+      "prayer room used for meetings",
+      "prayer room was locked"
     ],
     "definition": "The prayer or reflection room is missing, locked or being used for other purposes.",
     "broader": [
@@ -1855,7 +1948,11 @@
     "alt_labels": [
       "no recording",
       "not recorded",
+      "recording not available",
+      "recording still processing",
+      "recordings not posted",
       "slides not posted",
+      "video not up",
       "where are the videos"
     ],
     "definition": "A session recording or slide deck is not available afterwards.",
@@ -1915,9 +2012,12 @@
     "pref_label": "Registration line",
     "alt_labels": [
       "badge line",
+      "badge pickup line",
+      "badge pickup queue",
       "check-in line",
       "long line at registration",
       "reg queue",
+      "registration line",
       "registration queue"
     ],
     "definition": "Long waits at the registration or badge desk.",
@@ -1937,18 +2037,27 @@
     "iri": "https://haikei.dev/ontology/friction#ReservedSeatingMissing",
     "pref_label": "Accessible seating missing",
     "alt_labels": [
+      "accessible seating",
+      "accessible seating occupied",
+      "accessible seating taken",
+      "accessible seats taken",
       "no accessible seating",
       "no aisle seat",
       "no wheelchair space",
-      "reserved seating taken"
+      "reserved seating taken",
+      "wheelchair seating",
+      "wheelchair spaces"
     ],
     "definition": "Reserved accessible seating or wheelchair spaces are missing or taken.",
     "broader": [
-      "fd:MobilityAccess"
+      "fd:MobilityAccess",
+      "fd:Seating"
     ],
     "ancestors": [
       "fd:Accessibility",
-      "fd:MobilityAccess"
+      "fd:MobilityAccess",
+      "fd:Seating",
+      "fd:Venue"
     ],
     "path": "Accessibility/MobilityAccess/ReservedSeatingMissing",
     "related": [],
@@ -2113,12 +2222,15 @@
     "iri": "https://haikei.dev/ontology/friction#RoomChange",
     "pref_label": "Room change",
     "alt_labels": [
+      "changed rooms",
       "moved rooms",
+      "moved to another room",
+      "new room",
       "relocated",
       "room changed",
+      "room moved",
       "session moved",
-      "talk moved",
-      "wrong room"
+      "talk moved"
     ],
     "definition": "A session was moved to a different room.",
     "broader": [
@@ -2167,10 +2279,15 @@
     "pref_label": "Room too cold",
     "alt_labels": [
       "ac too high",
+      "arctic",
       "chilly",
       "freezing",
       "frigid",
-      "too cold"
+      "ice cold",
+      "like a fridge",
+      "too chilly",
+      "too cold",
+      "walk-in fridge"
     ],
     "definition": "A room is too cold.",
     "broader": [
@@ -2190,11 +2307,17 @@
     "pref_label": "Room too hot",
     "alt_labels": [
       "ac broken",
+      "ac can't keep up",
+      "air conditioning can't keep up",
       "boiling",
       "no air",
+      "overheated",
+      "roasting",
+      "sauna",
       "stuffy",
       "sweltering",
-      "too hot"
+      "too hot",
+      "too warm"
     ],
     "definition": "A room is too warm or poorly ventilated.",
     "broader": [
@@ -2572,13 +2695,29 @@
     "iri": "https://haikei.dev/ontology/friction#SlowWifi",
     "pref_label": "Slow Wi-Fi",
     "alt_labels": [
+      "bandwidth",
       "flaky wifi",
       "laggy wifi",
+      "low bandwidth",
       "slow internet",
+      "slow network",
       "slow wifi",
       "spotty wifi",
+      "throttled",
+      "throughput",
+      "wi-fi is slow",
+      "wi-fi keeps cutting out",
+      "wifi cutting out",
+      "wifi dropping",
+      "wifi is flaky",
+      "wifi is slow",
+      "wifi is spotty",
+      "wifi is unusable",
+      "wifi keeps cutting out",
       "wifi keeps dropping",
-      "wifi slow"
+      "wifi slow",
+      "wifi unusable",
+      "wifi was slow"
     ],
     "definition": "The Wi-Fi works but is slow or intermittent.",
     "broader": [
@@ -2685,7 +2824,11 @@
       "no small sizes",
       "no swag",
       "no t-shirts left",
+      "out of shirts",
+      "out of swag",
+      "shirt line closed",
       "shirts ran out",
+      "swag gone",
       "wrong shirt size"
     ],
     "definition": "Giveaways ran out or came in limited sizes.",
@@ -3029,11 +3172,13 @@
     "iri": "https://haikei.dev/ontology/friction#Wayfinding",
     "pref_label": "Wayfinding",
     "alt_labels": [
-      "can't find",
-      "cant find",
-      "directions",
+      "can't find my way",
+      "couldn't find my way",
+      "get lost",
       "getting lost",
-      "lost",
+      "got lost",
+      "hard to navigate",
+      "indoor directions",
       "navigation"
     ],
     "definition": "Difficulty finding rooms, halls or services inside the venue.",
@@ -3075,11 +3220,17 @@
     "pref_label": "Wi-Fi login problem",
     "alt_labels": [
       "can't connect to wifi",
+      "can't log in to wifi",
+      "cannot connect to wifi",
       "captive portal",
       "which ssid",
       "wifi login",
+      "wifi login page",
       "wifi password",
-      "wifi password wrong"
+      "wifi password wrong",
+      "wifi sign in",
+      "wifi sign-in",
+      "wifi won't connect"
     ],
     "definition": "Attendees cannot find the network name, password or get past the login page.",
     "broader": [
@@ -3099,13 +3250,20 @@
     "pref_label": "Wi-Fi outage",
     "alt_labels": [
       "internet down",
+      "internet is down",
       "network down",
       "no internet",
       "no wifi",
+      "wi-fi dies",
       "wi-fi down",
+      "wi-fi is down",
+      "wifi died",
+      "wifi dies",
       "wifi down",
+      "wifi is down",
       "wifi not working",
-      "wifi outage"
+      "wifi outage",
+      "wifi was down"
     ],
     "definition": "The Wi-Fi network is unavailable.",
     "broader": [

@@ -21,7 +21,7 @@
   },
   {
     "id": "fd:BadgeNotFound",
-    "synonyms": "badge not found, can't find my registration, no badge for me, not in system, qr code not working, ticket not found"
+    "synonyms": "badge not found, can't find my registration, no badge for me, not in system, order not found, qr code not working, registration not found"
   },
   {
     "id": "fd:BadgePickup",
@@ -49,7 +49,7 @@
   },
   {
     "id": "fd:CantHearSpeaker",
-    "synonyms": "can't hear speaker, audio problem, audio too low, can't hear, cannot hear, cant hear, no sound, speakers too quiet, too quiet"
+    "synonyms": "can't hear speaker, audio is too quiet, audio problem, audio too low, barely hear, can't hear, can't make out, cannot hear, cant hear, could not hear, couldn't hear, couldnt hear, hard to hear, impossible to make out, no sound, speakers too quiet, too quiet"
   },
   {
     "id": "fd:CellSignal",
@@ -81,7 +81,7 @@
   },
   {
     "id": "fd:CoffeeRanOut",
-    "synonyms": "coffee ran out, caffeine, coffee gone, no coffee, no tea, out of coffee"
+    "synonyms": "coffee ran out, caffeine, coffee gone, coffee ran dry, coffee sold out, coffee urns, espresso ran out, no coffee, no coffee left, no tea, nothing left to pour, out of coffee"
   },
   {
     "id": "fd:Comfort",
@@ -93,7 +93,7 @@
   },
   {
     "id": "fd:ConfusingSignage",
-    "synonyms": "confusing signage, misleading signs, signage confusing, signs point wrong way, wrong signs"
+    "synonyms": "confusing signage, confusing signs, direction signs, misleading signs, room names don't match, signage confusing, signs don't match, signs point wrong way, wrong signs"
   },
   {
     "id": "fd:Connectivity",
@@ -101,7 +101,7 @@
   },
   {
     "id": "fd:Content",
-    "synonyms": "content, keynote, presentation, session, talk, talks, workshop"
+    "synonyms": "content, conference content, session content, talk content"
   },
   {
     "id": "fd:Crowding",
@@ -113,7 +113,7 @@
   },
   {
     "id": "fd:DoubleBookedRoom",
-    "synonyms": "double-booked room, double booked, double-booked, room conflict, two talks same room"
+    "synonyms": "double-booked room, booked twice, double booked, double booking, double-booked, room clash, room conflict, same slot, two sessions same room, two talks same room"
   },
   {
     "id": "fd:DrinkingWater",
@@ -121,7 +121,7 @@
   },
   {
     "id": "fd:ElevatorOutOfService",
-    "synonyms": "elevator out of service, elevator broken, elevator down, escalator broken, lift broken, lift out of order"
+    "synonyms": "elevator out of service, elevator broken, elevator closed, elevator down, elevator is out of service, elevator not working, escalator broken, escalator out of service, lift broken, lift not working, lift out of order"
   },
   {
     "id": "fd:EmergencySafety",
@@ -137,7 +137,7 @@
   },
   {
     "id": "fd:ExpoTooLoud",
-    "synonyms": "expo too loud, blaring music, booth too loud, can't talk in expo, expo hall loud"
+    "synonyms": "expo too loud, blaring music, blasting music, booth audio, booth too loud, can't talk in expo, demo audio, expo hall loud"
   },
   {
     "id": "fd:FirstAidUnavailable",
@@ -157,7 +157,7 @@
   },
   {
     "id": "fd:FoodRanOut",
-    "synonyms": "food ran out, empty buffet, food gone, lunch ran out, no food left, out of food"
+    "synonyms": "food ran out, empty buffet, food gone, lunch ran out, lunch sold out, no food left, nothing left to eat, out of food, ran out of food, ran out of snacks, sandwiches sold out, snacks gone, snacks ran out"
   },
   {
     "id": "fd:FoodSupply",
@@ -169,7 +169,7 @@
   },
   {
     "id": "fd:HardToFindRoom",
-    "synonyms": "hard to find room, can't find room, cant find the room, room hidden, where is room, which floor"
+    "synonyms": "hard to find room, can't find room, can't find the room, cant find the room, could not find the room, couldn't find the room, find the right room, hard to find the room, locate the room, room hidden, where is room, which floor"
   },
   {
     "id": "fd:HearingAccess",
@@ -185,7 +185,7 @@
   },
   {
     "id": "fd:LactationRoomUnavailable",
-    "synonyms": "lactation room unavailable, lactation room locked, no fridge in lactation room, no lactation room, nursing room occupied"
+    "synonyms": "lactation room unavailable, lactation room closed, lactation room is locked, lactation room locked, lactation room occupied, lactation room was locked, mothers room locked, no fridge in lactation room, no lactation room, nursing room closed, nursing room locked, nursing room occupied, pumping room locked"
   },
   {
     "id": "fd:Lighting",
@@ -193,7 +193,7 @@
   },
   {
     "id": "fd:LivestreamDown",
-    "synonyms": "livestream down, livestream broken, overflow room stream, stream down, stream lagging"
+    "synonyms": "livestream down, livestream broken, livestream buffering, overflow room stream, stream buffering, stream down, stream keeps dying, stream lagging, streaming broken, video buffering"
   },
   {
     "id": "fd:LongWalkingDistances",
@@ -213,7 +213,7 @@
   },
   {
     "id": "fd:MicrophoneProblem",
-    "synonyms": "microphone problem, audience mic, feedback, mic, mic broken, mic cutting out, mic not working, mike, no mic"
+    "synonyms": "microphone problem, audience mic, audio feedback, feedback squeal, mic, mic broken, mic buzzing, mic crackling, mic cut out, mic cutting out, mic dropping out, mic feedback, mic not working, microphone, mike, no mic"
   },
   {
     "id": "fd:MissingAllergenInfo",
@@ -225,11 +225,11 @@
   },
   {
     "id": "fd:MissingRamp",
-    "synonyms": "missing ramp, no ramp, no ramp to stage, stage not accessible, steps only"
+    "synonyms": "missing ramp, no alternative ramp, no ramp, no ramp to stage, no wheelchair ramp, ramp missing, stage not accessible, steps only"
   },
   {
     "id": "fd:MissingSignage",
-    "synonyms": "missing signage, no signage, no signs, signs missing, unsigned"
+    "synonyms": "missing signage, no directional signs, no room numbers, no signage, no signs, nothing is labeled, nothing labeled, signs missing, unlabeled rooms, unsigned, zero signage"
   },
   {
     "id": "fd:MobilityAccess",
@@ -257,7 +257,7 @@
   },
   {
     "id": "fd:NoPowerOutlets",
-    "synonyms": "no power outlets, can't charge, dead battery, no outlets, no plugs, no power, no sockets, power strip"
+    "synonyms": "no power outlets, can't charge, dead battery, no outlets, no plugs, no power, no power socket, no sockets, nowhere to charge, outlet not working, outlets dead, power strip"
   },
   {
     "id": "fd:NoRestArea",
@@ -269,15 +269,15 @@
   },
   {
     "id": "fd:NoVeganOption",
-    "synonyms": "no vegan option, no vegan, plant based, plant-based, vegan ran out"
+    "synonyms": "no vegan option, no vegan, plant based, plant-based, vegan, vegan lunch, vegan option, vegan options, vegan ran out, vegan sold out"
   },
   {
     "id": "fd:NoVegetarianOption",
-    "synonyms": "no vegetarian option, no vegetarian, no veggie, only meat, vegetarian ran out"
+    "synonyms": "no vegetarian option, no vegetarian, no veggie, only meat, vegetarian, vegetarian options, vegetarian ran out, veggie options"
   },
   {
     "id": "fd:NotEnoughSeating",
-    "synonyms": "not enough seating, had to stand, no chairs, no seats, nowhere to sit, standing only"
+    "synonyms": "not enough seating, had to stand, leaning on walls, no chairs, no free chair, no free seats, no seats, not enough chairs, not enough seats, nowhere to sit, sit on the floor, sitting on the floor, standing only"
   },
   {
     "id": "fd:OvercrowdedHallway",
@@ -309,7 +309,7 @@
   },
   {
     "id": "fd:PrayerRoomUnavailable",
-    "synonyms": "prayer room unavailable, no prayer room, no reflection room, prayer room locked, prayer room used for meetings"
+    "synonyms": "prayer room unavailable, no prayer room, no reflection room, prayer room closed, prayer room is locked, prayer room locked, prayer room used for meetings, prayer room was locked"
   },
   {
     "id": "fd:PrintedScheduleWrong",
@@ -329,7 +329,7 @@
   },
   {
     "id": "fd:RecordingUnavailable",
-    "synonyms": "recording unavailable, no recording, not recorded, slides not posted, where are the videos"
+    "synonyms": "recording unavailable, no recording, not recorded, recording not available, recording still processing, recordings not posted, slides not posted, video not up, where are the videos"
   },
   {
     "id": "fd:Recordings",
@@ -341,11 +341,11 @@
   },
   {
     "id": "fd:RegistrationLine",
-    "synonyms": "registration line, badge line, check-in line, long line at registration, reg queue, registration queue"
+    "synonyms": "registration line, badge line, badge pickup line, badge pickup queue, check-in line, long line at registration, reg queue, registration queue"
   },
   {
     "id": "fd:ReservedSeatingMissing",
-    "synonyms": "accessible seating missing, no accessible seating, no aisle seat, no wheelchair space, reserved seating taken"
+    "synonyms": "accessible seating missing, accessible seating, accessible seating occupied, accessible seating taken, accessible seats taken, no accessible seating, no aisle seat, no wheelchair space, reserved seating taken, wheelchair seating, wheelchair spaces"
   },
   {
     "id": "fd:RestArea",
@@ -377,7 +377,7 @@
   },
   {
     "id": "fd:RoomChange",
-    "synonyms": "room change, moved rooms, relocated, room changed, session moved, talk moved, wrong room"
+    "synonyms": "room change, changed rooms, moved rooms, moved to another room, new room, relocated, room changed, room moved, session moved, talk moved"
   },
   {
     "id": "fd:RoomOverCapacity",
@@ -385,11 +385,11 @@
   },
   {
     "id": "fd:RoomTooCold",
-    "synonyms": "room too cold, ac too high, chilly, freezing, frigid, too cold"
+    "synonyms": "room too cold, ac too high, arctic, chilly, freezing, frigid, ice cold, like a fridge, too chilly, too cold, walk-in fridge"
   },
   {
     "id": "fd:RoomTooHot",
-    "synonyms": "room too hot, ac broken, boiling, no air, stuffy, sweltering, too hot"
+    "synonyms": "room too hot, ac broken, ac can't keep up, air conditioning can't keep up, boiling, no air, overheated, roasting, sauna, stuffy, sweltering, too hot, too warm"
   },
   {
     "id": "fd:SafetyAndConduct",
@@ -461,7 +461,7 @@
   },
   {
     "id": "fd:SlowWifi",
-    "synonyms": "slow wi-fi, flaky wifi, laggy wifi, slow internet, slow wifi, spotty wifi, wifi keeps dropping, wifi slow"
+    "synonyms": "slow wi-fi, bandwidth, flaky wifi, laggy wifi, low bandwidth, slow internet, slow network, slow wifi, spotty wifi, throttled, throughput, wi-fi is slow, wi-fi keeps cutting out, wifi cutting out, wifi dropping, wifi is flaky, wifi is slow, wifi is spotty, wifi is unusable, wifi keeps cutting out, wifi keeps dropping, wifi slow, wifi unusable, wifi was slow"
   },
   {
     "id": "fd:SponsorConduct",
@@ -481,7 +481,7 @@
   },
   {
     "id": "fd:SwagRanOut",
-    "synonyms": "swag ran out, no small sizes, no swag, no t-shirts left, shirts ran out, wrong shirt size"
+    "synonyms": "swag ran out, no small sizes, no swag, no t-shirts left, out of shirts, out of swag, shirt line closed, shirts ran out, swag gone, wrong shirt size"
   },
   {
     "id": "fd:TalkCapacity",
@@ -545,7 +545,7 @@
   },
   {
     "id": "fd:Wayfinding",
-    "synonyms": "wayfinding, can't find, cant find, directions, getting lost, lost, navigation"
+    "synonyms": "wayfinding, can't find my way, couldn't find my way, get lost, getting lost, got lost, hard to navigate, indoor directions, navigation"
   },
   {
     "id": "fd:Wifi",
@@ -553,11 +553,11 @@
   },
   {
     "id": "fd:WifiLoginProblem",
-    "synonyms": "wi-fi login problem, can't connect to wifi, captive portal, which ssid, wifi login, wifi password, wifi password wrong"
+    "synonyms": "wi-fi login problem, can't connect to wifi, can't log in to wifi, cannot connect to wifi, captive portal, which ssid, wifi login, wifi login page, wifi password, wifi password wrong, wifi sign in, wifi sign-in, wifi won't connect"
   },
   {
     "id": "fd:WifiOutage",
-    "synonyms": "wi-fi outage, internet down, network down, no internet, no wifi, wi-fi down, wifi down, wifi not working, wifi outage"
+    "synonyms": "wi-fi outage, internet down, internet is down, network down, no internet, no wifi, wi-fi dies, wi-fi down, wi-fi is down, wifi died, wifi dies, wifi down, wifi is down, wifi not working, wifi outage, wifi was down"
   },
   {
     "id": "fd:WorkshopSignupFull",
