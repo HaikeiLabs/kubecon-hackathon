@@ -1,0 +1,92 @@
+{{- if .Values.frontend.enabled }}
+{{- $fe := .Values.frontend }}
+{{- $repo := default .Values.image.repository $fe.image.repository }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "friction-desk.fullname" . }}-frontend
+  labels:
+    {{- include "friction-desk.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: {{ $fe.replicas }}
+  selector:
+    matchLabels:
+      {{- include "friction-desk.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: frontend
+  template:
+    metadata:
+      labels:
+        {{- include "friction-desk.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: frontend
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        runAsGroup: 101
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: frontend
+          # Same ECR repository as the API by default, distinguished by tag.
+          image: "{{ required "Set frontend.image.repository or image.repository" $repo }}:{{ required "Set frontend.image.tag (for example frontend-<sha>)" $fe.image.tag }}"
+          imagePullPolicy: {{ $fe.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            # Same-origin proxy target for /api/* and /health/* (no trailing path).
+            - name: API_UPSTREAM
+              value: "http://{{ include "friction-desk.fullname" . }}-api:{{ .Values.api.port }}"
+          readinessProbe:
+            httpGet:
+              path: /frontend-healthz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /frontend-healthz
+              port: http
+            periodSeconds: 20
+            timeoutSeconds: 3
+          resources:
+            {{- toYaml $fe.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            # nginx renders its config from the template at start and needs
+            # writable temp/pid paths; the root filesystem stays read-only.
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: nginx-conf
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "friction-desk.fullname" . }}-frontend
+  labels:
+    {{- include "friction-desk.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  # Internal only. Use `make port-forward-ui` for demos; no Ingress/DNS here.
+  type: ClusterIP
+  selector:
+    {{- include "friction-desk.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+  ports:
+    - name: http
+      port: {{ $fe.servicePort }}
+      targetPort: http
+      protocol: TCP
+{{- end }}

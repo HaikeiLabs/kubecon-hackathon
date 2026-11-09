@@ -1,6 +1,6 @@
 apiVersion: v2
 name: friction-desk
-description: Conference Friction Desk API and Elasticsearch demo stack
+description: Conference Friction Desk API, static frontend, and Elasticsearch demo stack
 type: application
 version: 0.1.0
 appVersion: "0.1.0"

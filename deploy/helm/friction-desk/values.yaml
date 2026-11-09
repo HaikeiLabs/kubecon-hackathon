@@ -16,6 +16,23 @@ api:
       cpu: 500m
       memory: 512Mi
 
+frontend:
+  enabled: true
+  replicas: 1
+  servicePort: 80
+  image:
+    # Empty reuses image.repository (the existing ECR repo); tags keep images distinct.
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 25m
+      memory: 32Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
 elasticsearch:
   # Hosted Elastic deployment URL. The API key stays in Secrets Manager/Kubernetes Secret.
   url: ""
