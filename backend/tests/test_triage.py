@@ -8,7 +8,12 @@ from haikeilabs.agentware.middleware.types import CallerContext
 
 from app.models import Bucket, BucketSearchResult, ConceptTag, Report
 from app.triage import router as triage_router
-from app.triage.llm import Classification, OpenAIClassifier
+from app.triage.llm import (
+    Classification,
+    ElasticInferenceClassifier,
+    OpenAIClassifier,
+    default_classifier,
+)
 from app.triage.policy import ROLE_ORGANIZER, ROLE_TRIAGE_AGENT, LocalPolicyEvaluator
 from app.triage.service import triage_report
 from app.triage.tools import (
@@ -340,3 +345,68 @@ def test_main_app_mounts_triage_routes():
     paths = set(app.openapi()["paths"])
     assert {"/api/reports/{report_id}/triage", "/api/reports/{report_id}/confirm",
             "/api/audit", "/api/concepts"} <= paths
+
+
+# --- Elastic inference provider ----------------------------------------------------------
+
+
+class FakeInference:
+    def __init__(self, answer=None, error=None):
+        self.answer, self.error, self.calls = answer, error, []
+
+    def completion(self, **kwargs):
+        self.calls.append(kwargs)
+        if self.error:
+            raise self.error
+        return {"completion": [{"result": self.answer}]}
+
+
+class FakeES:
+    def __init__(self, inference):
+        self.inference = inference
+
+
+ELASTIC_MATCH = ('```json\n{"bucket_id":"bWifi","new_bucket_title":null,'
+                 '"new_bucket_summary":null,"confidence":0.9,"rationale":"Same wifi issue."}\n```')
+
+
+def test_elastic_classifier_parses_fenced_json():
+    inference = FakeInference(answer=ELASTIC_MATCH)
+    clf = ElasticInferenceClassifier(FakeES(inference), inference_id=".x-completion")
+    backend = FakeBackend(tags=[WIFI_TAG], candidates=[WIFI_CAND, FOOD_CAND])
+    result = triage_report(None, report(), backend=backend, classifier=clf, governor=governor())
+    assert result.disposition == "existing_bucket" and result.bucket_id == "bWifi"
+    assert result.rationale == "Same wifi issue."
+    assert result.extractor_version == "triage-v1:elastic:.x-completion"
+    call = inference.calls[0]
+    assert call["inference_id"] == ".x-completion" and call["timeout"] == "15s"
+    assert "Respond with ONLY one JSON object" in call["input"] and WIFI_TEXT in call["input"]
+
+
+@pytest.mark.parametrize("fake", [
+    FakeInference(answer="I think it is the wifi bucket."),  # no JSON
+    FakeInference(answer='{"bucket_id":"invented","confidence":0.9,"rationale":"x"}'),
+    FakeInference(answer='{"bucket_id":null,"confidence":2,"rationale":"x"}'),  # invalid
+    FakeInference(error=ConnectionError("inference down")),
+])
+def test_elastic_classifier_bad_answers_fall_back(fake):
+    clf = ElasticInferenceClassifier(FakeES(fake), inference_id=".x-completion")
+    backend = FakeBackend(tags=[WIFI_TAG], candidates=[WIFI_CAND])
+    result = triage_report(None, report(), backend=backend, classifier=clf, governor=governor())
+    assert result.extractor_version == "triage-v1:elastic:.x-completion|fallback-v1"
+    assert result.bucket_id == "bWifi"
+
+
+def test_provider_selection(monkeypatch):
+    es = FakeES(FakeInference(answer="{}"))
+    monkeypatch.delenv("FD_TRIAGE_PROVIDER", raising=False)
+    monkeypatch.delenv("FD_TRIAGE_INFERENCE_ID", raising=False)
+    default = default_classifier(es)
+    assert isinstance(default, ElasticInferenceClassifier)
+    assert default.version == "triage-v1:elastic:.anthropic-claude-5-sonnet-completion"
+    assert default_classifier(None) is None
+    monkeypatch.setenv("FD_TRIAGE_INFERENCE_ID", ".zai-glm-5.3-completion")
+    assert default_classifier(es).inference_id == ".zai-glm-5.3-completion"
+    monkeypatch.setenv("FD_TRIAGE_PROVIDER", "openai")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    assert default_classifier(es) is None
