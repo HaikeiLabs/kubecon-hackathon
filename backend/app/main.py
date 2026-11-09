@@ -25,6 +25,8 @@ async def lifespan(app: FastAPI):
     client = Elasticsearch(
         os.getenv("ELASTICSEARCH_URL", "http://localhost:9200"),
         api_key=os.getenv("ELASTICSEARCH_API_KEY") or None,
+        # Seeding writes semantic_text fields, so inference can exceed the 10s default.
+        request_timeout=float(os.getenv("ELASTICSEARCH_REQUEST_TIMEOUT", "120")),
     )
     app.state.elasticsearch = client
     try:
