@@ -8,19 +8,21 @@ IMAGE_TAG ?= $(shell git rev-parse --short HEAD)
 AWS_REGION ?= us-east-1
 ELASTICSEARCH_URL ?=
 
-.PHONY: help test lint build provision release deploy destroy plan-destroy-aws status logs port-forward render tf-init tf-fmt tf-validate tf-plan
+.PHONY: help test lint build release deploy destroy plan-aws show-aws-plan apply-aws plan-destroy-aws show-destroy-aws apply-destroy-aws status logs port-forward render tf-init tf-fmt tf-validate
 
 help:
 	@echo "Conference Friction Desk - AWS Terraform and Kubernetes Helm workflow"
 	@echo "  make test / lint / render"
-	@echo "  make tf-init tf-fmt tf-validate tf-plan"
-	@echo "  make provision                       Create AWS ECR/secret metadata"
+	@echo "  make tf-init tf-fmt tf-validate"
+	@echo "  make plan-aws AWS_REGION=...         Save AWS provision plan"
+	@echo "  make show-aws-plan                   Review saved provision plan"
+	@echo "  make apply-aws                       Interactively approve saved plan"
 	@echo "  make build                           Build/push after ECR exists"
 	@echo "  make release ELASTICSEARCH_URL=...   Install/upgrade the Helm release"
-	@echo "  make deploy ELASTICSEARCH_URL=...    Run provision, build, then release"
+	@echo "  make deploy ELASTICSEARCH_URL=...    Build and install; no Terraform apply"
 	@echo "  make destroy                         Uninstall the Helm release"
-	@echo "  make plan-destroy-aws               Plan destruction of AWS resources"
-	@echo "  make status / logs / port-forward"
+	@echo "  make plan-destroy-aws                Save AWS destroy plan"
+	@echo "  make show-destroy-aws / apply-destroy-aws"
 	@echo "Terraform owns AWS resources only; Helm owns all Kubernetes resources."
 
 test:
@@ -42,11 +44,15 @@ tf-fmt:
 tf-validate:
 	terraform -chdir=$(TERRAFORM_DIR) validate
 
-tf-plan:
-	terraform -chdir=$(TERRAFORM_DIR) plan -var="aws_region=$(AWS_REGION)"
+plan-aws:
+	terraform -chdir=$(TERRAFORM_DIR) plan -out=friction-desk.tfplan -var="aws_region=$(AWS_REGION)"
 
-provision:
-	terraform -chdir=$(TERRAFORM_DIR) apply -var="aws_region=$(AWS_REGION)"
+show-aws-plan:
+	terraform -chdir=$(TERRAFORM_DIR) show friction-desk.tfplan
+
+apply-aws:
+	@test -f $(TERRAFORM_DIR)/friction-desk.tfplan || (echo "Run make plan-aws and review it first" >&2; exit 2)
+	terraform -chdir=$(TERRAFORM_DIR) apply friction-desk.tfplan
 
 release:
 	@test -n "$(ELASTICSEARCH_URL)" || (echo "Set ELASTICSEARCH_URL to the hosted HTTPS endpoint" >&2; exit 2)
@@ -57,7 +63,6 @@ release:
 
 deploy:
 	@test -n "$(ELASTICSEARCH_URL)" || (echo "Set ELASTICSEARCH_URL to the hosted HTTPS endpoint" >&2; exit 2)
-	$(MAKE) provision AWS_REGION=$(AWS_REGION)
 	$(MAKE) build IMAGE_REPOSITORY=$$(terraform -chdir=$(TERRAFORM_DIR) output -raw image_repository) IMAGE_TAG=$(IMAGE_TAG)
 	$(MAKE) release ELASTICSEARCH_URL=$(ELASTICSEARCH_URL) IMAGE_TAG=$(IMAGE_TAG)
 
@@ -66,6 +71,13 @@ destroy:
 
 plan-destroy-aws:
 	terraform -chdir=$(TERRAFORM_DIR) plan -destroy -out=destroy-aws.tfplan -var="allow_ecr_force_delete=true"
+
+show-destroy-aws:
+	terraform -chdir=$(TERRAFORM_DIR) show destroy-aws.tfplan
+
+apply-destroy-aws:
+	@test -f $(TERRAFORM_DIR)/destroy-aws.tfplan || (echo "Run make plan-destroy-aws and review it first" >&2; exit 2)
+	terraform -chdir=$(TERRAFORM_DIR) apply destroy-aws.tfplan
 
 status:
 	kubectl get all -n $(NAMESPACE)

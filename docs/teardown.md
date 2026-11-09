@@ -16,18 +16,20 @@ The ClusterSecretStore `aws-secrets-manager` and ExternalSecrets CRD are shared 
 
 ## Remove the AWS resources
 
-Only after reviewing the effect on other consumers, produce a destroy plan:
+Only after reviewing the effect on other consumers, produce and inspect a saved destroy plan:
 
 ```sh
 make plan-destroy-aws
-terraform -chdir=deploy/terraform show destroy-aws.tfplan
+make show-destroy-aws
 ```
 
-If and only if that reviewed plan is approved, apply the saved plan:
+If and only if that exact saved plan is approved, apply it interactively:
 
 ```sh
-terraform -chdir=deploy/terraform apply destroy-aws.tfplan
+make apply-destroy-aws
 ```
+
+The target requires the saved plan file and does not use `-auto-approve`.
 
 The plan deletes the ECR repository (including its images) and schedules deletion of the two Secrets Manager secret metadata records. ECR force deletion is enabled only in this explicit destroy plan; do not apply it if repository images must be retained. Secrets Manager's configured recovery window is seven days. Secret values are never stored in Terraform state; coordinate any value retention/rotation needs with the approved secret owner before deleting metadata.
 

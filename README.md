@@ -23,23 +23,25 @@ make lint
 make tf-init
 make tf-fmt
 make tf-validate
-make tf-plan AWS_REGION=us-east-1
+make plan-aws AWS_REGION=us-east-1
+make show-aws-plan
+# Only after review and authorization:
+make apply-aws
 ```
 
-Terraform plans only AWS resources. `terraform apply` is an operator action; this repository task intentionally does not apply changes. No secret values belong in `*.tfvars`, Terraform CLI arguments, Helm values, or source control.
+Terraform plans only AWS resources. The saved plan must be reviewed before the separate, interactive `make apply-aws`; no command uses `-auto-approve`. No secret values belong in `*.tfvars`, Terraform CLI arguments, Helm values, or source control.
 
 ## Deploy
 
-The ECR repository must exist before Docker can push an image. For first-time setup, provision AWS resources, populate the metadata-only Secrets Manager secrets out-of-band, then push the image and install the Helm release:
+The ECR repository must exist before Docker can push an image. After the reviewed AWS plan has been applied and the metadata-only Secrets Manager secrets populated out-of-band, push the image and install the Helm release:
 
 ```sh
-make provision AWS_REGION=us-east-1
-# Populate both Secrets Manager secrets via the approved secret workflow.
-make build IMAGE_REPOSITORY=$(cd deploy/terraform && terraform output -raw image_repository) IMAGE_TAG=$(git rev-parse --short HEAD)
-make release ELASTICSEARCH_URL=https://your-deployment.example.es.io IMAGE_TAG=$(git rev-parse --short HEAD)
+# The reviewed make apply-aws step above creates ECR and empty secret metadata.
+# Populate both secrets via the approved secret workflow; never pass values to Terraform/Helm.
+make deploy ELASTICSEARCH_URL=https://your-deployment.example.es.io IMAGE_TAG=$(git rev-parse --short HEAD)
 ```
 
-`make deploy` is a convenience for environments where both secret values have already been populated; it runs Terraform, pushes the image, then installs/updates the Helm release. Confirm the active Kubernetes context before using it. Terraform/Helm do not create secret values.
+`make deploy` only builds/pushes the image and installs/upgrades Helm; it does not run Terraform. Confirm the active Kubernetes context and that the ExternalSecrets have produced the expected Kubernetes Secrets before deploying. Terraform/Helm do not create secret values.
 
 ## Teardown
 
@@ -49,7 +51,7 @@ make destroy
 
 This uninstalls the Helm release and its ExternalSecret resources. The namespace is preserved. Terraform destroy is a separate AWS-only operation; see [docs/teardown.md](docs/teardown.md) for the reviewed destroy-plan workflow and data-safety boundaries.
 
-AWS teardown is separate and deliberate; see [docs/teardown.md](docs/teardown.md) for the explicit destroy-plan and approval steps. Terraform force-deletes ECR images only in that reviewed AWS teardown workflow. Hosted Elasticsearch and its data are never part of teardown. Secret values/rotation are controlled through the approved Secrets Manager process, not Terraform.
+AWS teardown is separate and deliberate; see [docs/teardown.md](docs/teardown.md) for the explicit saved destroy-plan, review, and interactive apply steps. Terraform force-deletes ECR images only in that reviewed AWS teardown workflow. Hosted Elasticsearch and its data are never part of teardown. Secret values/rotation are controlled through the approved Secrets Manager process, not Terraform.
 
 ## Local access
 
