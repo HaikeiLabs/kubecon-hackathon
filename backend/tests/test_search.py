@@ -177,3 +177,20 @@ def test_search_candidate_buckets_expands_concepts(concepts: list[dict]) -> None
 
 def test_missing_concepts_file_yields_no_concepts(tmp_path: Path) -> None:
     assert search.read_concepts(tmp_path / "missing.json") == []
+
+
+@pytest.mark.skipif(not search.DEFAULT_CONCEPTS_PATH.is_file(), reason="ontology build not present")
+def test_real_ontology_links_wifi_variants_and_closes_ancestors(monkeypatch) -> None:
+    monkeypatch.delenv("FD_CONCEPTS_PATH", raising=False)
+    concepts = search.read_concepts()
+    assert search.default_concepts_path() == search.DEFAULT_CONCEPTS_PATH
+    assert {"id", "pref_label", "alt_labels", "ancestors", "top_concept"} <= set(concepts[0])
+
+    for text in ["wifi down in hall B", "wi-fi down again", "no internet in room 3"]:
+        assert [t.concept_id for t in search.link_concepts(None, text)] == ["fd:WifiOutage"]
+    assert search.concept_closure(["fd:WifiOutage"], concepts) == [
+        "fd:Connectivity",
+        "fd:Wifi",
+        "fd:WifiOutage",
+    ]
+    assert search.concept_category(["fd:WifiOutage"], concepts) == "Connectivity"
