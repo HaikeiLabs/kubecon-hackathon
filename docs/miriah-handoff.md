@@ -25,7 +25,9 @@ make tf-init tf-fmt tf-validate
 make plan-aws AWS_REGION=us-east-1
 make show-aws-plan
 # Only after review/authorization: make apply-aws
-# Populate the approved Secrets Manager values outside Terraform.
+# Populate the approved Secrets Manager values outside Terraform:
+# kubecon-hackathon/friction-desk-elasticsearch (api-key)
+# kubecon-hackathon/friction-desk-kei-runtime (KEI_RUNTIME_TOKEN)
 make deploy ELASTICSEARCH_URL=https://<hosted-elasticsearch-endpoint> IMAGE_TAG=$(git rev-parse --short HEAD)
 ```
 

@@ -24,9 +24,9 @@ elasticsearch:
   remoteSecretName: kubecon-hackathon/friction-desk-elasticsearch
   apiKeySecretKey: api-key
 
-keaRuntime:
+keiRuntime:
   enabled: true
-  secretName: friction-desk-kea-runtime
+  secretName: friction-desk-kei-runtime
   secretStoreName: aws-secrets-manager
-  remoteSecretName: kubecon-hackathon/friction-desk-kea-runtime
+  remoteSecretName: kubecon-hackathon/friction-desk-kei-runtime
   tokenSecretKey: KEI_RUNTIME_TOKEN

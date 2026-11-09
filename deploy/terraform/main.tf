@@ -33,10 +33,11 @@ resource "aws_secretsmanager_secret" "elasticsearch" {
   recovery_window_in_days = 7
 }
 
-resource "aws_secretsmanager_secret" "kea_runtime" {
-  name                    = "kubecon-hackathon/friction-desk-kea-runtime"
+resource "aws_secretsmanager_secret" "kei_runtime" {
+  name                    = "kubecon-hackathon/friction-desk-kei-runtime"
   recovery_window_in_days = 7
 }
+
 
 output "image_repository" {
   description = "Dedicated ECR repository URI for the API image."
