@@ -234,7 +234,7 @@ fd:ScheduleChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broade
 
 fd:RoomChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleChange ;
     skos:prefLabel "Room change"@en ;
-    skos:altLabel "room changed"@en , "session moved"@en , "talk moved"@en , "moved rooms"@en , "relocated"@en , "room moved"@en , "changed rooms"@en , "moved to another room"@en , "new room"@en ;
+    skos:altLabel "room changed"@en , "session moved"@en , "talk moved"@en , "moved rooms"@en , "relocated"@en , "room moved"@en , "changed rooms"@en , "moved to another room"@en ;
     skos:definition "A session was moved to a different room."@en ;
     skos:related fd:HardToFindRoom , fd:AppScheduleWrong .
 
@@ -315,7 +315,7 @@ fd:WifiOutage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd
 
 fd:SlowWifi a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wifi ;
     skos:prefLabel "Slow Wi-Fi"@en ;
-    skos:altLabel "slow wifi"@en , "slow internet"@en , "wifi slow"@en , "laggy wifi"@en , "wifi keeps dropping"@en , "spotty wifi"@en , "flaky wifi"@en , "wifi is slow"@en , "wifi was slow"@en , "wi-fi is slow"@en , "wifi dropping"@en , "wifi keeps cutting out"@en , "wi-fi keeps cutting out"@en , "wifi cutting out"@en , "wifi is spotty"@en , "wifi is flaky"@en , "wifi unusable"@en , "wifi is unusable"@en , "low bandwidth"@en , "bandwidth"@en , "throughput"@en , "throttled"@en , "slow network"@en ;
+    skos:altLabel "no bandwidth"@en , "bandwidth is terrible"@en , "throughput is terrible"@en , "slow wifi"@en , "slow internet"@en , "wifi slow"@en , "laggy wifi"@en , "wifi keeps dropping"@en , "spotty wifi"@en , "flaky wifi"@en , "wifi is slow"@en , "wifi was slow"@en , "wi-fi is slow"@en , "wifi dropping"@en , "wifi keeps cutting out"@en , "wi-fi keeps cutting out"@en , "wifi cutting out"@en , "wifi is spotty"@en , "wifi is flaky"@en , "wifi unusable"@en , "wifi is unusable"@en , "low bandwidth"@en , "throttled"@en , "slow network"@en ;
     skos:definition "The Wi-Fi works but is slow or intermittent."@en .
 
 fd:WifiLoginProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wifi ;
@@ -357,12 +357,12 @@ fd:DietaryOptions a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broade
 
 fd:NoVegetarianOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
     skos:prefLabel "No vegetarian option"@en ;
-    skos:altLabel "no vegetarian"@en , "no veggie"@en , "vegetarian ran out"@en , "only meat"@en , "vegetarian"@en , "vegetarian options"@en , "veggie options"@en ;
+    skos:altLabel "no vegetarian options"@en , "no veggie options"@en , "nothing vegetarian"@en , "vegetarian sold out"@en , "out of vegetarian"@en , "no vegetarian"@en , "no veggie"@en , "vegetarian ran out"@en , "only meat"@en ;
     skos:definition "No vegetarian meal is available."@en .
 
 fd:NoVeganOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
     skos:prefLabel "No vegan option"@en ;
-    skos:altLabel "no vegan"@en , "vegan ran out"@en , "plant based"@en , "plant-based"@en , "vegan"@en , "vegan option"@en , "vegan options"@en , "vegan sold out"@en , "vegan lunch"@en ;
+    skos:altLabel "no vegan options"@en , "no vegan option"@en , "nothing vegan"@en , "no plant-based options"@en , "no plant based options"@en , "no vegan"@en , "vegan ran out"@en , "vegan sold out"@en ;
     skos:definition "No vegan meal is available."@en .
 
 fd:NoGlutenFreeOption a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:DietaryOptions ;
@@ -470,7 +470,7 @@ fd:CantHearSpeaker a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broad
 
 fd:MicrophoneProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
     skos:prefLabel "Microphone problem"@en ;
-    skos:altLabel "mic"@en , "mic broken"@en , "mic not working"@en , "mic cutting out"@en , "no mic"@en , "mike"@en , "audience mic"@en , "audio feedback"@en , "mic feedback"@en , "feedback squeal"@en , "microphone"@en , "mic dropping out"@en , "mic cut out"@en , "mic crackling"@en , "mic buzzing"@en ;
+    skos:altLabel "mic"@en , "mike"@en , "microphone not working"@en , "microphone broken"@en , "microphone cutting out"@en , "no microphone"@en , "mic is dead"@en , "mic broken"@en , "mic not working"@en , "mic cutting out"@en , "no mic"@en , "audience mic"@en , "audio feedback"@en , "mic feedback"@en , "feedback squeal"@en , "mic dropping out"@en , "mic cut out"@en , "mic crackling"@en , "mic buzzing"@en ;
     skos:definition "Microphones are missing, cutting out or causing feedback."@en .
 
 fd:ProjectorProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
