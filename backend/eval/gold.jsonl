@@ -1,0 +1,40 @@
+{"text": "Hall B wifi down since 9am, nobody can connect", "expected": ["fd:WifiOutage"]}
+{"text": "The wifi password on the captive portal doesn't work", "expected": ["fd:WifiLoginProblem"]}
+{"text": "Zero bars all day in the west wing, total dead zone", "expected": ["fd:PoorCellSignal"]}
+{"text": "The registration line wrapped around the block again", "expected": ["fd:RegistrationLine"]}
+{"text": "QR code not working at self check-in and the kiosk is down", "expected": ["fd:BadgeNotFound"]}
+{"text": "Sponsor rep kept badge scanning folks without asking", "expected": ["fd:AggressiveSponsorPitch"]}
+{"text": "The lunch line took half an hour", "expected": ["fd:FoodQueues"]}
+{"text": "No vegan option at the buffet, just rice and bread", "expected": ["fd:NoVeganOption"]}
+{"text": "No water anywhere near hall C, the fountains are dry", "expected": ["fd:NoDrinkingWater"]}
+{"text": "Projector in 204 stayed black the whole panel", "expected": ["fd:ProjectorProblem"]}
+{"text": "Mic cutting out every time the audience asked questions", "expected": ["fd:MicrophoneProblem"]}
+{"text": "Couldn't hear the keynote at all from the back rows", "expected": ["fd:CantHearSpeaker"]}
+{"text": "Keynote livestream broken again, gave up and left", "expected": ["fd:LivestreamDown"]}
+{"text": "No captions on anything in hall A today", "expected": ["fd:MissingCaptions"]}
+{"text": "No interpreter for the ASL folks in the front row", "expected": ["fd:SignLanguageMissing"]}
+{"text": "Hearing loop broken in the main hall again", "expected": ["fd:HearingLoopUnavailable"]}
+{"text": "Room 118 was freezing all afternoon", "expected": ["fd:RoomTooCold"]}
+{"text": "The bathroom line on floor 2 was out of control", "expected": ["fd:RestroomQueue"]}
+{"text": "Shuttle never came, waited 40 minutes at the hotel stop", "expected": ["fd:ShuttleDelay"]}
+{"text": "No parking at all, garage was full by 8am", "expected": ["fd:ParkingFull"]}
+{"text": "No clear transit directions, which train back downtown?", "expected": ["fd:TransitDirectionsUnclear"]}
+{"text": "Uber pickup point was chaos, three separate taxi lines", "expected": ["fd:RideshareDropoffUnclear"]}
+{"text": "Wifi down all morning, then the projector died before the closing panel", "expected": ["fd:WifiOutage", "fd:ProjectorProblem"]}
+{"text": "QR code not working at check-in and the check-in line was out the door", "expected": ["fd:BadgeNotFound", "fd:RegistrationLine"]}
+{"text": "Freezing room and the mic kept cutting out", "expected": ["fd:RoomTooCold", "fd:MicrophoneProblem"]}
+{"text": "Ramp blocked at the main entrance and no accessible seating left in hall B", "expected": ["fd:BlockedAccessibleEntrance", "fd:ReservedSeatingMissing"]}
+{"text": "Harassed by a vendor rep and nobody would say who do i report to", "expected": ["fd:HarassmentReport", "fd:ConductContactUnclear"]}
+{"text": "App shows wrong room for the 3pm panel", "expected": ["fd:AppScheduleWrong"]}
+{"text": "No chairs in the overflow area, had to stand", "expected": ["fd:NotEnoughSeating"]}
+{"text": "Signage confusing in the west wing, walked in circles twice", "expected": ["fd:ConfusingSignage"]}
+{"text": "Fire exit blocked with a trolley of boxes", "expected": ["fd:BlockedEmergencyExit"]}
+{"text": "Wet floor near the escalators, someone already slipped", "expected": ["fd:TripHazard"]}
+{"text": "A laptop was stolen from the quiet area on level 4", "expected": ["fd:Theft"]}
+{"text": "Exhibitor took photo without consent at our booth", "expected": ["fd:PhotographyWithoutConsent"]}
+{"text": "The 2pm panel started late, speaker stuck in traffic", "expected": ["fd:SessionStartedLate"]}
+{"text": "The lactation room was locked all morning", "expected": ["fd:LactationRoomUnavailable"]}
+{"text": "Wifi is slow and keeps dropping in the lounges", "expected": ["fd:SlowWifi"]}
+{"text": "Anybody driving back downtown this evening? Happy to chip in for gas", "expected": []}
+{"text": "Selling one spare ticket at face value, DM me", "expected": []}
+{"text": "The espresso cart near the lobby is excellent, that is all", "expected": []}
