@@ -9,6 +9,8 @@ IMAGE_TAG ?= $(shell git rev-parse --short HEAD)
 FRONTEND_IMAGE_TAG ?= frontend-$(IMAGE_TAG)
 AWS_REGION ?= us-east-1
 ELASTICSEARCH_URL ?=
+# Kei runtime ExternalSecret stays off until T201 populates its token.
+KEI_RUNTIME_ENABLED ?= false
 
 .PHONY: help test lint frontend-build frontend-proxy-check build build-api build-frontend release deploy destroy plan-aws show-aws-plan apply-aws plan-destroy-aws show-destroy-aws apply-destroy-aws status logs port-forward port-forward-ui render tf-init tf-fmt tf-validate
 
@@ -79,12 +81,13 @@ release:
 		--set-string image.repository=$$(terraform -chdir=$(TERRAFORM_DIR) output -raw image_repository) \
 		--set-string image.tag=$(IMAGE_TAG) \
 		--set-string frontend.image.tag=$(FRONTEND_IMAGE_TAG) \
+		--set keiRuntime.enabled=$(KEI_RUNTIME_ENABLED) \
 		--set-string elasticsearch.url=$(ELASTICSEARCH_URL)
 
 deploy:
 	@test -n "$(ELASTICSEARCH_URL)" || (echo "Set ELASTICSEARCH_URL to the hosted HTTPS endpoint" >&2; exit 2)
 	$(MAKE) build IMAGE_REPOSITORY=$$(terraform -chdir=$(TERRAFORM_DIR) output -raw image_repository) IMAGE_TAG=$(IMAGE_TAG)
-	$(MAKE) release ELASTICSEARCH_URL=$(ELASTICSEARCH_URL) IMAGE_TAG=$(IMAGE_TAG) FRONTEND_IMAGE_TAG=$(FRONTEND_IMAGE_TAG)
+	$(MAKE) release ELASTICSEARCH_URL=$(ELASTICSEARCH_URL) IMAGE_TAG=$(IMAGE_TAG) FRONTEND_IMAGE_TAG=$(FRONTEND_IMAGE_TAG) KEI_RUNTIME_ENABLED=$(KEI_RUNTIME_ENABLED)
 
 destroy:
 	helm uninstall $(RELEASE) --namespace $(NAMESPACE)
@@ -115,4 +118,5 @@ render:
 	helm template $(RELEASE) $(CHART) --namespace $(NAMESPACE) \
 		--set-string image.repository=example.invalid/friction-desk \
 		--set-string frontend.image.tag=frontend-example \
+		--set keiRuntime.enabled=$(KEI_RUNTIME_ENABLED) \
 		--set-string elasticsearch.url=https://example.invalid

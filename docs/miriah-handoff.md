@@ -39,7 +39,8 @@ make show-aws-plan
 # Only after review/authorization: make apply-aws
 # Populate the approved Secrets Manager values outside Terraform:
 # kubecon-hackathon/friction-desk-elasticsearch (api-key)
-# kubecon-hackathon/friction-desk-kei-runtime (KEI_RUNTIME_TOKEN)
+# kubecon-hackathon/friction-desk-kei-runtime (KEI_RUNTIME_TOKEN) -- only after T201;
+#   its ExternalSecret is off by default; enable with KEI_RUNTIME_ENABLED=true
 make deploy ELASTICSEARCH_URL=https://<hosted-elasticsearch-endpoint> IMAGE_TAG=$(git rev-parse --short HEAD)
 ```
 

@@ -42,7 +42,10 @@ elasticsearch:
   apiKeySecretKey: api-key
 
 keiRuntime:
-  enabled: true
+  # Off until T201 provisions the Kei runtime token in Secrets Manager; an
+  # ExternalSecret for an empty remote secret would fail to sync. No workload
+  # consumes this Secret yet. Enable with KEI_RUNTIME_ENABLED=true in make release.
+  enabled: false
   secretName: friction-desk-kei-runtime
   secretStoreName: aws-secrets-manager
   remoteSecretName: kubecon-hackathon/friction-desk-kei-runtime
