@@ -1,0 +1,3144 @@
+[
+  {
+    "id": "fd:Accessibility",
+    "iri": "https://haikei.dev/ontology/friction#Accessibility",
+    "pref_label": "Accessibility",
+    "alt_labels": [
+      "a11y",
+      "accessible",
+      "ada",
+      "disability access",
+      "inclusive access"
+    ],
+    "definition": "Barriers that prevent people from accessing spaces, sessions or information.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Accessibility",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:AggressiveSponsorPitch",
+    "iri": "https://haikei.dev/ontology/friction#AggressiveSponsorPitch",
+    "pref_label": "Aggressive sponsor pitch",
+    "alt_labels": [
+      "badge scanning",
+      "lead scan",
+      "pushy sales",
+      "scanned without asking",
+      "spam after scan"
+    ],
+    "definition": "Booth staff pressure attendees or scan badges without consent.",
+    "broader": [
+      "fd:SponsorConduct"
+    ],
+    "ancestors": [
+      "fd:SponsorConduct",
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/SponsorConduct/AggressiveSponsorPitch",
+    "related": [],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:AppScheduleWrong",
+    "iri": "https://haikei.dev/ontology/friction#AppScheduleWrong",
+    "pref_label": "App schedule wrong",
+    "alt_labels": [
+      "app crashed",
+      "app not loading",
+      "app out of date",
+      "app shows wrong room",
+      "app wrong",
+      "sched app wrong"
+    ],
+    "definition": "The event app or website shows incorrect or stale schedule data.",
+    "broader": [
+      "fd:ScheduleInformation"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleInformation"
+    ],
+    "path": "Schedule/ScheduleInformation/AppScheduleWrong",
+    "related": [
+      "fd:RoomChange",
+      "fd:WifiOutage"
+    ],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:AudioVisual",
+    "iri": "https://haikei.dev/ontology/friction#AudioVisual",
+    "pref_label": "Audio/visual",
+    "alt_labels": [
+      "a/v",
+      "audio visual",
+      "audio-visual",
+      "av",
+      "tech issues"
+    ],
+    "definition": "Problems with sound, microphones, projectors or screens during a session.",
+    "broader": [
+      "fd:Content"
+    ],
+    "ancestors": [
+      "fd:Content"
+    ],
+    "path": "Content/AudioVisual",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:BadgeMisprinted",
+    "iri": "https://haikei.dev/ontology/friction#BadgeMisprinted",
+    "pref_label": "Badge misprinted",
+    "alt_labels": [
+      "badge error",
+      "badge typo",
+      "name misspelled",
+      "wrong name on badge",
+      "wrong pronouns on badge"
+    ],
+    "definition": "Badge shows wrong or misspelled details.",
+    "broader": [
+      "fd:BadgePickup"
+    ],
+    "ancestors": [
+      "fd:BadgePickup",
+      "fd:Registration"
+    ],
+    "path": "Registration/BadgePickup/BadgeMisprinted",
+    "related": [],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:BadgeNotFound",
+    "iri": "https://haikei.dev/ontology/friction#BadgeNotFound",
+    "pref_label": "Badge not found",
+    "alt_labels": [
+      "can't find my registration",
+      "no badge for me",
+      "not in system",
+      "qr code not working",
+      "ticket not found"
+    ],
+    "definition": "Registration staff cannot find the attendee's ticket or badge.",
+    "broader": [
+      "fd:BadgePickup"
+    ],
+    "ancestors": [
+      "fd:BadgePickup",
+      "fd:Registration"
+    ],
+    "path": "Registration/BadgePickup/BadgeNotFound",
+    "related": [],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:BadgePickup",
+    "iri": "https://haikei.dev/ontology/friction#BadgePickup",
+    "pref_label": "Badge pickup",
+    "alt_labels": [
+      "badge collection",
+      "badge pick up",
+      "pick up badge"
+    ],
+    "definition": "Problems collecting a badge at registration.",
+    "broader": [
+      "fd:Registration"
+    ],
+    "ancestors": [
+      "fd:Registration"
+    ],
+    "path": "Registration/BadgePickup",
+    "related": [],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:Bike",
+    "iri": "https://haikei.dev/ontology/friction#Bike",
+    "pref_label": "Bike",
+    "alt_labels": [
+      "bicycle",
+      "cycling",
+      "scooter"
+    ],
+    "definition": "Problems arriving by bike or scooter.",
+    "broader": [
+      "fd:Transport"
+    ],
+    "ancestors": [
+      "fd:Transport"
+    ],
+    "path": "Transport/Bike",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:BlockedAccessibleEntrance",
+    "iri": "https://haikei.dev/ontology/friction#BlockedAccessibleEntrance",
+    "pref_label": "Blocked accessible entrance",
+    "alt_labels": [
+      "accessible door closed",
+      "accessible door locked",
+      "accessible entrance blocked",
+      "ramp blocked",
+      "wheelchair entrance blocked"
+    ],
+    "definition": "The accessible entrance to a room or building is locked, obstructed or closed.",
+    "broader": [
+      "fd:StepFreeAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:StepFreeAccess"
+    ],
+    "path": "Accessibility/StepFreeAccess/BlockedAccessibleEntrance",
+    "related": [
+      "fd:BlockedEmergencyExit"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:BlockedEmergencyExit",
+    "iri": "https://haikei.dev/ontology/friction#BlockedEmergencyExit",
+    "pref_label": "Blocked emergency exit",
+    "alt_labels": [
+      "emergency exit blocked",
+      "exit locked",
+      "exit obstructed",
+      "fire exit blocked"
+    ],
+    "definition": "An emergency exit is locked or obstructed.",
+    "broader": [
+      "fd:EmergencySafety"
+    ],
+    "ancestors": [
+      "fd:EmergencySafety",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/EmergencySafety/BlockedEmergencyExit",
+    "related": [
+      "fd:BlockedAccessibleEntrance"
+    ],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:BoothHardToFind",
+    "iri": "https://haikei.dev/ontology/friction#BoothHardToFind",
+    "pref_label": "Booth hard to find",
+    "alt_labels": [
+      "booth number wrong",
+      "can't find booth",
+      "map wrong",
+      "where is booth"
+    ],
+    "definition": "Attendees cannot locate a specific booth.",
+    "broader": [
+      "fd:ExpoLayout"
+    ],
+    "ancestors": [
+      "fd:ExpoLayout",
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/ExpoLayout/BoothHardToFind",
+    "related": [],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:BoothNoise",
+    "iri": "https://haikei.dev/ontology/friction#BoothNoise",
+    "pref_label": "Booth noise",
+    "alt_labels": [
+      "booth music",
+      "booth speakers",
+      "loud booth"
+    ],
+    "definition": "Noise from sponsor booths.",
+    "broader": [
+      "fd:SponsorsAndExpo"
+    ],
+    "ancestors": [
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/BoothNoise",
+    "related": [
+      "fd:VenueNoise"
+    ],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:CantHearSpeaker",
+    "iri": "https://haikei.dev/ontology/friction#CantHearSpeaker",
+    "pref_label": "Can't hear speaker",
+    "alt_labels": [
+      "audio problem",
+      "audio too low",
+      "can't hear",
+      "cannot hear",
+      "cant hear",
+      "no sound",
+      "speakers too quiet",
+      "too quiet"
+    ],
+    "definition": "The audience cannot hear the speaker clearly.",
+    "broader": [
+      "fd:AudioVisual"
+    ],
+    "ancestors": [
+      "fd:AudioVisual",
+      "fd:Content"
+    ],
+    "path": "Content/AudioVisual/CantHearSpeaker",
+    "related": [
+      "fd:MissingCaptions",
+      "fd:VenueNoise"
+    ],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:CellSignal",
+    "iri": "https://haikei.dev/ontology/friction#CellSignal",
+    "pref_label": "Cell signal",
+    "alt_labels": [
+      "cell reception",
+      "mobile signal",
+      "phone signal"
+    ],
+    "definition": "Problems with mobile phone coverage.",
+    "broader": [
+      "fd:Connectivity"
+    ],
+    "ancestors": [
+      "fd:Connectivity"
+    ],
+    "path": "Connectivity/CellSignal",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:CheckInSystemDown",
+    "iri": "https://haikei.dev/ontology/friction#CheckInSystemDown",
+    "pref_label": "Check-in system down",
+    "alt_labels": [
+      "badge printer down",
+      "check-in kiosk down",
+      "printer broken",
+      "registration system down",
+      "scanner not working"
+    ],
+    "definition": "Registration kiosks, scanners or badge printers are not working.",
+    "broader": [
+      "fd:Registration"
+    ],
+    "ancestors": [
+      "fd:Registration"
+    ],
+    "path": "Registration/CheckInSystemDown",
+    "related": [
+      "fd:WifiOutage"
+    ],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:Childcare",
+    "iri": "https://haikei.dev/ontology/friction#Childcare",
+    "pref_label": "Childcare",
+    "alt_labels": [
+      "child care",
+      "creche",
+      "daycare",
+      "kids"
+    ],
+    "definition": "Problems with on-site childcare services.",
+    "broader": [
+      "fd:Comfort"
+    ],
+    "ancestors": [
+      "fd:Comfort"
+    ],
+    "path": "Comfort/Childcare",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:ChildcareUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#ChildcareUnavailable",
+    "pref_label": "Childcare unavailable",
+    "alt_labels": [
+      "childcare closed",
+      "childcare full",
+      "no childcare"
+    ],
+    "definition": "On-site childcare is full, closed or not offered as advertised.",
+    "broader": [
+      "fd:Childcare"
+    ],
+    "ancestors": [
+      "fd:Childcare",
+      "fd:Comfort"
+    ],
+    "path": "Comfort/Childcare/ChildcareUnavailable",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:CoatCheck",
+    "iri": "https://haikei.dev/ontology/friction#CoatCheck",
+    "pref_label": "Coat check",
+    "alt_labels": [
+      "bag drop",
+      "cloakroom",
+      "coat room",
+      "luggage storage"
+    ],
+    "definition": "Problems leaving coats or luggage.",
+    "broader": [
+      "fd:Comfort"
+    ],
+    "ancestors": [
+      "fd:Comfort"
+    ],
+    "path": "Comfort/CoatCheck",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:CoatCheckUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#CoatCheckUnavailable",
+    "pref_label": "Coat check unavailable",
+    "alt_labels": [
+      "coat check closed",
+      "coat check full",
+      "coat check line",
+      "no coat check",
+      "nowhere to leave luggage"
+    ],
+    "definition": "Coat or bag check is missing, full, closed early or has a long queue.",
+    "broader": [
+      "fd:CoatCheck"
+    ],
+    "ancestors": [
+      "fd:CoatCheck",
+      "fd:Comfort"
+    ],
+    "path": "Comfort/CoatCheck/CoatCheckUnavailable",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:CodeOfConduct",
+    "iri": "https://haikei.dev/ontology/friction#CodeOfConduct",
+    "pref_label": "Code of conduct",
+    "alt_labels": [
+      "coc",
+      "code-of-conduct",
+      "conduct policy"
+    ],
+    "definition": "Behaviour that breaches the event code of conduct, or problems reporting it.",
+    "broader": [
+      "fd:SafetyAndConduct"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/CodeOfConduct",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:CoffeeRanOut",
+    "iri": "https://haikei.dev/ontology/friction#CoffeeRanOut",
+    "pref_label": "Coffee ran out",
+    "alt_labels": [
+      "caffeine",
+      "coffee gone",
+      "no coffee",
+      "no tea",
+      "out of coffee"
+    ],
+    "definition": "Coffee or tea service ran out or was not available.",
+    "broader": [
+      "fd:FoodSupply"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage",
+      "fd:FoodSupply"
+    ],
+    "path": "FoodAndBeverage/FoodSupply/CoffeeRanOut",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:Comfort",
+    "iri": "https://haikei.dev/ontology/friction#Comfort",
+    "pref_label": "Comfort",
+    "alt_labels": [
+      "amenities",
+      "attendee services",
+      "facilities"
+    ],
+    "definition": "Support facilities such as lactation, prayer, coat check, lockers and childcare.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Comfort",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:ConductContactUnclear",
+    "iri": "https://haikei.dev/ontology/friction#ConductContactUnclear",
+    "pref_label": "Conduct contact unclear",
+    "alt_labels": [
+      "coc contact",
+      "how to report",
+      "no conduct team",
+      "who do i report to"
+    ],
+    "definition": "Attendees cannot find how or to whom to report a conduct issue.",
+    "broader": [
+      "fd:CodeOfConduct"
+    ],
+    "ancestors": [
+      "fd:CodeOfConduct",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/CodeOfConduct/ConductContactUnclear",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:ConfusingSignage",
+    "iri": "https://haikei.dev/ontology/friction#ConfusingSignage",
+    "pref_label": "Confusing signage",
+    "alt_labels": [
+      "misleading signs",
+      "signage confusing",
+      "signs point wrong way",
+      "wrong signs"
+    ],
+    "definition": "Signs exist but are wrong, contradictory or hard to follow.",
+    "broader": [
+      "fd:Wayfinding"
+    ],
+    "ancestors": [
+      "fd:Venue",
+      "fd:Wayfinding"
+    ],
+    "path": "Venue/Wayfinding/ConfusingSignage",
+    "related": [
+      "fd:LowContrastSignage"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Connectivity",
+    "iri": "https://haikei.dev/ontology/friction#Connectivity",
+    "pref_label": "Connectivity",
+    "alt_labels": [
+      "connection",
+      "internet",
+      "network",
+      "online"
+    ],
+    "definition": "Problems with Wi-Fi, power or mobile signal.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Connectivity",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:Content",
+    "iri": "https://haikei.dev/ontology/friction#Content",
+    "pref_label": "Content",
+    "alt_labels": [
+      "keynote",
+      "presentation",
+      "session",
+      "talk",
+      "talks",
+      "workshop"
+    ],
+    "definition": "Problems experiencing session content: audio, video, slides, capacity and recordings.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Content",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:Crowding",
+    "iri": "https://haikei.dev/ontology/friction#Crowding",
+    "pref_label": "Crowding",
+    "alt_labels": [
+      "congestion",
+      "crowded",
+      "packed",
+      "too many people"
+    ],
+    "definition": "Too many people for the space available.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Crowding",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:DietaryOptions",
+    "iri": "https://haikei.dev/ontology/friction#DietaryOptions",
+    "pref_label": "Dietary options",
+    "alt_labels": [
+      "dietary",
+      "dietary needs",
+      "dietary restrictions",
+      "special diet"
+    ],
+    "definition": "Catering does not cover common dietary requirements.",
+    "broader": [
+      "fd:FoodAndBeverage"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:DoubleBookedRoom",
+    "iri": "https://haikei.dev/ontology/friction#DoubleBookedRoom",
+    "pref_label": "Double-booked room",
+    "alt_labels": [
+      "double booked",
+      "double-booked",
+      "room conflict",
+      "two talks same room"
+    ],
+    "definition": "Two sessions are scheduled in the same room at the same time.",
+    "broader": [
+      "fd:ScheduleConflict"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleConflict"
+    ],
+    "path": "Schedule/ScheduleConflict/DoubleBookedRoom",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:DrinkingWater",
+    "iri": "https://haikei.dev/ontology/friction#DrinkingWater",
+    "pref_label": "Drinking water",
+    "alt_labels": [
+      "hydration",
+      "water"
+    ],
+    "definition": "Problems getting drinking water.",
+    "broader": [
+      "fd:FoodAndBeverage"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DrinkingWater",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:ElevatorOutOfService",
+    "iri": "https://haikei.dev/ontology/friction#ElevatorOutOfService",
+    "pref_label": "Elevator out of service",
+    "alt_labels": [
+      "elevator broken",
+      "elevator down",
+      "escalator broken",
+      "lift broken",
+      "lift out of order"
+    ],
+    "definition": "An elevator or lift needed for step-free access is not working.",
+    "broader": [
+      "fd:StepFreeAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:StepFreeAccess"
+    ],
+    "path": "Accessibility/StepFreeAccess/ElevatorOutOfService",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:EmergencySafety",
+    "iri": "https://haikei.dev/ontology/friction#EmergencySafety",
+    "pref_label": "Emergency safety",
+    "alt_labels": [
+      "emergency",
+      "fire safety",
+      "hazard",
+      "physical safety"
+    ],
+    "definition": "Physical hazards and emergency readiness.",
+    "broader": [
+      "fd:SafetyAndConduct"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/EmergencySafety",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:ExpoAisleCrowded",
+    "iri": "https://haikei.dev/ontology/friction#ExpoAisleCrowded",
+    "pref_label": "Expo aisle crowded",
+    "alt_labels": [
+      "aisles too narrow",
+      "booth line blocking",
+      "expo crowded",
+      "expo packed"
+    ],
+    "definition": "Expo aisles are too narrow or blocked by booth queues.",
+    "broader": [
+      "fd:ExpoLayout"
+    ],
+    "ancestors": [
+      "fd:ExpoLayout",
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/ExpoLayout/ExpoAisleCrowded",
+    "related": [
+      "fd:OvercrowdedHallway"
+    ],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:ExpoLayout",
+    "iri": "https://haikei.dev/ontology/friction#ExpoLayout",
+    "pref_label": "Expo layout",
+    "alt_labels": [
+      "booth map",
+      "expo map",
+      "floor plan"
+    ],
+    "definition": "The expo floor is hard to navigate.",
+    "broader": [
+      "fd:SponsorsAndExpo"
+    ],
+    "ancestors": [
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/ExpoLayout",
+    "related": [
+      "fd:Wayfinding"
+    ],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:ExpoTooLoud",
+    "iri": "https://haikei.dev/ontology/friction#ExpoTooLoud",
+    "pref_label": "Expo too loud",
+    "alt_labels": [
+      "blaring music",
+      "booth too loud",
+      "can't talk in expo",
+      "expo hall loud"
+    ],
+    "definition": "The expo hall is too loud for conversation or bleeds into session rooms.",
+    "broader": [
+      "fd:BoothNoise"
+    ],
+    "ancestors": [
+      "fd:BoothNoise",
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/BoothNoise/ExpoTooLoud",
+    "related": [
+      "fd:QuietRoomUnavailable"
+    ],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:FirstAidUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#FirstAidUnavailable",
+    "pref_label": "First aid unavailable",
+    "alt_labels": [
+      "first aid",
+      "medic",
+      "no first aid",
+      "where is first aid"
+    ],
+    "definition": "The first-aid station is missing, unstaffed or hard to find.",
+    "broader": [
+      "fd:EmergencySafety"
+    ],
+    "ancestors": [
+      "fd:EmergencySafety",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/EmergencySafety/FirstAidUnavailable",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:FlashingLights",
+    "iri": "https://haikei.dev/ontology/friction#FlashingLights",
+    "pref_label": "Flashing lights",
+    "alt_labels": [
+      "flashing screen",
+      "flicker",
+      "strobe",
+      "strobe lights"
+    ],
+    "definition": "Strobe or flashing effects are used without warning.",
+    "broader": [
+      "fd:SensoryAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:SensoryAccess"
+    ],
+    "path": "Accessibility/SensoryAccess/FlashingLights",
+    "related": [
+      "fd:Lighting"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:FoodAndBeverage",
+    "iri": "https://haikei.dev/ontology/friction#FoodAndBeverage",
+    "pref_label": "Food and beverage",
+    "alt_labels": [
+      "catering",
+      "drinks",
+      "f&b",
+      "food",
+      "lunch",
+      "meals",
+      "snacks"
+    ],
+    "definition": "Problems with meals, snacks, drinks and catering.",
+    "broader": [],
+    "ancestors": [],
+    "path": "FoodAndBeverage",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:FoodQueues",
+    "iri": "https://haikei.dev/ontology/friction#FoodQueues",
+    "pref_label": "Food queues",
+    "alt_labels": [
+      "catering queue",
+      "food line",
+      "long line for food",
+      "lunch line",
+      "lunch queue"
+    ],
+    "definition": "Long waits to get food or drinks.",
+    "broader": [
+      "fd:FoodAndBeverage"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/FoodQueues",
+    "related": [
+      "fd:NoBreakBetweenSessions"
+    ],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:FoodRanOut",
+    "iri": "https://haikei.dev/ontology/friction#FoodRanOut",
+    "pref_label": "Food ran out",
+    "alt_labels": [
+      "empty buffet",
+      "food gone",
+      "lunch ran out",
+      "no food left",
+      "out of food"
+    ],
+    "definition": "Food ran out before everyone was served.",
+    "broader": [
+      "fd:FoodSupply"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage",
+      "fd:FoodSupply"
+    ],
+    "path": "FoodAndBeverage/FoodSupply/FoodRanOut",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:FoodSupply",
+    "iri": "https://haikei.dev/ontology/friction#FoodSupply",
+    "pref_label": "Food supply",
+    "alt_labels": [
+      "food quantity",
+      "not enough food"
+    ],
+    "definition": "Food or drinks are insufficient or run out.",
+    "broader": [
+      "fd:FoodAndBeverage"
+    ],
+    "ancestors": [
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/FoodSupply",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:HarassmentReport",
+    "iri": "https://haikei.dev/ontology/friction#HarassmentReport",
+    "pref_label": "Harassment report",
+    "alt_labels": [
+      "coc violation",
+      "harassed",
+      "harassment",
+      "inappropriate behavior",
+      "inappropriate behaviour",
+      "made uncomfortable",
+      "unwanted contact"
+    ],
+    "definition": "A report of harassment or code-of-conduct violation; route to the conduct team, never auto-assign.",
+    "broader": [
+      "fd:CodeOfConduct"
+    ],
+    "ancestors": [
+      "fd:CodeOfConduct",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/CodeOfConduct/HarassmentReport",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:HardToFindRoom",
+    "iri": "https://haikei.dev/ontology/friction#HardToFindRoom",
+    "pref_label": "Hard to find room",
+    "alt_labels": [
+      "can't find room",
+      "cant find the room",
+      "room hidden",
+      "where is room",
+      "which floor"
+    ],
+    "definition": "A specific session room is hard to locate.",
+    "broader": [
+      "fd:Wayfinding"
+    ],
+    "ancestors": [
+      "fd:Venue",
+      "fd:Wayfinding"
+    ],
+    "path": "Venue/Wayfinding/HardToFindRoom",
+    "related": [
+      "fd:RoomChange"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:HearingAccess",
+    "iri": "https://haikei.dev/ontology/friction#HearingAccess",
+    "pref_label": "Hearing access",
+    "alt_labels": [
+      "deaf access",
+      "hard of hearing access",
+      "hearing accessibility"
+    ],
+    "definition": "Sessions or announcements lack support for people who are deaf or hard of hearing.",
+    "broader": [
+      "fd:Accessibility"
+    ],
+    "ancestors": [
+      "fd:Accessibility"
+    ],
+    "path": "Accessibility/HearingAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:HearingLoopUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#HearingLoopUnavailable",
+    "pref_label": "Hearing loop unavailable",
+    "alt_labels": [
+      "assistive listening",
+      "hearing loop broken",
+      "induction loop",
+      "no hearing loop",
+      "t-coil"
+    ],
+    "definition": "An induction loop or assistive listening system is missing or not working.",
+    "broader": [
+      "fd:HearingAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:HearingAccess"
+    ],
+    "path": "Accessibility/HearingAccess/HearingLoopUnavailable",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:LactationRoom",
+    "iri": "https://haikei.dev/ontology/friction#LactationRoom",
+    "pref_label": "Lactation room",
+    "alt_labels": [
+      "mothers room",
+      "nursing room",
+      "parents room",
+      "pumping room"
+    ],
+    "definition": "Problems with the lactation room facility.",
+    "broader": [
+      "fd:Comfort"
+    ],
+    "ancestors": [
+      "fd:Comfort"
+    ],
+    "path": "Comfort/LactationRoom",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:LactationRoomUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#LactationRoomUnavailable",
+    "pref_label": "Lactation room unavailable",
+    "alt_labels": [
+      "lactation room locked",
+      "no fridge in lactation room",
+      "no lactation room",
+      "nursing room occupied"
+    ],
+    "definition": "The lactation room is missing, locked, in use for other purposes or lacks basic supplies.",
+    "broader": [
+      "fd:LactationRoom"
+    ],
+    "ancestors": [
+      "fd:Comfort",
+      "fd:LactationRoom"
+    ],
+    "path": "Comfort/LactationRoom/LactationRoomUnavailable",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:Lighting",
+    "iri": "https://haikei.dev/ontology/friction#Lighting",
+    "pref_label": "Lighting",
+    "alt_labels": [
+      "glare",
+      "lights flickering",
+      "lights off",
+      "too bright",
+      "too dark"
+    ],
+    "definition": "Room lighting is too dark, too bright or faulty.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Lighting",
+    "related": [
+      "fd:SlidesUnreadable"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:LivestreamDown",
+    "iri": "https://haikei.dev/ontology/friction#LivestreamDown",
+    "pref_label": "Livestream down",
+    "alt_labels": [
+      "livestream broken",
+      "overflow room stream",
+      "stream down",
+      "stream lagging"
+    ],
+    "definition": "A livestream or overflow-room feed is down or broken.",
+    "broader": [
+      "fd:Recordings"
+    ],
+    "ancestors": [
+      "fd:Content",
+      "fd:Recordings"
+    ],
+    "path": "Content/Recordings/LivestreamDown",
+    "related": [
+      "fd:TalkFull",
+      "fd:WifiOutage"
+    ],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:LongWalkingDistances",
+    "iri": "https://haikei.dev/ontology/friction#LongWalkingDistances",
+    "pref_label": "Long walking distances",
+    "alt_labels": [
+      "long walk",
+      "no time between sessions",
+      "rooms far apart",
+      "too far to walk"
+    ],
+    "definition": "Distances between rooms are too long to cover in the time allowed.",
+    "broader": [
+      "fd:MobilityAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:MobilityAccess"
+    ],
+    "path": "Accessibility/MobilityAccess/LongWalkingDistances",
+    "related": [
+      "fd:Wayfinding"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:LostAndFound",
+    "iri": "https://haikei.dev/ontology/friction#LostAndFound",
+    "pref_label": "Lost and found",
+    "alt_labels": [
+      "left my laptop",
+      "lost and found desk",
+      "lost item",
+      "lost property"
+    ],
+    "definition": "Lost items and the lost-and-found service.",
+    "broader": [
+      "fd:Security"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct",
+      "fd:Security"
+    ],
+    "path": "SafetyAndConduct/Security/LostAndFound",
+    "related": [
+      "fd:LostBadge"
+    ],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:LostBadge",
+    "iri": "https://haikei.dev/ontology/friction#LostBadge",
+    "pref_label": "Lost badge",
+    "alt_labels": [
+      "badge lost",
+      "badge replacement",
+      "forgot badge",
+      "lost my badge",
+      "reprint badge"
+    ],
+    "definition": "An attendee lost their badge and needs a replacement.",
+    "broader": [
+      "fd:Registration"
+    ],
+    "ancestors": [
+      "fd:Registration"
+    ],
+    "path": "Registration/LostBadge",
+    "related": [
+      "fd:LostAndFound"
+    ],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:LowContrastSignage",
+    "iri": "https://haikei.dev/ontology/friction#LowContrastSignage",
+    "pref_label": "Low contrast signage",
+    "alt_labels": [
+      "hard to read signs",
+      "low contrast",
+      "small print signs",
+      "tiny signs"
+    ],
+    "definition": "Signs use small text or poor contrast.",
+    "broader": [
+      "fd:VisualAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:VisualAccess"
+    ],
+    "path": "Accessibility/VisualAccess/LowContrastSignage",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:MicrophoneProblem",
+    "iri": "https://haikei.dev/ontology/friction#MicrophoneProblem",
+    "pref_label": "Microphone problem",
+    "alt_labels": [
+      "audience mic",
+      "feedback",
+      "mic",
+      "mic broken",
+      "mic cutting out",
+      "mic not working",
+      "mike",
+      "no mic"
+    ],
+    "definition": "Microphones are missing, cutting out or causing feedback.",
+    "broader": [
+      "fd:AudioVisual"
+    ],
+    "ancestors": [
+      "fd:AudioVisual",
+      "fd:Content"
+    ],
+    "path": "Content/AudioVisual/MicrophoneProblem",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:MissingAllergenInfo",
+    "iri": "https://haikei.dev/ontology/friction#MissingAllergenInfo",
+    "pref_label": "Missing allergen information",
+    "alt_labels": [
+      "allergen labels",
+      "allergens",
+      "allergy",
+      "contains nuts",
+      "no ingredient list",
+      "nut free",
+      "unlabeled food"
+    ],
+    "definition": "Food is not labelled with allergens or ingredients.",
+    "broader": [
+      "fd:DietaryOptions"
+    ],
+    "ancestors": [
+      "fd:DietaryOptions",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions/MissingAllergenInfo",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:MissingCaptions",
+    "iri": "https://haikei.dev/ontology/friction#MissingCaptions",
+    "pref_label": "Missing captions",
+    "alt_labels": [
+      "captions broken",
+      "cart missing",
+      "live captioning down",
+      "no captions",
+      "no subtitles",
+      "no transcription"
+    ],
+    "definition": "Live captions or transcription are absent or broken.",
+    "broader": [
+      "fd:HearingAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:HearingAccess"
+    ],
+    "path": "Accessibility/HearingAccess/MissingCaptions",
+    "related": [
+      "fd:CantHearSpeaker"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:MissingRamp",
+    "iri": "https://haikei.dev/ontology/friction#MissingRamp",
+    "pref_label": "Missing ramp",
+    "alt_labels": [
+      "no ramp",
+      "no ramp to stage",
+      "stage not accessible",
+      "steps only"
+    ],
+    "definition": "A stage, room or area has steps and no ramp.",
+    "broader": [
+      "fd:StepFreeAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:StepFreeAccess"
+    ],
+    "path": "Accessibility/StepFreeAccess/MissingRamp",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:MissingSignage",
+    "iri": "https://haikei.dev/ontology/friction#MissingSignage",
+    "pref_label": "Missing signage",
+    "alt_labels": [
+      "no signage",
+      "no signs",
+      "signs missing",
+      "unsigned"
+    ],
+    "definition": "Signs pointing to rooms or services are absent.",
+    "broader": [
+      "fd:Wayfinding"
+    ],
+    "ancestors": [
+      "fd:Venue",
+      "fd:Wayfinding"
+    ],
+    "path": "Venue/Wayfinding/MissingSignage",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:MobilityAccess",
+    "iri": "https://haikei.dev/ontology/friction#MobilityAccess",
+    "pref_label": "Mobility access",
+    "alt_labels": [
+      "mobility",
+      "mobility aid",
+      "walking distance"
+    ],
+    "definition": "Layout or services are hard to use for people with limited mobility.",
+    "broader": [
+      "fd:Accessibility"
+    ],
+    "ancestors": [
+      "fd:Accessibility"
+    ],
+    "path": "Accessibility/MobilityAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:NoBikeParking",
+    "iri": "https://haikei.dev/ontology/friction#NoBikeParking",
+    "pref_label": "No bike parking",
+    "alt_labels": [
+      "bike rack full",
+      "bike storage",
+      "no bike rack",
+      "nowhere to lock bike"
+    ],
+    "definition": "There is no safe place to park a bike.",
+    "broader": [
+      "fd:Bike"
+    ],
+    "ancestors": [
+      "fd:Bike",
+      "fd:Transport"
+    ],
+    "path": "Transport/Bike/NoBikeParking",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:NoBreakBetweenSessions",
+    "iri": "https://haikei.dev/ontology/friction#NoBreakBetweenSessions",
+    "pref_label": "No break between sessions",
+    "alt_labels": [
+      "back to back",
+      "back-to-back",
+      "no break",
+      "no time for lunch"
+    ],
+    "definition": "The schedule leaves no time to move, eat or rest between sessions.",
+    "broader": [
+      "fd:ScheduleConflict"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleConflict"
+    ],
+    "path": "Schedule/ScheduleConflict/NoBreakBetweenSessions",
+    "related": [
+      "fd:LongWalkingDistances"
+    ],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:NoDrinkingWater",
+    "iri": "https://haikei.dev/ontology/friction#NoDrinkingWater",
+    "pref_label": "No drinking water",
+    "alt_labels": [
+      "no refill station",
+      "no water",
+      "no water fountain",
+      "thirsty",
+      "water station empty"
+    ],
+    "definition": "Water stations are missing or empty.",
+    "broader": [
+      "fd:DrinkingWater"
+    ],
+    "ancestors": [
+      "fd:DrinkingWater",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DrinkingWater/NoDrinkingWater",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:NoGlutenFreeOption",
+    "iri": "https://haikei.dev/ontology/friction#NoGlutenFreeOption",
+    "pref_label": "No gluten-free option",
+    "alt_labels": [
+      "celiac option",
+      "gf",
+      "gluten-free",
+      "no gluten free"
+    ],
+    "definition": "No gluten-free meal is available.",
+    "broader": [
+      "fd:DietaryOptions"
+    ],
+    "ancestors": [
+      "fd:DietaryOptions",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions/NoGlutenFreeOption",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:NoHalalOrKosherOption",
+    "iri": "https://haikei.dev/ontology/friction#NoHalalOrKosherOption",
+    "pref_label": "No halal or kosher option",
+    "alt_labels": [
+      "halal",
+      "kosher",
+      "no halal",
+      "no kosher"
+    ],
+    "definition": "Halal or kosher meals that were offered on the menu are not available.",
+    "broader": [
+      "fd:DietaryOptions"
+    ],
+    "ancestors": [
+      "fd:DietaryOptions",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions/NoHalalOrKosherOption",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:NoPowerOutlets",
+    "iri": "https://haikei.dev/ontology/friction#NoPowerOutlets",
+    "pref_label": "No power outlets",
+    "alt_labels": [
+      "can't charge",
+      "dead battery",
+      "no outlets",
+      "no plugs",
+      "no power",
+      "no sockets",
+      "power strip"
+    ],
+    "definition": "There are no or too few power outlets for charging devices.",
+    "broader": [
+      "fd:Power"
+    ],
+    "ancestors": [
+      "fd:Connectivity",
+      "fd:Power"
+    ],
+    "path": "Connectivity/Power/NoPowerOutlets",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:NoRestArea",
+    "iri": "https://haikei.dev/ontology/friction#NoRestArea",
+    "pref_label": "No rest area",
+    "alt_labels": [
+      "no lounge",
+      "no meeting space",
+      "no tables",
+      "nowhere to take a call",
+      "nowhere to work"
+    ],
+    "definition": "There is nowhere to rest, work or take a call between sessions.",
+    "broader": [
+      "fd:RestArea"
+    ],
+    "ancestors": [
+      "fd:Comfort",
+      "fd:RestArea"
+    ],
+    "path": "Comfort/RestArea/NoRestArea",
+    "related": [
+      "fd:NoPowerOutlets",
+      "fd:NotEnoughSeating"
+    ],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:NoScreenReaderSupport",
+    "iri": "https://haikei.dev/ontology/friction#NoScreenReaderSupport",
+    "pref_label": "No screen reader support",
+    "alt_labels": [
+      "app not accessible",
+      "no alt text",
+      "screen reader",
+      "voiceover broken"
+    ],
+    "definition": "Event app, site or materials do not work with screen readers.",
+    "broader": [
+      "fd:VisualAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:VisualAccess"
+    ],
+    "path": "Accessibility/VisualAccess/NoScreenReaderSupport",
+    "related": [
+      "fd:AppScheduleWrong"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:NoVeganOption",
+    "iri": "https://haikei.dev/ontology/friction#NoVeganOption",
+    "pref_label": "No vegan option",
+    "alt_labels": [
+      "no vegan",
+      "plant based",
+      "plant-based",
+      "vegan ran out"
+    ],
+    "definition": "No vegan meal is available.",
+    "broader": [
+      "fd:DietaryOptions"
+    ],
+    "ancestors": [
+      "fd:DietaryOptions",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions/NoVeganOption",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:NoVegetarianOption",
+    "iri": "https://haikei.dev/ontology/friction#NoVegetarianOption",
+    "pref_label": "No vegetarian option",
+    "alt_labels": [
+      "no vegetarian",
+      "no veggie",
+      "only meat",
+      "vegetarian ran out"
+    ],
+    "definition": "No vegetarian meal is available.",
+    "broader": [
+      "fd:DietaryOptions"
+    ],
+    "ancestors": [
+      "fd:DietaryOptions",
+      "fd:FoodAndBeverage"
+    ],
+    "path": "FoodAndBeverage/DietaryOptions/NoVegetarianOption",
+    "related": [],
+    "top_concept": "fd:FoodAndBeverage"
+  },
+  {
+    "id": "fd:NotEnoughSeating",
+    "iri": "https://haikei.dev/ontology/friction#NotEnoughSeating",
+    "pref_label": "Not enough seating",
+    "alt_labels": [
+      "had to stand",
+      "no chairs",
+      "no seats",
+      "nowhere to sit",
+      "standing only"
+    ],
+    "definition": "There are too few seats for the people present.",
+    "broader": [
+      "fd:Seating"
+    ],
+    "ancestors": [
+      "fd:Seating",
+      "fd:Venue"
+    ],
+    "path": "Venue/Seating/NotEnoughSeating",
+    "related": [
+      "fd:ReservedSeatingMissing"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:OvercrowdedHallway",
+    "iri": "https://haikei.dev/ontology/friction#OvercrowdedHallway",
+    "pref_label": "Overcrowded hallway",
+    "alt_labels": [
+      "bottleneck",
+      "can't get through",
+      "corridor blocked",
+      "foot traffic jam",
+      "hallway packed"
+    ],
+    "definition": "Corridors or foyers are congested between sessions.",
+    "broader": [
+      "fd:Crowding"
+    ],
+    "ancestors": [
+      "fd:Crowding",
+      "fd:Venue"
+    ],
+    "path": "Venue/Crowding/OvercrowdedHallway",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Parking",
+    "iri": "https://haikei.dev/ontology/friction#Parking",
+    "pref_label": "Parking",
+    "alt_labels": [
+      "car park",
+      "parking garage",
+      "parking lot"
+    ],
+    "definition": "Problems parking a car.",
+    "broader": [
+      "fd:Transport"
+    ],
+    "ancestors": [
+      "fd:Transport"
+    ],
+    "path": "Transport/Parking",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:ParkingFull",
+    "iri": "https://haikei.dev/ontology/friction#ParkingFull",
+    "pref_label": "Parking full",
+    "alt_labels": [
+      "garage full",
+      "lot full",
+      "no accessible parking",
+      "no parking",
+      "parking expensive"
+    ],
+    "definition": "Parking is full, too expensive or lacks accessible spaces.",
+    "broader": [
+      "fd:Parking"
+    ],
+    "ancestors": [
+      "fd:Parking",
+      "fd:Transport"
+    ],
+    "path": "Transport/Parking/ParkingFull",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:PhotographyWithoutConsent",
+    "iri": "https://haikei.dev/ontology/friction#PhotographyWithoutConsent",
+    "pref_label": "Photography without consent",
+    "alt_labels": [
+      "filming without consent",
+      "no photo lanyard",
+      "photo without consent",
+      "photographed"
+    ],
+    "definition": "Photos or video taken of people who opted out.",
+    "broader": [
+      "fd:CodeOfConduct"
+    ],
+    "ancestors": [
+      "fd:CodeOfConduct",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/CodeOfConduct/PhotographyWithoutConsent",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:PoorCellSignal",
+    "iri": "https://haikei.dev/ontology/friction#PoorCellSignal",
+    "pref_label": "Poor cell signal",
+    "alt_labels": [
+      "dead zone",
+      "no 5g",
+      "no bars",
+      "no lte",
+      "no reception",
+      "no service",
+      "no signal"
+    ],
+    "definition": "Mobile phones get little or no signal in the venue.",
+    "broader": [
+      "fd:CellSignal"
+    ],
+    "ancestors": [
+      "fd:CellSignal",
+      "fd:Connectivity"
+    ],
+    "path": "Connectivity/CellSignal/PoorCellSignal",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:Power",
+    "iri": "https://haikei.dev/ontology/friction#Power",
+    "pref_label": "Power",
+    "alt_labels": [
+      "charging",
+      "electricity"
+    ],
+    "definition": "Problems charging devices.",
+    "broader": [
+      "fd:Connectivity"
+    ],
+    "ancestors": [
+      "fd:Connectivity"
+    ],
+    "path": "Connectivity/Power",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:PrayerRoom",
+    "iri": "https://haikei.dev/ontology/friction#PrayerRoom",
+    "pref_label": "Prayer room",
+    "alt_labels": [
+      "meditation room",
+      "multi-faith room",
+      "multifaith room",
+      "reflection room"
+    ],
+    "definition": "Problems with the prayer or reflection room facility.",
+    "broader": [
+      "fd:Comfort"
+    ],
+    "ancestors": [
+      "fd:Comfort"
+    ],
+    "path": "Comfort/PrayerRoom",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:PrayerRoomUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#PrayerRoomUnavailable",
+    "pref_label": "Prayer room unavailable",
+    "alt_labels": [
+      "no prayer room",
+      "no reflection room",
+      "prayer room locked",
+      "prayer room used for meetings"
+    ],
+    "definition": "The prayer or reflection room is missing, locked or being used for other purposes.",
+    "broader": [
+      "fd:PrayerRoom"
+    ],
+    "ancestors": [
+      "fd:Comfort",
+      "fd:PrayerRoom"
+    ],
+    "path": "Comfort/PrayerRoom/PrayerRoomUnavailable",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:PrintedScheduleWrong",
+    "iri": "https://haikei.dev/ontology/friction#PrintedScheduleWrong",
+    "pref_label": "Printed schedule wrong",
+    "alt_labels": [
+      "board wrong",
+      "door sign wrong",
+      "printed agenda wrong",
+      "screen schedule wrong"
+    ],
+    "definition": "Printed agendas, door signs or display boards disagree with the real schedule.",
+    "broader": [
+      "fd:ScheduleInformation"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleInformation"
+    ],
+    "path": "Schedule/ScheduleInformation/PrintedScheduleWrong",
+    "related": [
+      "fd:ConfusingSignage"
+    ],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:ProjectorProblem",
+    "iri": "https://haikei.dev/ontology/friction#ProjectorProblem",
+    "pref_label": "Projector problem",
+    "alt_labels": [
+      "display not working",
+      "dongle",
+      "hdmi",
+      "laptop won't connect",
+      "no adapter",
+      "no hdmi",
+      "projector",
+      "screen black"
+    ],
+    "definition": "Projectors, screens or display connections are not working.",
+    "broader": [
+      "fd:AudioVisual"
+    ],
+    "ancestors": [
+      "fd:AudioVisual",
+      "fd:Content"
+    ],
+    "path": "Content/AudioVisual/ProjectorProblem",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:PublicTransit",
+    "iri": "https://haikei.dev/ontology/friction#PublicTransit",
+    "pref_label": "Public transit",
+    "alt_labels": [
+      "light rail",
+      "metro",
+      "subway",
+      "train",
+      "tram",
+      "transit"
+    ],
+    "definition": "Problems reaching the venue by public transport.",
+    "broader": [
+      "fd:Transport"
+    ],
+    "ancestors": [
+      "fd:Transport"
+    ],
+    "path": "Transport/PublicTransit",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:QuietRoomUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#QuietRoomUnavailable",
+    "pref_label": "Quiet room unavailable",
+    "alt_labels": [
+      "decompression room",
+      "no quiet room",
+      "quiet room closed",
+      "quiet room full",
+      "quiet space"
+    ],
+    "definition": "The designated quiet room is missing, closed, occupied for other uses or hard to find.",
+    "broader": [
+      "fd:SensoryAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:SensoryAccess"
+    ],
+    "path": "Accessibility/SensoryAccess/QuietRoomUnavailable",
+    "related": [
+      "fd:ExpoTooLoud",
+      "fd:VenueNoise"
+    ],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:RecordingUnavailable",
+    "iri": "https://haikei.dev/ontology/friction#RecordingUnavailable",
+    "pref_label": "Recording unavailable",
+    "alt_labels": [
+      "no recording",
+      "not recorded",
+      "slides not posted",
+      "where are the videos"
+    ],
+    "definition": "A session recording or slide deck is not available afterwards.",
+    "broader": [
+      "fd:Recordings"
+    ],
+    "ancestors": [
+      "fd:Content",
+      "fd:Recordings"
+    ],
+    "path": "Content/Recordings/RecordingUnavailable",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:Recordings",
+    "iri": "https://haikei.dev/ontology/friction#Recordings",
+    "pref_label": "Recordings",
+    "alt_labels": [
+      "livestream",
+      "recording",
+      "stream",
+      "video"
+    ],
+    "definition": "Problems with session recordings or livestreams.",
+    "broader": [
+      "fd:Content"
+    ],
+    "ancestors": [
+      "fd:Content"
+    ],
+    "path": "Content/Recordings",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:Registration",
+    "iri": "https://haikei.dev/ontology/friction#Registration",
+    "pref_label": "Registration",
+    "alt_labels": [
+      "check in",
+      "check-in",
+      "checkin",
+      "reg",
+      "registration desk"
+    ],
+    "definition": "Problems checking in and getting or keeping a badge.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Registration",
+    "related": [],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:RegistrationLine",
+    "iri": "https://haikei.dev/ontology/friction#RegistrationLine",
+    "pref_label": "Registration line",
+    "alt_labels": [
+      "badge line",
+      "check-in line",
+      "long line at registration",
+      "reg queue",
+      "registration queue"
+    ],
+    "definition": "Long waits at the registration or badge desk.",
+    "broader": [
+      "fd:BadgePickup"
+    ],
+    "ancestors": [
+      "fd:BadgePickup",
+      "fd:Registration"
+    ],
+    "path": "Registration/BadgePickup/RegistrationLine",
+    "related": [],
+    "top_concept": "fd:Registration"
+  },
+  {
+    "id": "fd:ReservedSeatingMissing",
+    "iri": "https://haikei.dev/ontology/friction#ReservedSeatingMissing",
+    "pref_label": "Accessible seating missing",
+    "alt_labels": [
+      "no accessible seating",
+      "no aisle seat",
+      "no wheelchair space",
+      "reserved seating taken"
+    ],
+    "definition": "Reserved accessible seating or wheelchair spaces are missing or taken.",
+    "broader": [
+      "fd:MobilityAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:MobilityAccess"
+    ],
+    "path": "Accessibility/MobilityAccess/ReservedSeatingMissing",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:RestArea",
+    "iri": "https://haikei.dev/ontology/friction#RestArea",
+    "pref_label": "Rest area",
+    "alt_labels": [
+      "break area",
+      "hallway track",
+      "lounge",
+      "place to sit and work"
+    ],
+    "definition": "Problems with lounges and informal rest or work areas.",
+    "broader": [
+      "fd:Comfort"
+    ],
+    "ancestors": [
+      "fd:Comfort"
+    ],
+    "path": "Comfort/RestArea",
+    "related": [],
+    "top_concept": "fd:Comfort"
+  },
+  {
+    "id": "fd:RestroomOutOfOrder",
+    "iri": "https://haikei.dev/ontology/friction#RestroomOutOfOrder",
+    "pref_label": "Restroom out of order",
+    "alt_labels": [
+      "bathroom closed",
+      "flooded bathroom",
+      "restroom closed",
+      "toilet broken"
+    ],
+    "definition": "A restroom is closed, broken or flooded.",
+    "broader": [
+      "fd:Restrooms"
+    ],
+    "ancestors": [
+      "fd:Restrooms",
+      "fd:Venue"
+    ],
+    "path": "Venue/Restrooms/RestroomOutOfOrder",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:RestroomOutOfSupplies",
+    "iri": "https://haikei.dev/ontology/friction#RestroomOutOfSupplies",
+    "pref_label": "Restroom out of supplies",
+    "alt_labels": [
+      "dirty bathroom",
+      "no paper towels",
+      "no soap",
+      "no toilet paper",
+      "restroom unclean"
+    ],
+    "definition": "Restrooms lack supplies or are unclean.",
+    "broader": [
+      "fd:Restrooms"
+    ],
+    "ancestors": [
+      "fd:Restrooms",
+      "fd:Venue"
+    ],
+    "path": "Venue/Restrooms/RestroomOutOfSupplies",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:RestroomQueue",
+    "iri": "https://haikei.dev/ontology/friction#RestroomQueue",
+    "pref_label": "Restroom queue",
+    "alt_labels": [
+      "bathroom line",
+      "not enough bathrooms",
+      "restroom line",
+      "toilet queue"
+    ],
+    "definition": "Long waits to use the restrooms.",
+    "broader": [
+      "fd:Restrooms"
+    ],
+    "ancestors": [
+      "fd:Restrooms",
+      "fd:Venue"
+    ],
+    "path": "Venue/Restrooms/RestroomQueue",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Restrooms",
+    "iri": "https://haikei.dev/ontology/friction#Restrooms",
+    "pref_label": "Restrooms",
+    "alt_labels": [
+      "bathroom",
+      "loo",
+      "restroom",
+      "toilets",
+      "washroom",
+      "wc"
+    ],
+    "definition": "Problems with restroom facilities.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Restrooms",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Rideshare",
+    "iri": "https://haikei.dev/ontology/friction#Rideshare",
+    "pref_label": "Rideshare",
+    "alt_labels": [
+      "cab",
+      "lyft",
+      "taxi",
+      "uber"
+    ],
+    "definition": "Problems with taxi or rideshare pickup and drop-off.",
+    "broader": [
+      "fd:Transport"
+    ],
+    "ancestors": [
+      "fd:Transport"
+    ],
+    "path": "Transport/Rideshare",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:RideshareDropoffUnclear",
+    "iri": "https://haikei.dev/ontology/friction#RideshareDropoffUnclear",
+    "pref_label": "Rideshare drop-off unclear",
+    "alt_labels": [
+      "drop off point",
+      "pickup zone",
+      "taxi line",
+      "uber pickup"
+    ],
+    "definition": "Pickup and drop-off points are unmarked or far from entrances.",
+    "broader": [
+      "fd:Rideshare"
+    ],
+    "ancestors": [
+      "fd:Rideshare",
+      "fd:Transport"
+    ],
+    "path": "Transport/Rideshare/RideshareDropoffUnclear",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:RoomChange",
+    "iri": "https://haikei.dev/ontology/friction#RoomChange",
+    "pref_label": "Room change",
+    "alt_labels": [
+      "moved rooms",
+      "relocated",
+      "room changed",
+      "session moved",
+      "talk moved",
+      "wrong room"
+    ],
+    "definition": "A session was moved to a different room.",
+    "broader": [
+      "fd:ScheduleChange"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleChange"
+    ],
+    "path": "Schedule/ScheduleChange/RoomChange",
+    "related": [
+      "fd:AppScheduleWrong",
+      "fd:HardToFindRoom"
+    ],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:RoomOverCapacity",
+    "iri": "https://haikei.dev/ontology/friction#RoomOverCapacity",
+    "pref_label": "Room over capacity",
+    "alt_labels": [
+      "fire capacity",
+      "room overflowing",
+      "room too small",
+      "standing room only",
+      "too small room"
+    ],
+    "definition": "A session room holds more people than it was sized for.",
+    "broader": [
+      "fd:Crowding"
+    ],
+    "ancestors": [
+      "fd:Crowding",
+      "fd:Venue"
+    ],
+    "path": "Venue/Crowding/RoomOverCapacity",
+    "related": [
+      "fd:NotEnoughSeating",
+      "fd:TalkFull"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:RoomTooCold",
+    "iri": "https://haikei.dev/ontology/friction#RoomTooCold",
+    "pref_label": "Room too cold",
+    "alt_labels": [
+      "ac too high",
+      "chilly",
+      "freezing",
+      "frigid",
+      "too cold"
+    ],
+    "definition": "A room is too cold.",
+    "broader": [
+      "fd:Temperature"
+    ],
+    "ancestors": [
+      "fd:Temperature",
+      "fd:Venue"
+    ],
+    "path": "Venue/Temperature/RoomTooCold",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:RoomTooHot",
+    "iri": "https://haikei.dev/ontology/friction#RoomTooHot",
+    "pref_label": "Room too hot",
+    "alt_labels": [
+      "ac broken",
+      "boiling",
+      "no air",
+      "stuffy",
+      "sweltering",
+      "too hot"
+    ],
+    "definition": "A room is too warm or poorly ventilated.",
+    "broader": [
+      "fd:Temperature"
+    ],
+    "ancestors": [
+      "fd:Temperature",
+      "fd:Venue"
+    ],
+    "path": "Venue/Temperature/RoomTooHot",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:SafetyAndConduct",
+    "iri": "https://haikei.dev/ontology/friction#SafetyAndConduct",
+    "pref_label": "Safety and conduct",
+    "alt_labels": [
+      "conduct",
+      "safety",
+      "trust and safety",
+      "unsafe"
+    ],
+    "definition": "Code of conduct, physical safety and security concerns.",
+    "broader": [],
+    "ancestors": [],
+    "path": "SafetyAndConduct",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:Schedule",
+    "iri": "https://haikei.dev/ontology/friction#Schedule",
+    "pref_label": "Schedule",
+    "alt_labels": [
+      "agenda",
+      "program",
+      "programme",
+      "sched",
+      "timetable"
+    ],
+    "definition": "Problems with session timing, rooms or schedule information.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Schedule",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:ScheduleChange",
+    "iri": "https://haikei.dev/ontology/friction#ScheduleChange",
+    "pref_label": "Schedule change",
+    "alt_labels": [
+      "agenda change",
+      "last minute change",
+      "schedule changed"
+    ],
+    "definition": "A session moved, changed time or was cancelled.",
+    "broader": [
+      "fd:Schedule"
+    ],
+    "ancestors": [
+      "fd:Schedule"
+    ],
+    "path": "Schedule/ScheduleChange",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:ScheduleConflict",
+    "iri": "https://haikei.dev/ontology/friction#ScheduleConflict",
+    "pref_label": "Schedule conflict",
+    "alt_labels": [
+      "clash",
+      "conflict",
+      "overlap"
+    ],
+    "definition": "Sessions or bookings collide in time or space.",
+    "broader": [
+      "fd:Schedule"
+    ],
+    "ancestors": [
+      "fd:Schedule"
+    ],
+    "path": "Schedule/ScheduleConflict",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:ScheduleInformation",
+    "iri": "https://haikei.dev/ontology/friction#ScheduleInformation",
+    "pref_label": "Schedule information",
+    "alt_labels": [
+      "agenda info",
+      "event app",
+      "schedule info"
+    ],
+    "definition": "The published schedule is wrong, out of date or unavailable.",
+    "broader": [
+      "fd:Schedule"
+    ],
+    "ancestors": [
+      "fd:Schedule"
+    ],
+    "path": "Schedule/ScheduleInformation",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:Seating",
+    "iri": "https://haikei.dev/ontology/friction#Seating",
+    "pref_label": "Seating",
+    "alt_labels": [
+      "chairs",
+      "seats"
+    ],
+    "definition": "Problems with seats in session rooms or common areas.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Seating",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Security",
+    "iri": "https://haikei.dev/ontology/friction#Security",
+    "pref_label": "Security",
+    "alt_labels": [
+      "guards",
+      "security staff"
+    ],
+    "definition": "Security screening, theft and lost property.",
+    "broader": [
+      "fd:SafetyAndConduct"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/Security",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:SecurityCheckDelay",
+    "iri": "https://haikei.dev/ontology/friction#SecurityCheckDelay",
+    "pref_label": "Security check delay",
+    "alt_labels": [
+      "bag check",
+      "bag check line",
+      "metal detector",
+      "screening queue",
+      "security line"
+    ],
+    "definition": "Long waits at security screening or bag checks.",
+    "broader": [
+      "fd:Security"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct",
+      "fd:Security"
+    ],
+    "path": "SafetyAndConduct/Security/SecurityCheckDelay",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:SensoryAccess",
+    "iri": "https://haikei.dev/ontology/friction#SensoryAccess",
+    "pref_label": "Sensory access",
+    "alt_labels": [
+      "neurodivergent access",
+      "overstimulation",
+      "sensory friendly"
+    ],
+    "definition": "Spaces lack options for reducing sensory load.",
+    "broader": [
+      "fd:Accessibility"
+    ],
+    "ancestors": [
+      "fd:Accessibility"
+    ],
+    "path": "Accessibility/SensoryAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:SessionCancelled",
+    "iri": "https://haikei.dev/ontology/friction#SessionCancelled",
+    "pref_label": "Session cancelled",
+    "alt_labels": [
+      "canceled",
+      "cancelled",
+      "no-show",
+      "speaker no show",
+      "talk cancelled"
+    ],
+    "definition": "A session was cancelled or the speaker did not appear.",
+    "broader": [
+      "fd:ScheduleChange"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleChange"
+    ],
+    "path": "Schedule/ScheduleChange/SessionCancelled",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:SessionOverrun",
+    "iri": "https://haikei.dev/ontology/friction#SessionOverrun",
+    "pref_label": "Session overrun",
+    "alt_labels": [
+      "overrun",
+      "overtime",
+      "ran long",
+      "ran over",
+      "went over time"
+    ],
+    "definition": "A session ran past its scheduled end.",
+    "broader": [
+      "fd:Timing"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:Timing"
+    ],
+    "path": "Schedule/Timing/SessionOverrun",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:SessionStartedLate",
+    "iri": "https://haikei.dev/ontology/friction#SessionStartedLate",
+    "pref_label": "Session started late",
+    "alt_labels": [
+      "delayed start",
+      "late start",
+      "started late",
+      "waiting for speaker"
+    ],
+    "definition": "A session began after its scheduled start time.",
+    "broader": [
+      "fd:Timing"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:Timing"
+    ],
+    "path": "Schedule/Timing/SessionStartedLate",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:Shuttle",
+    "iri": "https://haikei.dev/ontology/friction#Shuttle",
+    "pref_label": "Shuttle",
+    "alt_labels": [
+      "bus",
+      "hotel shuttle",
+      "shuttle bus"
+    ],
+    "definition": "Problems with event shuttle buses.",
+    "broader": [
+      "fd:Transport"
+    ],
+    "ancestors": [
+      "fd:Transport"
+    ],
+    "path": "Transport/Shuttle",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:ShuttleDelay",
+    "iri": "https://haikei.dev/ontology/friction#ShuttleDelay",
+    "pref_label": "Shuttle delay",
+    "alt_labels": [
+      "bus late",
+      "missed shuttle",
+      "shuttle full",
+      "shuttle late",
+      "shuttle never came"
+    ],
+    "definition": "Shuttles are late, full or did not arrive.",
+    "broader": [
+      "fd:Shuttle"
+    ],
+    "ancestors": [
+      "fd:Shuttle",
+      "fd:Transport"
+    ],
+    "path": "Transport/Shuttle/ShuttleDelay",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:ShuttleInfoUnclear",
+    "iri": "https://haikei.dev/ontology/friction#ShuttleInfoUnclear",
+    "pref_label": "Shuttle information unclear",
+    "alt_labels": [
+      "shuttle schedule",
+      "shuttle stop",
+      "shuttle times",
+      "where is the shuttle"
+    ],
+    "definition": "Shuttle stops or timetables are hard to find.",
+    "broader": [
+      "fd:Shuttle"
+    ],
+    "ancestors": [
+      "fd:Shuttle",
+      "fd:Transport"
+    ],
+    "path": "Transport/Shuttle/ShuttleInfoUnclear",
+    "related": [
+      "fd:Wayfinding"
+    ],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:SignLanguageMissing",
+    "iri": "https://haikei.dev/ontology/friction#SignLanguageMissing",
+    "pref_label": "Sign language interpretation missing",
+    "alt_labels": [
+      "asl",
+      "interpreter missing",
+      "no interpreter",
+      "no sign language"
+    ],
+    "definition": "Requested sign language interpretation is not provided.",
+    "broader": [
+      "fd:HearingAccess"
+    ],
+    "ancestors": [
+      "fd:Accessibility",
+      "fd:HearingAccess"
+    ],
+    "path": "Accessibility/HearingAccess/SignLanguageMissing",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:SlidesUnreadable",
+    "iri": "https://haikei.dev/ontology/friction#SlidesUnreadable",
+    "pref_label": "Slides unreadable",
+    "alt_labels": [
+      "can't read slides",
+      "font too small",
+      "screen too small",
+      "slides too small",
+      "slides washed out"
+    ],
+    "definition": "Slides cannot be read from the audience.",
+    "broader": [
+      "fd:AudioVisual"
+    ],
+    "ancestors": [
+      "fd:AudioVisual",
+      "fd:Content"
+    ],
+    "path": "Content/AudioVisual/SlidesUnreadable",
+    "related": [
+      "fd:Lighting",
+      "fd:LowContrastSignage"
+    ],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:SlowWifi",
+    "iri": "https://haikei.dev/ontology/friction#SlowWifi",
+    "pref_label": "Slow Wi-Fi",
+    "alt_labels": [
+      "flaky wifi",
+      "laggy wifi",
+      "slow internet",
+      "slow wifi",
+      "spotty wifi",
+      "wifi keeps dropping",
+      "wifi slow"
+    ],
+    "definition": "The Wi-Fi works but is slow or intermittent.",
+    "broader": [
+      "fd:Wifi"
+    ],
+    "ancestors": [
+      "fd:Connectivity",
+      "fd:Wifi"
+    ],
+    "path": "Connectivity/Wifi/SlowWifi",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:SponsorConduct",
+    "iri": "https://haikei.dev/ontology/friction#SponsorConduct",
+    "pref_label": "Sponsor conduct",
+    "alt_labels": [
+      "booth staff",
+      "sponsor behavior",
+      "sponsor behaviour"
+    ],
+    "definition": "Problems with how sponsors engage attendees.",
+    "broader": [
+      "fd:SponsorsAndExpo"
+    ],
+    "ancestors": [
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/SponsorConduct",
+    "related": [
+      "fd:CodeOfConduct"
+    ],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:SponsorsAndExpo",
+    "iri": "https://haikei.dev/ontology/friction#SponsorsAndExpo",
+    "pref_label": "Sponsors and expo",
+    "alt_labels": [
+      "booths",
+      "exhibitors",
+      "expo",
+      "expo hall",
+      "showcase",
+      "sponsor hall",
+      "vendors"
+    ],
+    "definition": "Problems in the sponsor and exhibition area.",
+    "broader": [],
+    "ancestors": [],
+    "path": "SponsorsAndExpo",
+    "related": [],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:StepFreeAccess",
+    "iri": "https://haikei.dev/ontology/friction#StepFreeAccess",
+    "pref_label": "Step-free access",
+    "alt_labels": [
+      "level access",
+      "stairs only",
+      "step free",
+      "wheelchair access"
+    ],
+    "definition": "Routes that avoid stairs are missing or blocked.",
+    "broader": [
+      "fd:Accessibility"
+    ],
+    "ancestors": [
+      "fd:Accessibility"
+    ],
+    "path": "Accessibility/StepFreeAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:Swag",
+    "iri": "https://haikei.dev/ontology/friction#Swag",
+    "pref_label": "Swag",
+    "alt_labels": [
+      "giveaways",
+      "merch",
+      "stickers",
+      "t-shirt",
+      "tshirt"
+    ],
+    "definition": "Problems with conference or sponsor giveaways.",
+    "broader": [
+      "fd:SponsorsAndExpo"
+    ],
+    "ancestors": [
+      "fd:SponsorsAndExpo"
+    ],
+    "path": "SponsorsAndExpo/Swag",
+    "related": [],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:SwagRanOut",
+    "iri": "https://haikei.dev/ontology/friction#SwagRanOut",
+    "pref_label": "Swag ran out",
+    "alt_labels": [
+      "no small sizes",
+      "no swag",
+      "no t-shirts left",
+      "shirts ran out",
+      "wrong shirt size"
+    ],
+    "definition": "Giveaways ran out or came in limited sizes.",
+    "broader": [
+      "fd:Swag"
+    ],
+    "ancestors": [
+      "fd:SponsorsAndExpo",
+      "fd:Swag"
+    ],
+    "path": "SponsorsAndExpo/Swag/SwagRanOut",
+    "related": [],
+    "top_concept": "fd:SponsorsAndExpo"
+  },
+  {
+    "id": "fd:TalkCapacity",
+    "iri": "https://haikei.dev/ontology/friction#TalkCapacity",
+    "pref_label": "Talk capacity",
+    "alt_labels": [
+      "capacity",
+      "popular talk"
+    ],
+    "definition": "People cannot get into sessions they want to attend.",
+    "broader": [
+      "fd:Content"
+    ],
+    "ancestors": [
+      "fd:Content"
+    ],
+    "path": "Content/TalkCapacity",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:TalkFull",
+    "iri": "https://haikei.dev/ontology/friction#TalkFull",
+    "pref_label": "Talk full",
+    "alt_labels": [
+      "at capacity",
+      "couldn't get in",
+      "doors closed",
+      "room full",
+      "session full",
+      "turned away"
+    ],
+    "definition": "Attendees were turned away because a session reached capacity.",
+    "broader": [
+      "fd:TalkCapacity"
+    ],
+    "ancestors": [
+      "fd:Content",
+      "fd:TalkCapacity"
+    ],
+    "path": "Content/TalkCapacity/TalkFull",
+    "related": [
+      "fd:RoomOverCapacity"
+    ],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:TalkMismatchAbstract",
+    "iri": "https://haikei.dev/ontology/friction#TalkMismatchAbstract",
+    "pref_label": "Talk did not match abstract",
+    "alt_labels": [
+      "misleading abstract",
+      "sales pitch",
+      "too advanced",
+      "too basic",
+      "vendor pitch",
+      "wrong level"
+    ],
+    "definition": "The session content, level or style did not match its description.",
+    "broader": [
+      "fd:TalkQuality"
+    ],
+    "ancestors": [
+      "fd:Content",
+      "fd:TalkQuality"
+    ],
+    "path": "Content/TalkQuality/TalkMismatchAbstract",
+    "related": [
+      "fd:AggressiveSponsorPitch"
+    ],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:TalkQuality",
+    "iri": "https://haikei.dev/ontology/friction#TalkQuality",
+    "pref_label": "Talk quality",
+    "alt_labels": [
+      "content quality",
+      "talk level"
+    ],
+    "definition": "A session differs from what its listing promised.",
+    "broader": [
+      "fd:Content"
+    ],
+    "ancestors": [
+      "fd:Content"
+    ],
+    "path": "Content/TalkQuality",
+    "related": [],
+    "top_concept": "fd:Content"
+  },
+  {
+    "id": "fd:Temperature",
+    "iri": "https://haikei.dev/ontology/friction#Temperature",
+    "pref_label": "Temperature",
+    "alt_labels": [
+      "a/c",
+      "ac",
+      "air conditioning",
+      "climate",
+      "heating",
+      "hvac"
+    ],
+    "definition": "The room climate is uncomfortable.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Temperature",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Theft",
+    "iri": "https://haikei.dev/ontology/friction#Theft",
+    "pref_label": "Theft",
+    "alt_labels": [
+      "pickpocket",
+      "stolen",
+      "stolen bag",
+      "stolen laptop"
+    ],
+    "definition": "An attendee's belongings were stolen.",
+    "broader": [
+      "fd:Security"
+    ],
+    "ancestors": [
+      "fd:SafetyAndConduct",
+      "fd:Security"
+    ],
+    "path": "SafetyAndConduct/Security/Theft",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:TimeChange",
+    "iri": "https://haikei.dev/ontology/friction#TimeChange",
+    "pref_label": "Time change",
+    "alt_labels": [
+      "moved earlier",
+      "moved later",
+      "rescheduled",
+      "time changed"
+    ],
+    "definition": "A session was moved to a different time.",
+    "broader": [
+      "fd:ScheduleChange"
+    ],
+    "ancestors": [
+      "fd:Schedule",
+      "fd:ScheduleChange"
+    ],
+    "path": "Schedule/ScheduleChange/TimeChange",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:Timing",
+    "iri": "https://haikei.dev/ontology/friction#Timing",
+    "pref_label": "Session timing",
+    "alt_labels": [
+      "behind schedule",
+      "running late",
+      "timing"
+    ],
+    "definition": "Sessions do not start or end on time.",
+    "broader": [
+      "fd:Schedule"
+    ],
+    "ancestors": [
+      "fd:Schedule"
+    ],
+    "path": "Schedule/Timing",
+    "related": [],
+    "top_concept": "fd:Schedule"
+  },
+  {
+    "id": "fd:TransitDirectionsUnclear",
+    "iri": "https://haikei.dev/ontology/friction#TransitDirectionsUnclear",
+    "pref_label": "Transit directions unclear",
+    "alt_labels": [
+      "how to get here",
+      "nearest station",
+      "transit directions",
+      "which train"
+    ],
+    "definition": "Directions from transit stops to the venue are missing or confusing.",
+    "broader": [
+      "fd:PublicTransit"
+    ],
+    "ancestors": [
+      "fd:PublicTransit",
+      "fd:Transport"
+    ],
+    "path": "Transport/PublicTransit/TransitDirectionsUnclear",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:Transport",
+    "iri": "https://haikei.dev/ontology/friction#Transport",
+    "pref_label": "Transport",
+    "alt_labels": [
+      "commute",
+      "getting there",
+      "transportation",
+      "travel"
+    ],
+    "definition": "Problems getting to, from or between venues.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Transport",
+    "related": [],
+    "top_concept": "fd:Transport"
+  },
+  {
+    "id": "fd:TripHazard",
+    "iri": "https://haikei.dev/ontology/friction#TripHazard",
+    "pref_label": "Trip hazard",
+    "alt_labels": [
+      "cables on floor",
+      "loose cables",
+      "slippery",
+      "tripped",
+      "wet floor"
+    ],
+    "definition": "Loose cables, spills or uneven floors that could cause falls.",
+    "broader": [
+      "fd:EmergencySafety"
+    ],
+    "ancestors": [
+      "fd:EmergencySafety",
+      "fd:SafetyAndConduct"
+    ],
+    "path": "SafetyAndConduct/EmergencySafety/TripHazard",
+    "related": [],
+    "top_concept": "fd:SafetyAndConduct"
+  },
+  {
+    "id": "fd:UncomfortableSeating",
+    "iri": "https://haikei.dev/ontology/friction#UncomfortableSeating",
+    "pref_label": "Uncomfortable seating",
+    "alt_labels": [
+      "bad chairs",
+      "broken chair",
+      "chairs too close",
+      "uncomfortable chairs"
+    ],
+    "definition": "Seats are broken, cramped or uncomfortable.",
+    "broader": [
+      "fd:Seating"
+    ],
+    "ancestors": [
+      "fd:Seating",
+      "fd:Venue"
+    ],
+    "path": "Venue/Seating/UncomfortableSeating",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Venue",
+    "iri": "https://haikei.dev/ontology/friction#Venue",
+    "pref_label": "Venue",
+    "alt_labels": [
+      "building",
+      "conference center",
+      "convention center",
+      "facility"
+    ],
+    "definition": "Problems with the physical building: rooms, signage, crowding, climate, restrooms and seating.",
+    "broader": [],
+    "ancestors": [],
+    "path": "Venue",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:VenueNoise",
+    "iri": "https://haikei.dev/ontology/friction#VenueNoise",
+    "pref_label": "Venue noise",
+    "alt_labels": [
+      "loud next door",
+      "noise from hallway",
+      "noisy room",
+      "sound bleed",
+      "thin walls",
+      "too loud"
+    ],
+    "definition": "Noise from neighbouring rooms, hallways or building systems disrupts a space.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/VenueNoise",
+    "related": [
+      "fd:CantHearSpeaker",
+      "fd:ExpoTooLoud"
+    ],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:VisualAccess",
+    "iri": "https://haikei.dev/ontology/friction#VisualAccess",
+    "pref_label": "Visual access",
+    "alt_labels": [
+      "blind access",
+      "low vision access",
+      "visual accessibility"
+    ],
+    "definition": "Information is not accessible to people who are blind or have low vision.",
+    "broader": [
+      "fd:Accessibility"
+    ],
+    "ancestors": [
+      "fd:Accessibility"
+    ],
+    "path": "Accessibility/VisualAccess",
+    "related": [],
+    "top_concept": "fd:Accessibility"
+  },
+  {
+    "id": "fd:Wayfinding",
+    "iri": "https://haikei.dev/ontology/friction#Wayfinding",
+    "pref_label": "Wayfinding",
+    "alt_labels": [
+      "can't find",
+      "cant find",
+      "directions",
+      "getting lost",
+      "lost",
+      "navigation"
+    ],
+    "definition": "Difficulty finding rooms, halls or services inside the venue.",
+    "broader": [
+      "fd:Venue"
+    ],
+    "ancestors": [
+      "fd:Venue"
+    ],
+    "path": "Venue/Wayfinding",
+    "related": [],
+    "top_concept": "fd:Venue"
+  },
+  {
+    "id": "fd:Wifi",
+    "iri": "https://haikei.dev/ontology/friction#Wifi",
+    "pref_label": "Wi-Fi",
+    "alt_labels": [
+      "ssid",
+      "wi fi",
+      "wifi",
+      "wireless",
+      "wlan"
+    ],
+    "definition": "Problems with the venue wireless network.",
+    "broader": [
+      "fd:Connectivity"
+    ],
+    "ancestors": [
+      "fd:Connectivity"
+    ],
+    "path": "Connectivity/Wifi",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:WifiLoginProblem",
+    "iri": "https://haikei.dev/ontology/friction#WifiLoginProblem",
+    "pref_label": "Wi-Fi login problem",
+    "alt_labels": [
+      "can't connect to wifi",
+      "captive portal",
+      "which ssid",
+      "wifi login",
+      "wifi password",
+      "wifi password wrong"
+    ],
+    "definition": "Attendees cannot find the network name, password or get past the login page.",
+    "broader": [
+      "fd:Wifi"
+    ],
+    "ancestors": [
+      "fd:Connectivity",
+      "fd:Wifi"
+    ],
+    "path": "Connectivity/Wifi/WifiLoginProblem",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:WifiOutage",
+    "iri": "https://haikei.dev/ontology/friction#WifiOutage",
+    "pref_label": "Wi-Fi outage",
+    "alt_labels": [
+      "internet down",
+      "network down",
+      "no internet",
+      "no wifi",
+      "wi-fi down",
+      "wifi down",
+      "wifi not working",
+      "wifi outage"
+    ],
+    "definition": "The Wi-Fi network is unavailable.",
+    "broader": [
+      "fd:Wifi"
+    ],
+    "ancestors": [
+      "fd:Connectivity",
+      "fd:Wifi"
+    ],
+    "path": "Connectivity/Wifi/WifiOutage",
+    "related": [],
+    "top_concept": "fd:Connectivity"
+  },
+  {
+    "id": "fd:WorkshopSignupFull",
+    "iri": "https://haikei.dev/ontology/friction#WorkshopSignupFull",
+    "pref_label": "Workshop signup full",
+    "alt_labels": [
+      "lab full",
+      "rsvp full",
+      "waitlist",
+      "workshop full"
+    ],
+    "definition": "Workshop or lab registration filled up or the waitlist is unclear.",
+    "broader": [
+      "fd:TalkCapacity"
+    ],
+    "ancestors": [
+      "fd:Content",
+      "fd:TalkCapacity"
+    ],
+    "path": "Content/TalkCapacity/WorkshopSignupFull",
+    "related": [],
+    "top_concept": "fd:Content"
+  }
+]

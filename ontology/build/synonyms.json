@@ -1,0 +1,566 @@
+[
+  {
+    "id": "fd:Accessibility",
+    "synonyms": "accessibility, a11y, accessible, ada, disability access, inclusive access"
+  },
+  {
+    "id": "fd:AggressiveSponsorPitch",
+    "synonyms": "aggressive sponsor pitch, badge scanning, lead scan, pushy sales, scanned without asking, spam after scan"
+  },
+  {
+    "id": "fd:AppScheduleWrong",
+    "synonyms": "app schedule wrong, app crashed, app not loading, app out of date, app shows wrong room, app wrong, sched app wrong"
+  },
+  {
+    "id": "fd:AudioVisual",
+    "synonyms": "audio/visual, a/v, audio visual, audio-visual, av, tech issues"
+  },
+  {
+    "id": "fd:BadgeMisprinted",
+    "synonyms": "badge misprinted, badge error, badge typo, name misspelled, wrong name on badge, wrong pronouns on badge"
+  },
+  {
+    "id": "fd:BadgeNotFound",
+    "synonyms": "badge not found, can't find my registration, no badge for me, not in system, qr code not working, ticket not found"
+  },
+  {
+    "id": "fd:BadgePickup",
+    "synonyms": "badge pickup, badge collection, badge pick up, pick up badge"
+  },
+  {
+    "id": "fd:Bike",
+    "synonyms": "bike, bicycle, cycling, scooter"
+  },
+  {
+    "id": "fd:BlockedAccessibleEntrance",
+    "synonyms": "blocked accessible entrance, accessible door closed, accessible door locked, accessible entrance blocked, ramp blocked, wheelchair entrance blocked"
+  },
+  {
+    "id": "fd:BlockedEmergencyExit",
+    "synonyms": "blocked emergency exit, emergency exit blocked, exit locked, exit obstructed, fire exit blocked"
+  },
+  {
+    "id": "fd:BoothHardToFind",
+    "synonyms": "booth hard to find, booth number wrong, can't find booth, map wrong, where is booth"
+  },
+  {
+    "id": "fd:BoothNoise",
+    "synonyms": "booth noise, booth music, booth speakers, loud booth"
+  },
+  {
+    "id": "fd:CantHearSpeaker",
+    "synonyms": "can't hear speaker, audio problem, audio too low, can't hear, cannot hear, cant hear, no sound, speakers too quiet, too quiet"
+  },
+  {
+    "id": "fd:CellSignal",
+    "synonyms": "cell signal, cell reception, mobile signal, phone signal"
+  },
+  {
+    "id": "fd:CheckInSystemDown",
+    "synonyms": "check-in system down, badge printer down, check-in kiosk down, printer broken, registration system down, scanner not working"
+  },
+  {
+    "id": "fd:Childcare",
+    "synonyms": "childcare, child care, creche, daycare, kids"
+  },
+  {
+    "id": "fd:ChildcareUnavailable",
+    "synonyms": "childcare unavailable, childcare closed, childcare full, no childcare"
+  },
+  {
+    "id": "fd:CoatCheck",
+    "synonyms": "coat check, bag drop, cloakroom, coat room, luggage storage"
+  },
+  {
+    "id": "fd:CoatCheckUnavailable",
+    "synonyms": "coat check unavailable, coat check closed, coat check full, coat check line, no coat check, nowhere to leave luggage"
+  },
+  {
+    "id": "fd:CodeOfConduct",
+    "synonyms": "code of conduct, coc, code-of-conduct, conduct policy"
+  },
+  {
+    "id": "fd:CoffeeRanOut",
+    "synonyms": "coffee ran out, caffeine, coffee gone, no coffee, no tea, out of coffee"
+  },
+  {
+    "id": "fd:Comfort",
+    "synonyms": "comfort, amenities, attendee services, facilities"
+  },
+  {
+    "id": "fd:ConductContactUnclear",
+    "synonyms": "conduct contact unclear, coc contact, how to report, no conduct team, who do i report to"
+  },
+  {
+    "id": "fd:ConfusingSignage",
+    "synonyms": "confusing signage, misleading signs, signage confusing, signs point wrong way, wrong signs"
+  },
+  {
+    "id": "fd:Connectivity",
+    "synonyms": "connectivity, connection, internet, network, online"
+  },
+  {
+    "id": "fd:Content",
+    "synonyms": "content, keynote, presentation, session, talk, talks, workshop"
+  },
+  {
+    "id": "fd:Crowding",
+    "synonyms": "crowding, congestion, crowded, packed, too many people"
+  },
+  {
+    "id": "fd:DietaryOptions",
+    "synonyms": "dietary options, dietary, dietary needs, dietary restrictions, special diet"
+  },
+  {
+    "id": "fd:DoubleBookedRoom",
+    "synonyms": "double-booked room, double booked, double-booked, room conflict, two talks same room"
+  },
+  {
+    "id": "fd:DrinkingWater",
+    "synonyms": "drinking water, hydration, water"
+  },
+  {
+    "id": "fd:ElevatorOutOfService",
+    "synonyms": "elevator out of service, elevator broken, elevator down, escalator broken, lift broken, lift out of order"
+  },
+  {
+    "id": "fd:EmergencySafety",
+    "synonyms": "emergency safety, emergency, fire safety, hazard, physical safety"
+  },
+  {
+    "id": "fd:ExpoAisleCrowded",
+    "synonyms": "expo aisle crowded, aisles too narrow, booth line blocking, expo crowded, expo packed"
+  },
+  {
+    "id": "fd:ExpoLayout",
+    "synonyms": "expo layout, booth map, expo map, floor plan"
+  },
+  {
+    "id": "fd:ExpoTooLoud",
+    "synonyms": "expo too loud, blaring music, booth too loud, can't talk in expo, expo hall loud"
+  },
+  {
+    "id": "fd:FirstAidUnavailable",
+    "synonyms": "first aid unavailable, first aid, medic, no first aid, where is first aid"
+  },
+  {
+    "id": "fd:FlashingLights",
+    "synonyms": "flashing lights, flashing screen, flicker, strobe, strobe lights"
+  },
+  {
+    "id": "fd:FoodAndBeverage",
+    "synonyms": "food and beverage, catering, drinks, f&b, food, lunch, meals, snacks"
+  },
+  {
+    "id": "fd:FoodQueues",
+    "synonyms": "food queues, catering queue, food line, long line for food, lunch line, lunch queue"
+  },
+  {
+    "id": "fd:FoodRanOut",
+    "synonyms": "food ran out, empty buffet, food gone, lunch ran out, no food left, out of food"
+  },
+  {
+    "id": "fd:FoodSupply",
+    "synonyms": "food supply, food quantity, not enough food"
+  },
+  {
+    "id": "fd:HarassmentReport",
+    "synonyms": "harassment report, coc violation, harassed, harassment, inappropriate behavior, inappropriate behaviour, made uncomfortable, unwanted contact"
+  },
+  {
+    "id": "fd:HardToFindRoom",
+    "synonyms": "hard to find room, can't find room, cant find the room, room hidden, where is room, which floor"
+  },
+  {
+    "id": "fd:HearingAccess",
+    "synonyms": "hearing access, deaf access, hard of hearing access, hearing accessibility"
+  },
+  {
+    "id": "fd:HearingLoopUnavailable",
+    "synonyms": "hearing loop unavailable, assistive listening, hearing loop broken, induction loop, no hearing loop, t-coil"
+  },
+  {
+    "id": "fd:LactationRoom",
+    "synonyms": "lactation room, mothers room, nursing room, parents room, pumping room"
+  },
+  {
+    "id": "fd:LactationRoomUnavailable",
+    "synonyms": "lactation room unavailable, lactation room locked, no fridge in lactation room, no lactation room, nursing room occupied"
+  },
+  {
+    "id": "fd:Lighting",
+    "synonyms": "lighting, glare, lights flickering, lights off, too bright, too dark"
+  },
+  {
+    "id": "fd:LivestreamDown",
+    "synonyms": "livestream down, livestream broken, overflow room stream, stream down, stream lagging"
+  },
+  {
+    "id": "fd:LongWalkingDistances",
+    "synonyms": "long walking distances, long walk, no time between sessions, rooms far apart, too far to walk"
+  },
+  {
+    "id": "fd:LostAndFound",
+    "synonyms": "lost and found, left my laptop, lost and found desk, lost item, lost property"
+  },
+  {
+    "id": "fd:LostBadge",
+    "synonyms": "lost badge, badge lost, badge replacement, forgot badge, lost my badge, reprint badge"
+  },
+  {
+    "id": "fd:LowContrastSignage",
+    "synonyms": "low contrast signage, hard to read signs, low contrast, small print signs, tiny signs"
+  },
+  {
+    "id": "fd:MicrophoneProblem",
+    "synonyms": "microphone problem, audience mic, feedback, mic, mic broken, mic cutting out, mic not working, mike, no mic"
+  },
+  {
+    "id": "fd:MissingAllergenInfo",
+    "synonyms": "missing allergen information, allergen labels, allergens, allergy, contains nuts, no ingredient list, nut free, unlabeled food"
+  },
+  {
+    "id": "fd:MissingCaptions",
+    "synonyms": "missing captions, captions broken, cart missing, live captioning down, no captions, no subtitles, no transcription"
+  },
+  {
+    "id": "fd:MissingRamp",
+    "synonyms": "missing ramp, no ramp, no ramp to stage, stage not accessible, steps only"
+  },
+  {
+    "id": "fd:MissingSignage",
+    "synonyms": "missing signage, no signage, no signs, signs missing, unsigned"
+  },
+  {
+    "id": "fd:MobilityAccess",
+    "synonyms": "mobility access, mobility, mobility aid, walking distance"
+  },
+  {
+    "id": "fd:NoBikeParking",
+    "synonyms": "no bike parking, bike rack full, bike storage, no bike rack, nowhere to lock bike"
+  },
+  {
+    "id": "fd:NoBreakBetweenSessions",
+    "synonyms": "no break between sessions, back to back, back-to-back, no break, no time for lunch"
+  },
+  {
+    "id": "fd:NoDrinkingWater",
+    "synonyms": "no drinking water, no refill station, no water, no water fountain, thirsty, water station empty"
+  },
+  {
+    "id": "fd:NoGlutenFreeOption",
+    "synonyms": "no gluten-free option, celiac option, gf, gluten-free, no gluten free"
+  },
+  {
+    "id": "fd:NoHalalOrKosherOption",
+    "synonyms": "no halal or kosher option, halal, kosher, no halal, no kosher"
+  },
+  {
+    "id": "fd:NoPowerOutlets",
+    "synonyms": "no power outlets, can't charge, dead battery, no outlets, no plugs, no power, no sockets, power strip"
+  },
+  {
+    "id": "fd:NoRestArea",
+    "synonyms": "no rest area, no lounge, no meeting space, no tables, nowhere to take a call, nowhere to work"
+  },
+  {
+    "id": "fd:NoScreenReaderSupport",
+    "synonyms": "no screen reader support, app not accessible, no alt text, screen reader, voiceover broken"
+  },
+  {
+    "id": "fd:NoVeganOption",
+    "synonyms": "no vegan option, no vegan, plant based, plant-based, vegan ran out"
+  },
+  {
+    "id": "fd:NoVegetarianOption",
+    "synonyms": "no vegetarian option, no vegetarian, no veggie, only meat, vegetarian ran out"
+  },
+  {
+    "id": "fd:NotEnoughSeating",
+    "synonyms": "not enough seating, had to stand, no chairs, no seats, nowhere to sit, standing only"
+  },
+  {
+    "id": "fd:OvercrowdedHallway",
+    "synonyms": "overcrowded hallway, bottleneck, can't get through, corridor blocked, foot traffic jam, hallway packed"
+  },
+  {
+    "id": "fd:Parking",
+    "synonyms": "parking, car park, parking garage, parking lot"
+  },
+  {
+    "id": "fd:ParkingFull",
+    "synonyms": "parking full, garage full, lot full, no accessible parking, no parking, parking expensive"
+  },
+  {
+    "id": "fd:PhotographyWithoutConsent",
+    "synonyms": "photography without consent, filming without consent, no photo lanyard, photo without consent, photographed"
+  },
+  {
+    "id": "fd:PoorCellSignal",
+    "synonyms": "poor cell signal, dead zone, no 5g, no bars, no lte, no reception, no service, no signal"
+  },
+  {
+    "id": "fd:Power",
+    "synonyms": "power, charging, electricity"
+  },
+  {
+    "id": "fd:PrayerRoom",
+    "synonyms": "prayer room, meditation room, multi-faith room, multifaith room, reflection room"
+  },
+  {
+    "id": "fd:PrayerRoomUnavailable",
+    "synonyms": "prayer room unavailable, no prayer room, no reflection room, prayer room locked, prayer room used for meetings"
+  },
+  {
+    "id": "fd:PrintedScheduleWrong",
+    "synonyms": "printed schedule wrong, board wrong, door sign wrong, printed agenda wrong, screen schedule wrong"
+  },
+  {
+    "id": "fd:ProjectorProblem",
+    "synonyms": "projector problem, display not working, dongle, hdmi, laptop won't connect, no adapter, no hdmi, projector, screen black"
+  },
+  {
+    "id": "fd:PublicTransit",
+    "synonyms": "public transit, light rail, metro, subway, train, tram, transit"
+  },
+  {
+    "id": "fd:QuietRoomUnavailable",
+    "synonyms": "quiet room unavailable, decompression room, no quiet room, quiet room closed, quiet room full, quiet space"
+  },
+  {
+    "id": "fd:RecordingUnavailable",
+    "synonyms": "recording unavailable, no recording, not recorded, slides not posted, where are the videos"
+  },
+  {
+    "id": "fd:Recordings",
+    "synonyms": "recordings, livestream, recording, stream, video"
+  },
+  {
+    "id": "fd:Registration",
+    "synonyms": "registration, check in, check-in, checkin, reg, registration desk"
+  },
+  {
+    "id": "fd:RegistrationLine",
+    "synonyms": "registration line, badge line, check-in line, long line at registration, reg queue, registration queue"
+  },
+  {
+    "id": "fd:ReservedSeatingMissing",
+    "synonyms": "accessible seating missing, no accessible seating, no aisle seat, no wheelchair space, reserved seating taken"
+  },
+  {
+    "id": "fd:RestArea",
+    "synonyms": "rest area, break area, hallway track, lounge, place to sit and work"
+  },
+  {
+    "id": "fd:RestroomOutOfOrder",
+    "synonyms": "restroom out of order, bathroom closed, flooded bathroom, restroom closed, toilet broken"
+  },
+  {
+    "id": "fd:RestroomOutOfSupplies",
+    "synonyms": "restroom out of supplies, dirty bathroom, no paper towels, no soap, no toilet paper, restroom unclean"
+  },
+  {
+    "id": "fd:RestroomQueue",
+    "synonyms": "restroom queue, bathroom line, not enough bathrooms, restroom line, toilet queue"
+  },
+  {
+    "id": "fd:Restrooms",
+    "synonyms": "restrooms, bathroom, loo, restroom, toilets, washroom, wc"
+  },
+  {
+    "id": "fd:Rideshare",
+    "synonyms": "rideshare, cab, lyft, taxi, uber"
+  },
+  {
+    "id": "fd:RideshareDropoffUnclear",
+    "synonyms": "rideshare drop-off unclear, drop off point, pickup zone, taxi line, uber pickup"
+  },
+  {
+    "id": "fd:RoomChange",
+    "synonyms": "room change, moved rooms, relocated, room changed, session moved, talk moved, wrong room"
+  },
+  {
+    "id": "fd:RoomOverCapacity",
+    "synonyms": "room over capacity, fire capacity, room overflowing, room too small, standing room only, too small room"
+  },
+  {
+    "id": "fd:RoomTooCold",
+    "synonyms": "room too cold, ac too high, chilly, freezing, frigid, too cold"
+  },
+  {
+    "id": "fd:RoomTooHot",
+    "synonyms": "room too hot, ac broken, boiling, no air, stuffy, sweltering, too hot"
+  },
+  {
+    "id": "fd:SafetyAndConduct",
+    "synonyms": "safety and conduct, conduct, safety, trust and safety, unsafe"
+  },
+  {
+    "id": "fd:Schedule",
+    "synonyms": "schedule, agenda, program, programme, sched, timetable"
+  },
+  {
+    "id": "fd:ScheduleChange",
+    "synonyms": "schedule change, agenda change, last minute change, schedule changed"
+  },
+  {
+    "id": "fd:ScheduleConflict",
+    "synonyms": "schedule conflict, clash, conflict, overlap"
+  },
+  {
+    "id": "fd:ScheduleInformation",
+    "synonyms": "schedule information, agenda info, event app, schedule info"
+  },
+  {
+    "id": "fd:Seating",
+    "synonyms": "seating, chairs, seats"
+  },
+  {
+    "id": "fd:Security",
+    "synonyms": "security, guards, security staff"
+  },
+  {
+    "id": "fd:SecurityCheckDelay",
+    "synonyms": "security check delay, bag check, bag check line, metal detector, screening queue, security line"
+  },
+  {
+    "id": "fd:SensoryAccess",
+    "synonyms": "sensory access, neurodivergent access, overstimulation, sensory friendly"
+  },
+  {
+    "id": "fd:SessionCancelled",
+    "synonyms": "session cancelled, canceled, cancelled, no-show, speaker no show, talk cancelled"
+  },
+  {
+    "id": "fd:SessionOverrun",
+    "synonyms": "session overrun, overrun, overtime, ran long, ran over, went over time"
+  },
+  {
+    "id": "fd:SessionStartedLate",
+    "synonyms": "session started late, delayed start, late start, started late, waiting for speaker"
+  },
+  {
+    "id": "fd:Shuttle",
+    "synonyms": "shuttle, bus, hotel shuttle, shuttle bus"
+  },
+  {
+    "id": "fd:ShuttleDelay",
+    "synonyms": "shuttle delay, bus late, missed shuttle, shuttle full, shuttle late, shuttle never came"
+  },
+  {
+    "id": "fd:ShuttleInfoUnclear",
+    "synonyms": "shuttle information unclear, shuttle schedule, shuttle stop, shuttle times, where is the shuttle"
+  },
+  {
+    "id": "fd:SignLanguageMissing",
+    "synonyms": "sign language interpretation missing, asl, interpreter missing, no interpreter, no sign language"
+  },
+  {
+    "id": "fd:SlidesUnreadable",
+    "synonyms": "slides unreadable, can't read slides, font too small, screen too small, slides too small, slides washed out"
+  },
+  {
+    "id": "fd:SlowWifi",
+    "synonyms": "slow wi-fi, flaky wifi, laggy wifi, slow internet, slow wifi, spotty wifi, wifi keeps dropping, wifi slow"
+  },
+  {
+    "id": "fd:SponsorConduct",
+    "synonyms": "sponsor conduct, booth staff, sponsor behavior, sponsor behaviour"
+  },
+  {
+    "id": "fd:SponsorsAndExpo",
+    "synonyms": "sponsors and expo, booths, exhibitors, expo, expo hall, showcase, sponsor hall, vendors"
+  },
+  {
+    "id": "fd:StepFreeAccess",
+    "synonyms": "step-free access, level access, stairs only, step free, wheelchair access"
+  },
+  {
+    "id": "fd:Swag",
+    "synonyms": "swag, giveaways, merch, stickers, t-shirt, tshirt"
+  },
+  {
+    "id": "fd:SwagRanOut",
+    "synonyms": "swag ran out, no small sizes, no swag, no t-shirts left, shirts ran out, wrong shirt size"
+  },
+  {
+    "id": "fd:TalkCapacity",
+    "synonyms": "talk capacity, capacity, popular talk"
+  },
+  {
+    "id": "fd:TalkFull",
+    "synonyms": "talk full, at capacity, couldn't get in, doors closed, room full, session full, turned away"
+  },
+  {
+    "id": "fd:TalkMismatchAbstract",
+    "synonyms": "talk did not match abstract, misleading abstract, sales pitch, too advanced, too basic, vendor pitch, wrong level"
+  },
+  {
+    "id": "fd:TalkQuality",
+    "synonyms": "talk quality, content quality, talk level"
+  },
+  {
+    "id": "fd:Temperature",
+    "synonyms": "temperature, a/c, ac, air conditioning, climate, heating, hvac"
+  },
+  {
+    "id": "fd:Theft",
+    "synonyms": "theft, pickpocket, stolen, stolen bag, stolen laptop"
+  },
+  {
+    "id": "fd:TimeChange",
+    "synonyms": "time change, moved earlier, moved later, rescheduled, time changed"
+  },
+  {
+    "id": "fd:Timing",
+    "synonyms": "session timing, behind schedule, running late, timing"
+  },
+  {
+    "id": "fd:TransitDirectionsUnclear",
+    "synonyms": "transit directions unclear, how to get here, nearest station, transit directions, which train"
+  },
+  {
+    "id": "fd:Transport",
+    "synonyms": "transport, commute, getting there, transportation, travel"
+  },
+  {
+    "id": "fd:TripHazard",
+    "synonyms": "trip hazard, cables on floor, loose cables, slippery, tripped, wet floor"
+  },
+  {
+    "id": "fd:UncomfortableSeating",
+    "synonyms": "uncomfortable seating, bad chairs, broken chair, chairs too close, uncomfortable chairs"
+  },
+  {
+    "id": "fd:Venue",
+    "synonyms": "venue, building, conference center, convention center, facility"
+  },
+  {
+    "id": "fd:VenueNoise",
+    "synonyms": "venue noise, loud next door, noise from hallway, noisy room, sound bleed, thin walls, too loud"
+  },
+  {
+    "id": "fd:VisualAccess",
+    "synonyms": "visual access, blind access, low vision access, visual accessibility"
+  },
+  {
+    "id": "fd:Wayfinding",
+    "synonyms": "wayfinding, can't find, cant find, directions, getting lost, lost, navigation"
+  },
+  {
+    "id": "fd:Wifi",
+    "synonyms": "wi-fi, ssid, wi fi, wifi, wireless, wlan"
+  },
+  {
+    "id": "fd:WifiLoginProblem",
+    "synonyms": "wi-fi login problem, can't connect to wifi, captive portal, which ssid, wifi login, wifi password, wifi password wrong"
+  },
+  {
+    "id": "fd:WifiOutage",
+    "synonyms": "wi-fi outage, internet down, network down, no internet, no wifi, wi-fi down, wifi down, wifi not working, wifi outage"
+  },
+  {
+    "id": "fd:WorkshopSignupFull",
+    "synonyms": "workshop signup full, lab full, rsvp full, waitlist, workshop full"
+  }
+]
