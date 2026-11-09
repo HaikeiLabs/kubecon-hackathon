@@ -2,7 +2,7 @@
 // tab and the organizer page in another share state during a demo. Implements
 // the same contract as the backend API (including the X-Role governance check).
 import { linkConcepts, topConceptLabel, triage } from "./triage";
-import type { Bucket, ConfirmRequest, GovernanceEvent, Report, ReportSubmission, Role } from "./types";
+import type { Bucket, ConfirmRequest, GovernanceEvent, Report, ReportSubmission, Role, TriageResult } from "./types";
 
 const KEY = "friction-desk-mock-v2";
 
@@ -124,14 +124,14 @@ export const mock = {
   async listBuckets(): Promise<Bucket[]> {
     return delay([...load().buckets].sort((a, b) => b.updated_at.localeCompare(a.updated_at)));
   },
-  async triageReport(id: string): Promise<Report> {
+  async triageReport(id: string): Promise<TriageResult> {
     const s = load();
     const r = find(s, id);
     r.triage = triage(r, s.buckets, s.reports.filter((x) => x.status === "confirmed"));
     r.status = "proposed";
     s.audit.push(...r.triage.governance);
     save(s);
-    return delay(r);
+    return delay(r.triage);
   },
   async confirm(id: string, req: ConfirmRequest, role: Role): Promise<Report> {
     const s = load();

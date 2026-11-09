@@ -2,7 +2,7 @@
 // with the vite dev proxy, or an absolute URL); otherwise runs fully on the
 // seeded mock store. VITE_USE_MOCK=true forces mock mode.
 import { mock, MockHttpError } from "./mock";
-import type { Bucket, ConfirmRequest, GovernanceEvent, Report, ReportSubmission, Role } from "./types";
+import type { Bucket, ConfirmRequest, GovernanceEvent, Report, ReportSubmission, Role, TriageResult } from "./types";
 
 const RAW_BASE = import.meta.env.VITE_API_BASE as string | undefined;
 export const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true" || RAW_BASE === undefined;
@@ -91,7 +91,7 @@ export const api = {
 
   /** Re-run the triage agent for a report (fills report.triage). */
   triageReport: (id: string) =>
-    USE_MOCK ? viaMock(() => mock.triageReport(id)) : http<Report>(`/api/reports/${encodeURIComponent(id)}/triage`, { method: "POST" }),
+    USE_MOCK ? viaMock(() => mock.triageReport(id)) : http<TriageResult>(`/api/reports/${encodeURIComponent(id)}/triage`, { method: "POST" }),
 
   /** Organizer confirmation. Sends X-Role; non-organizers get a governance deny (403). */
   confirm: (id: string, req: ConfirmRequest) =>
