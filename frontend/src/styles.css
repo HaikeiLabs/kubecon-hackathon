@@ -125,3 +125,38 @@ legend { font-weight: 600; margin-bottom: 0.4rem; padding: 0; }
 .impact { margin: 0.75rem 0; }
 .reports { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
 .reports li { border-left: 3px solid var(--border); padding-left: 0.75rem; }
+
+/* Ontology concept chips */
+.concepts-label { margin-top: 0.6rem; }
+.chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip { position: relative; display: inline-block; font-size: 0.8rem; padding: 0.1rem 0.6rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); cursor: help; }
+.chip:hover::after, .chip:focus-visible::after { content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 4px); z-index: 5; white-space: nowrap; background: var(--text); color: var(--bg); font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+/* Proposal dispositions */
+.pill.review { color: var(--warn); }
+.ai.proposal-new { border-style: solid; border-color: var(--accent); }
+.ai.proposal-existing { border-style: solid; border-color: var(--good); }
+.ai.proposal-review { border-color: var(--warn); }
+.new-bucket strong { color: var(--accent); }
+.needs-review { border-color: var(--warn); border-width: 2px; }
+.review-flag { align-self: flex-start; font-weight: 700; font-size: 0.85rem; color: var(--warn); background: var(--warn-bg); padding: 0.15rem 0.6rem; border-radius: 6px; }
+.candidates { margin-top: 0.5rem; font-size: 0.9rem; }
+.candidates summary { cursor: pointer; font-weight: 600; }
+.candidates ul { list-style: none; padding: 0; margin: 0.4rem 0 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.candidates li { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.candidates li button { padding: 0.2rem 0.7rem; font-size: 0.85rem; }
+.small { font-size: 0.75rem; }
+
+/* Side column: buckets by category + governance */
+.side { display: flex; flex-direction: column; gap: 2rem; }
+.category { margin-bottom: 1rem; }
+.category h3 { font-size: 0.95rem; margin: 0 0 0.5rem; }
+.governance .role-toggle { margin-bottom: 0.5rem; }
+.audit { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; }
+.audit li { border-left: 3px solid var(--good); padding-left: 0.6rem; }
+.audit li.deny { border-left-color: var(--danger); background: var(--danger-bg); }
+.decision { font-weight: 700; margin-right: 0.4rem; }
+.decision.allow { color: var(--good); }
+.decision.deny { color: var(--danger); }
+.audit code { font-size: 0.85rem; }
+.reason { color: var(--muted); }
