@@ -1,0 +1,314 @@
+[
+  {
+    "id": "rpt-wifi-01",
+    "description": "The conference Wi-Fi keeps cutting out mid-session in Hall B. I spend most keynotes reconnecting my laptop instead of watching slides.",
+    "location": "Hall B",
+    "status": "confirmed",
+    "bucket_id": "bucket-wifi-slow"
+  },
+  {
+    "id": "rpt-wifi-02",
+    "description": "Guest network bandwidth is dreadful in the big rooms. Video calls stall and the slide decks never finish preloading.",
+    "location": "Hall A",
+    "status": "confirmed",
+    "bucket_id": "bucket-wifi-slow"
+  },
+  {
+    "id": "rpt-wifi-03",
+    "description": "Wi-Fi in Hall B dies every couple of minutes. Stuck spinning on reconnect screens through the whole afternoon track.",
+    "location": "Hall B"
+  },
+  {
+    "id": "rpt-wifi-04",
+    "description": "Feels like the venue throttled the wireless — a two-meg PDF takes forever to load that I gave up and fired up my phone as a hotspot.",
+    "location": "Breakout 2.10"
+  },
+  {
+    "id": "rpt-wifi-05",
+    "description": "The free venue wireless is basically decorative. Pages hang, my demo repository refuses to sync, and the demo will fail without network.",
+    "location": "Lightning stage"
+  },
+  {
+    "id": "rpt-wifi-06",
+    "description": "Signal is fine but throughput is pitiful on the mezzanine. Slack cannot even send a one-line message while a keynote is running.",
+    "location": "Mezzanine lounge"
+  },
+  {
+    "id": "rpt-wifi-07",
+    "description": "Every break, half the room is holding their phones up looking for usable wifi. Once a live demo starts, the connection saturates and drops everyone.",
+    "location": "Breakout 3.05"
+  },
+  {
+    "id": "rpt-wifi-08",
+    "description": "Streaming the morning talk from the overflow room was hopeless — video buffers ten seconds, plays two, dies again. Same story yesterday.",
+    "location": "Overflow room"
+  },
+  {
+    "id": "rpt-wifi-login-01",
+    "description": "Registration portal rejects my Gmail address every time on the captive portal. Ended up tethering off my phone for two mornings.",
+    "location": "Lobby",
+    "status": "confirmed",
+    "bucket_id": "bucket-wifi-login"
+  },
+  {
+    "id": "rpt-wifi-login-02",
+    "description": "The wifi sign-in page just spins and never completes the auth step, tried on two different laptops with the day pass code.",
+    "location": "Hall C"
+  },
+  {
+    "id": "rpt-wifi-login-03",
+    "description": "Captive portal denies anyone not using Safari. Our delegation of six could not pass the login screen on Android all morning.",
+    "location": "Hall C"
+  },
+  {
+    "id": "rpt-av-01",
+    "description": "Mic kept dropping out and questions shouted from the floor were impossible to make out. Half the panel discussion was guesswork.",
+    "location": "Breakout 1.30",
+    "status": "confirmed",
+    "bucket_id": "bucket-av-mics"
+  },
+  {
+    "id": "rpt-av-02",
+    "description": "Room audio is far too quiet in the back — people on the last rows only hear a mumble. Could the AV team boost the PA?",
+    "location": "Breakout 1.30"
+  },
+  {
+    "id": "rpt-av-03",
+    "description": "The handheld mic screeched feedback twice during the talk and then cut completely for a few awkward minutes.",
+    "location": "Ballroom"
+  },
+  {
+    "id": "rpt-av-04",
+    "description": "Q&A ambushed the left half of the audience: the runner mic never crossed the aisle, so our questions never made it on the recording.",
+    "location": "Ballroom"
+  },
+  {
+    "id": "rpt-av-05",
+    "description": "A microphone popped and crackled the entire slot until panelists grabbed a backup one; the audience hear a nasty buzz whenever it moved.",
+    "location": "Breakout 2.14"
+  },
+  {
+    "id": "rpt-wayfinding-01",
+    "description": "Floor maps stop at level 2 — zero signage for the west breakout rooms, so every newcomer circles before finding them.",
+    "location": "Level 2",
+    "status": "confirmed",
+    "bucket_id": "bucket-wayfinding"
+  },
+  {
+    "id": "rpt-wayfinding-02",
+    "description": "Took me fifteen minutes to locate Room 2.20. The names printed on the doors do not match the app listings at all.",
+    "location": "Level 2"
+  },
+  {
+    "id": "rpt-wayfinding-03",
+    "description": "Direction signs use poetic names like 'Sky Gallery' and 'Terrace' instead of room numbers. First-timers are lost anywhere outside the expo floor.",
+    "location": "North wing"
+  },
+  {
+    "id": "rpt-wayfinding-04",
+    "description": "No directional signs where the elevator meets the expo hall — walked a full loop past fifty booths before spotting the track rooms.",
+    "location": "Expo floor"
+  },
+  {
+    "id": "rpt-wayfinding-05",
+    "description": "A group of us from the lightning talk wandered between buildings hunting for the right room; literally nothing is labeled out there.",
+    "location": "Between halls"
+  },
+  {
+    "id": "rpt-vegan-01",
+    "description": "Vegan sandwiches sold out by 12:15 sharp. What remained under the warmers was bread and a regrettable amount of dairy.",
+    "location": "Level 1 restaurant",
+    "status": "confirmed",
+    "bucket_id": "bucket-vegan-food"
+  },
+  {
+    "id": "rpt-vegan-02",
+    "description": "Buffets at lunch have essentially no plant-based mains. Every apparent veggie dish turned out to be dressed with cheese or egg.",
+    "location": "Level 1 buffet"
+  },
+  {
+    "id": "rpt-vegan-03",
+    "description": "Vegetarian counter had exactly two offerings today and both contained dairy. My colleague ate french fries both afternoons.",
+    "location": "Level 3 restaurant"
+  },
+  {
+    "id": "rpt-vegan-04",
+    "description": "For a conference of this size, not offering a proper vegan lunch at the ticket price we paid is genuinely poor form.",
+    "location": "Central restaurant"
+  },
+  {
+    "id": "rpt-coffee-01",
+    "description": "The espresso kiosk was bone dry before the first break even ended. Forty people stood in a line that led nowhere.",
+    "location": "Lobby kiosk",
+    "status": "confirmed",
+    "bucket_id": "bucket-coffee-food"
+  },
+  {
+    "id": "rpt-coffee-02",
+    "description": "Morning coffee urns on level 3 emptied by 9:40 both days. Latecomers leave the break with nothing.",
+    "location": "Level 3"
+  },
+  {
+    "id": "rpt-coffee-03",
+    "description": "Snack tables got cleared half an hour before the afternoon break was actually over. Whoever planned quantities undershot badly.",
+    "location": "Level 3"
+  },
+  {
+    "id": "rpt-coffee-04",
+    "description": "Whole break queue drifted to the coffee place in the shopping arcade next door because the venue had nothing left to pour.",
+    "location": "Breakout 3.05"
+  },
+  {
+    "id": "rpt-access-01",
+    "description": "Reserved wheelchair spaces in Hall A were roped off for camera rigs on day one. A visitor using a wheelchair had to watch from the aisle.",
+    "location": "Hall A",
+    "status": "confirmed",
+    "bucket_id": "bucket-wa-access"
+  },
+  {
+    "id": "rpt-access-02",
+    "description": "Step-free entry to the main hall only works from the south doors — nothing signposts the ramp at the north entrance either.",
+    "location": "Hall A north doors"
+  },
+  {
+    "id": "rpt-access-03",
+    "description": "The accessible seating markers up front get occupied by early campers who hold the spots all morning. Please enforce them.",
+    "location": "Ballroom"
+  },
+  {
+    "id": "rpt-lactation-01",
+    "description": "The nursing room on level 2 stayed locked all morning while a staffer kept saying 'temporarily'. One look inside would have fixed this.",
+    "location": "Level 2",
+    "status": "confirmed",
+    "bucket_id": "bucket-lactation"
+  },
+  {
+    "id": "rpt-lactation-02",
+    "description": "Lactation room has no power socket working inside, so pumping with an electric pump is off the table, and the key desk closes at noon.",
+    "location": "Level 2"
+  },
+  {
+    "id": "rpt-seating-01",
+    "description": "Not a single free chair in the corridor between the halls at any point between sessions. Hundreds of us sit on the floor.",
+    "location": "Corridor",
+    "status": "confirmed",
+    "bucket_id": "bucket-seating"
+  },
+  {
+    "id": "rpt-seating-02",
+    "description": "Overflow chairs promised for the infra deep-dive never arrived — dozens of folks ended up leaning on walls for ninety minutes.",
+    "location": "Breakout 3.40"
+  },
+  {
+    "id": "rpt-seating-03",
+    "description": "Every lounge couch is claimed by 10am and never released. Nowhere to sit and work on a laptop all day.",
+    "location": "Network lounge"
+  },
+  {
+    "id": "rpt-temp-01",
+    "description": "Breakout 3.1 felt like a walk-in fridge the whole afternoon; the HVAC there seems stuck on max. Gloves stayed on during the whole deep dive.",
+    "location": "Breakout 3.1",
+    "status": "confirmed",
+    "bucket_id": "bucket-temperature"
+  },
+  {
+    "id": "rpt-temp-02",
+    "description": "The big hall slowly cooks by the 3pm slot — air conditioning clearly cannot keep pace with a full room after lunch.",
+    "location": "Main hall"
+  },
+  {
+    "id": "rpt-temp-03",
+    "description": "Wildly inconsistent: one breakout room blasts arctic air while the corridor next door is a sauna. Someone will get sick.",
+    "location": "North wing"
+  },
+  {
+    "id": "rpt-reg-01",
+    "description": "Registration queue snaked out of the lobby doorway at 8am and I spent twenty-five minutes outside in the wind just to collect a badge.",
+    "location": "Lobby",
+    "status": "confirmed",
+    "bucket_id": "bucket-registration"
+  },
+  {
+    "id": "rpt-reg-02",
+    "description": "The latecomer wave jammed the badge pickup desks around 1pm with nobody directing traffic or opening extra terminals.",
+    "location": "Lobby"
+  },
+  {
+    "id": "rpt-reg-03",
+    "description": "Badge printer refused to encode mine, and staff sent me back and forth between two help desks before anyone could reprint it.",
+    "location": "Registration desk"
+  },
+  {
+    "id": "rpt-sched-01",
+    "description": "Room clash again: the cloud workshop and a security panel were both booked into 3.40 simultaneously, and the host apologized twice for the confusion.",
+    "location": "Breakout 3.40",
+    "status": "confirmed",
+    "bucket_id": "bucket-schedule"
+  },
+  {
+    "id": "rpt-sched-02",
+    "description": "Same-slot collision once more — half the workshop audience stood outside a room where a different session was running late.",
+    "location": "Level 3"
+  },
+  {
+    "id": "rpt-sched-03",
+    "description": "The Monday 10:30 slot lists two different tracks in 2.06; both hosts showed up and renegotiated outside the door on the spot.",
+    "location": "Breakout 2.06"
+  },
+  {
+    "id": "rpt-lost-01",
+    "description": "Left my rain shell at the coat check during the keynote — does the desk coordinate with lost and found, or is that a separate office?"
+  },
+  {
+    "id": "rpt-shuttle-01",
+    "description": "Airport shuttle runs vanished from the posted timetable after 6pm, leaving evening departures guessing which stop to camp at."
+  },
+  {
+    "id": "rpt-recordings-01",
+    "description": "Closing keynote recording has shown 'processing' in the portal for two days now. Several teams referenced it for their internal follow-up."
+  },
+  {
+    "id": "rpt-expo-noise-01",
+    "description": "Exhibitors started blasting demo audio into the hallway right where the lightning talk stage sits. The speaker had to stop and wait for the ad jingle to finish."
+  },
+  {
+    "id": "rpt-swag-01",
+    "description": "The shirt stand shut its line while roughly a hundred people were still queuing for it. No announcement, no restock, nothing."
+  },
+  {
+    "id": "rpt-elevator-01",
+    "description": "The elevator to the mezzanine is out of service and there is no alternative ramp nearby. Pushing a stroller up with a toddler is a bad time."
+  },
+  {
+    "id": "rpt-junk-01",
+    "description": "Anyone know a quiet café with acceptable cappuccino somewhere near the venue? Asking for Thursday morning."
+  },
+  {
+    "id": "rpt-junk-02",
+    "description": "Selling one spare day pass at face value for tomorrow, message me directly if you want it."
+  },
+  {
+    "id": "rpt-junk-03",
+    "description": "We need one or two more players for tonight's board-game meetup in the hotel bar, all welcome."
+  },
+  {
+    "id": "rpt-junk-04",
+    "description": "First time in this city — any favorite running routes along the river front before sessions start?"
+  },
+  {
+    "id": "rpt-praise-01",
+    "description": "Registration to first workshop took under ten minutes this year. Kudos to the volunteer crew, everything felt organized."
+  },
+  {
+    "id": "rpt-praise-02",
+    "description": "Everything from breakfast to the closing panel has been great so far — clean rooms, friendly staff, even the audio was crisp."
+  },
+  {
+    "id": "rpt-praise-03",
+    "description": "Zero complaints from our team: fast network, solid lunch spread, sessions kicked off precisely on time all morning."
+  },
+  {
+    "id": "rpt-praise-04",
+    "description": "Lovely conference so far. The demo zone staff were patient and helpful, and the quiet areas are a wonderful touch."
+  }
+]
