@@ -53,7 +53,11 @@ export interface GovernanceEvent {
   decision: "allow" | "deny";
   rule: string;
   reason: string;
+  /** ISO timestamp; may lack a timezone, in which case it is local time. */
   at: string;
+  session_id?: string | null;
+  invoking_subject?: string | null;
+  args?: Record<string, unknown> | null;
 }
 
 export type Disposition = "existing_bucket" | "new_bucket" | "needs_review";

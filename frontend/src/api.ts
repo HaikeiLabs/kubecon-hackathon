@@ -9,9 +9,17 @@ export const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true" || RAW_BASE ===
 const BASE = (RAW_BASE ?? "").replace(/\/+$/, "");
 
 export class ApiError extends Error {
-  constructor(message: string, readonly status?: number) {
+  /** Set when the backend's policy evaluator denied the call (403). */
+  readonly governance?: GovernanceEvent;
+  constructor(message: string, readonly status?: number, detail?: unknown) {
     super(message);
+    this.governance = governanceFrom(detail);
   }
+}
+
+function governanceFrom(detail: unknown): GovernanceEvent | undefined {
+  const g = detail && typeof detail === "object" ? (detail as { governance?: unknown }).governance : undefined;
+  return g && typeof g === "object" && "rule" in g ? (g as GovernanceEvent) : undefined;
 }
 
 const ROLE_KEY = "friction-desk-role";
@@ -23,12 +31,10 @@ try {
 }
 
 function detailMessage(detail: unknown): string | null {
-  if (typeof detail === "string") return detail;
-  if (Array.isArray(detail)) return detail.map((d: { msg?: string }) => d.msg ?? String(d)).join("; ");
-  if (detail && typeof detail === "object") {
-    const d = detail as Record<string, unknown>;
-    for (const k of ["message", "reason", "detail"]) if (typeof d[k] === "string") return d[k] as string;
-  }
+  if (typeof detail === "string") return detail; // e.g. 503 "could not assign report"
+  if (Array.isArray(detail)) return detail.map((d: { msg?: string }) => d.msg ?? String(d)).join("; "); // 422
+  const g = governanceFrom(detail);
+  if (g) return `Denied by policy (${g.rule}): ${g.reason}`;
   return null;
 }
 
@@ -43,13 +49,14 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
     throw new ApiError("Can't reach the server. Check your connection and try again.");
   }
   if (!res.ok) {
-    let msg = `Request failed (${res.status})`;
+    let detail: unknown;
     try {
-      msg = detailMessage((await res.json()).detail) ?? msg;
+      detail = (await res.json()).detail;
     } catch {
       /* non-JSON error */
     }
-    throw new ApiError(res.status === 403 ? `Denied by policy: ${msg}` : msg, res.status);
+    const fallback = res.status === 403 ? "Denied by policy." : res.status === 422 ? "The request was invalid." : `Request failed (${res.status})`;
+    throw new ApiError(detailMessage(detail) ?? fallback, res.status, detail);
   }
   return res.json() as Promise<T>;
 }
@@ -59,7 +66,7 @@ async function viaMock<T>(fn: () => Promise<T>): Promise<T> {
   try {
     return await fn();
   } catch (e) {
-    if (e instanceof MockHttpError) throw new ApiError(e.message, e.status);
+    if (e instanceof MockHttpError) throw new ApiError(detailMessage(e.detail) ?? e.message, e.status, e.detail);
     throw e;
   }
 }
@@ -92,12 +99,9 @@ export const api = {
       ? viaMock(() => mock.confirm(id, req, role))
       : http<Report>(`/api/reports/${encodeURIComponent(id)}/confirm`, { method: "POST", body: JSON.stringify(req) }),
 
-  async listAudit(limit = 25): Promise<GovernanceEvent[]> {
-    if (USE_MOCK) return mock.listAudit(limit);
-    const body = await http<GovernanceEvent[] | { events: GovernanceEvent[] }>(`/api/audit?limit=${limit}`);
-    const events = Array.isArray(body) ? body : body.events ?? [];
-    return [...events].sort((a, b) => b.at.localeCompare(a.at));
-  },
+  /** Newest first, as returned by the backend. */
+  listAudit: (limit = 25) =>
+    USE_MOCK ? mock.listAudit(limit) : http<GovernanceEvent[]>(`/api/audit?limit=${limit}`),
 
   resetDemo: () => (USE_MOCK ? mock.reset() : http<unknown>("/api/admin/reset", { method: "POST" }).then(() => undefined)),
 };

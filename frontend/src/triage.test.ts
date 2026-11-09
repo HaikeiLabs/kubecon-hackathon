@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ApiError, api } from "./api";
+import { api } from "./api";
 import { mock } from "./mock";
 import { linkConcepts } from "./triage";
 
@@ -30,7 +30,7 @@ describe("confirm governance", () => {
   it("denies attendee-agent with 403 and audits it; organizer is allowed", async () => {
     await mock.reset();
     api.setRole("attendee-agent");
-    await expect(api.confirm("r7", { bucket_id: "b-wifi" })).rejects.toMatchObject({ status: 403 } satisfies Partial<ApiError>);
+    await expect(api.confirm("r7", { bucket_id: "b-wifi" })).rejects.toMatchObject({ status: 403, governance: { rule: "role-not-allowed", decision: "deny" } });
     expect((await api.listAudit(1))[0]).toMatchObject({ tool: "friction.assign_report", decision: "deny" });
 
     api.setRole("organizer");

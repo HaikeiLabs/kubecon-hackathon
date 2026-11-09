@@ -188,7 +188,7 @@ function InboxCard(props: {
   const triage = report.triage;
   const [editing, setEditing] = useState<Editing>(null);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ message: string; deny?: GovernanceEvent } | null>(null);
 
   async function run(fn: () => Promise<void>) {
     setBusy(true);
@@ -196,7 +196,7 @@ function InboxCard(props: {
     try {
       await fn();
     } catch (err) {
-      setError(errMsg(err, "Couldn't save."));
+      setError({ message: errMsg(err, "Couldn't save."), deny: err instanceof ApiError ? err.governance : undefined });
     } finally {
       setBusy(false);
     }
@@ -232,7 +232,20 @@ function InboxCard(props: {
         </div>
       )}
 
-      <div aria-live="assertive">{error && <div className="alert" role="alert">{error}</div>}</div>
+      <div aria-live="assertive">
+        {error && (
+          <div className="alert" role="alert">
+            {error.deny ? (
+              <>
+                <strong>Denied by policy</strong> — <code>{error.deny.tool}</code>, rule <code>{error.deny.rule}</code>
+                <div>{error.deny.reason}</div>
+              </>
+            ) : (
+              error.message
+            )}
+          </div>
+        )}
+      </div>
 
       {editing ? (
         <CorrectionForm
@@ -439,7 +452,7 @@ function GovernancePanel({ events, role, onRole }: { events: GovernanceEvent[]; 
             <li key={`${e.at}-${e.tool}-${i}`} className={e.decision}>
               <span className={`decision ${e.decision}`}>{e.decision === "allow" ? "✓ allow" : "✕ deny"}</span>
               <code>{e.tool}</code>
-              <span className="muted"> · rule {e.rule} · {timeAgo(e.at)}</span>
+              <span className="muted"> · rule <code>{e.rule}</code>{e.invoking_subject ? ` · by ${e.invoking_subject}` : ""} · {timeAgo(e.at)}</span>
               <div className="reason">{e.reason}</div>
             </li>
           ))}

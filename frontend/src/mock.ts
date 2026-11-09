@@ -13,7 +13,8 @@ interface Store {
 }
 
 export class MockHttpError extends Error {
-  constructor(message: string, readonly status: number) {
+  /** Mirrors the backend body, e.g. {governance: GovernanceEvent} on a 403. */
+  constructor(message: string, readonly status: number, readonly detail?: unknown) {
     super(message);
   }
 }
@@ -137,9 +138,10 @@ export const mock = {
     const r = find(s, id);
     const at = new Date().toISOString();
     if (role !== "organizer") {
-      s.audit.push({ tool: "friction.assign_report", decision: "deny", rule: "assign-requires-organizer", reason: `Role "${role}" may not assign reports; organizer confirmation required.`, at });
+      const deny: GovernanceEvent = { tool: "friction.assign_report", decision: "deny", rule: "role-not-allowed", reason: `Role "${role}" may not call friction.assign_report; organizer required.`, at };
+      s.audit.push(deny);
       save(s);
-      throw new MockHttpError("Denied by policy: only an organizer can assign reports to buckets.", 403);
+      throw new MockHttpError("Denied by policy", 403, { governance: deny });
     }
     let b: Bucket | undefined;
     if (req.bucket_id) {
@@ -161,7 +163,7 @@ export const mock = {
       };
       s.buckets.push(b);
     }
-    s.audit.push({ tool: "friction.assign_report", decision: "allow", rule: "organizer-may-assign", reason: "Organizer confirmed the assignment.", at });
+    s.audit.push({ tool: "friction.assign_report", decision: "allow", rule: "role-allowed", reason: "Organizer confirmed the assignment.", at });
     r.status = "confirmed";
     r.bucket_id = b.id;
     save(s);
