@@ -23,7 +23,7 @@ fd:Venue a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd
 
 fd:Wayfinding a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Venue ;
     skos:prefLabel "Wayfinding"@en ;
-    skos:altLabel "getting lost"@en , "lost"@en , "directions"@en , "navigation"@en , "can't find"@en , "cant find"@en ;
+    skos:altLabel "getting lost"@en , "navigation"@en , "got lost"@en , "get lost"@en , "can't find my way"@en , "couldn't find my way"@en , "hard to navigate"@en , "indoor directions"@en ;
     skos:definition "Difficulty finding rooms, halls or services inside the venue."@en .
 
 fd:MissingSignage a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Wayfinding ;
@@ -215,7 +215,7 @@ fd:LongWalkingDistances a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:
     skos:definition "Distances between rooms are too long to cover in the time allowed."@en ;
     skos:related fd:Wayfinding .
 
-fd:ReservedSeatingMissing a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:MobilityAccess ;
+fd:ReservedSeatingMissing a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:MobilityAccess , fd:Seating ;
     skos:prefLabel "Accessible seating missing"@en ;
     skos:altLabel "no wheelchair space"@en , "no accessible seating"@en , "reserved seating taken"@en , "no aisle seat"@en ;
     skos:definition "Reserved accessible seating or wheelchair spaces are missing or taken."@en .
@@ -234,7 +234,7 @@ fd:ScheduleChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broade
 
 fd:RoomChange a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:ScheduleChange ;
     skos:prefLabel "Room change"@en ;
-    skos:altLabel "room changed"@en , "session moved"@en , "talk moved"@en , "wrong room"@en , "moved rooms"@en , "relocated"@en ;
+    skos:altLabel "room changed"@en , "session moved"@en , "talk moved"@en , "moved rooms"@en , "relocated"@en , "room moved"@en , "changed rooms"@en , "moved to another room"@en , "new room"@en ;
     skos:definition "A session was moved to a different room."@en ;
     skos:related fd:HardToFindRoom , fd:AppScheduleWrong .
 
@@ -454,7 +454,7 @@ fd:CheckInSystemDown a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:bro
 
 fd:Content a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:topConceptOf fd:FrictionScheme ;
     skos:prefLabel "Content"@en ;
-    skos:altLabel "session"@en , "talk"@en , "talks"@en , "presentation"@en , "keynote"@en , "workshop"@en ;
+    skos:altLabel "conference content"@en , "session content"@en , "talk content"@en ;
     skos:definition "Problems experiencing session content: audio, video, slides, capacity and recordings."@en .
 
 fd:AudioVisual a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:Content ;
@@ -470,7 +470,7 @@ fd:CantHearSpeaker a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broad
 
 fd:MicrophoneProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
     skos:prefLabel "Microphone problem"@en ;
-    skos:altLabel "mic"@en , "mic broken"@en , "mic not working"@en , "mic cutting out"@en , "feedback"@en , "no mic"@en , "mike"@en , "audience mic"@en ;
+    skos:altLabel "mic"@en , "mic broken"@en , "mic not working"@en , "mic cutting out"@en , "no mic"@en , "mike"@en , "audience mic"@en , "audio feedback"@en , "mic feedback"@en , "feedback squeal"@en ;
     skos:definition "Microphones are missing, cutting out or causing feedback."@en .
 
 fd:ProjectorProblem a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:AudioVisual ;
