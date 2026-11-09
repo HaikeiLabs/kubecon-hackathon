@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bucket-wifi-slow",
+    "title": "Wi-Fi slow or dropping in session rooms",
+    "summary": "Attendees report the conference Wi-Fi repeatedly disconnecting and crawling during keynotes and deep-dive sessions, mostly in the main halls.",
+    "status": "open",
+    "report_count": 2,
+    "concept_ids": ["fd:SlowWifi", "fd:WifiOutage"]
+  },
+  {
+    "id": "bucket-wifi-login",
+    "title": "Wi-Fi login page not working",
+    "summary": "The captive portal rejects credentials or hangs at the auth step for individuals and whole delegations.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:WifiLoginProblem"]
+  },
+  {
+    "id": "bucket-av-mics",
+    "title": "Microphones and room audio failing",
+    "summary": "Handheld and roving mics cut out or feedback, and speakers at the back of rooms are inaudible during Q&A.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:CantHearSpeaker", "fd:MicrophoneProblem"]
+  },
+  {
+    "id": "bucket-wayfinding",
+    "title": "Signage missing or confusing between rooms",
+    "summary": "Room numbers on doors, the floor maps and the app disagree, and several breakout rooms have no directional signage at all.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:ConfusingSignage", "fd:HardToFindRoom", "fd:MissingSignage"]
+  },
+  {
+    "id": "bucket-vegan-food",
+    "title": "No vegan or vegetarian lunch options",
+    "summary": "Restaurants and buffets for lunch have essentially no plant-based mains; what exists sells out immediately.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:NoVeganOption", "fd:NoVegetarianOption"]
+  },
+  {
+    "id": "bucket-coffee-food",
+    "title": "Coffee and food run out before breaks end",
+    "summary": "Coffee urns and snack tables are emptied very early in each break, so latecomers get nothing.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:CoffeeRanOut", "fd:FoodRanOut"]
+  },
+  {
+    "id": "bucket-wa-access",
+    "title": "Accessible seating and ramp access problems",
+    "summary": "Reserved wheelchair spaces are blocked or taken, ramps are poorly signposted, and access routes are hard to find.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:ReservedSeatingMissing", "fd:MissingRamp"]
+  },
+  {
+    "id": "bucket-lactation",
+    "title": "Lactation room locked and unusable",
+    "summary": "The nursing room is locked for long stretches and lacks basics like a power socket and a working lock.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:LactationRoomUnavailable"]
+  },
+  {
+    "id": "bucket-seating",
+    "title": "Not enough seating between sessions",
+    "summary": "Corridors, lounges and overflow areas have no free chairs any time between talks.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:NotEnoughSeating"]
+  },
+  {
+    "id": "bucket-temperature",
+    "title": "Rooms either freezing or boiling",
+    "summary": "HVAC is inconsistent: some breakouts are refrigerator-cold all day while the main hall heats up badly by afternoon.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:RoomTooHot", "fd:RoomTooCold"]
+  },
+  {
+    "id": "bucket-registration",
+    "title": "Badge pickup and registration lines",
+    "summary": "Registration queues wrap out of the lobby in the morning wave, kiosks misprint or reject badges, and help desks point people in circles.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:RegistrationLine", "fd:BadgeNotFound"]
+  },
+  {
+    "id": "bucket-schedule",
+    "title": "Rooms double-booked for the same slot",
+    "summary": "Two sessions have been scheduled into the same rooms repeatedly, forcing last-minute moves.",
+    "status": "open",
+    "report_count": 1,
+    "concept_ids": ["fd:DoubleBookedRoom"]
+  }
+]
