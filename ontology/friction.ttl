@@ -425,12 +425,12 @@ fd:BadgePickup a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader f
 
 fd:RegistrationLine a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
     skos:prefLabel "Registration line"@en ;
-    skos:altLabel "registration queue"@en , "check-in line"@en , "badge line"@en , "long line at registration"@en , "reg queue"@en , "registration line"@en , "badge pickup line"@en , "badge pickup queue"@en , "check-in queue"@en ;
+    skos:altLabel "registration queue"@en , "check-in line"@en , "badge line"@en , "long line at registration"@en , "reg queue"@en , "registration line"@en , "badge pickup line"@en , "badge pickup queue"@en ;
     skos:definition "Long waits at the registration or badge desk."@en .
 
 fd:BadgeNotFound a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
     skos:prefLabel "Badge not found"@en ;
-    skos:altLabel "not in system"@en , "can't find my registration"@en , "no badge for me"@en , "ticket not found"@en , "qr code not working"@en ;
+    skos:altLabel "not in system"@en , "can't find my registration"@en , "no badge for me"@en , "qr code not working"@en , "registration not found"@en , "order not found"@en ;
     skos:definition "Registration staff cannot find the attendee's ticket or badge."@en .
 
 fd:BadgeMisprinted a skos:Concept ; skos:inScheme fd:FrictionScheme ; skos:broader fd:BadgePickup ;
