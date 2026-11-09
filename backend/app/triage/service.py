@@ -83,13 +83,14 @@ def triage_report(
 ) -> TriageResult:
     """Classify ``report`` against existing buckets. Read/propose only; never assigns.
 
-    ``classifier=True`` picks the default (OpenAI if configured), ``None``/``False``
+    ``classifier=True`` picks the default (FD_TRIAGE_PROVIDER, Elastic inference unless
+    set to openai), ``None``/``False``
     forces the deterministic fallback.
     """
     if backend is None:
         from app import search as backend  # type: ignore[no-redef]
     if classifier is True:
-        classifier = default_classifier()
+        classifier = default_classifier(client)
     governor = governor or get_governor()
     registry = build_registry(backend, client)
     caller = triage_agent_caller(report.id)

@@ -25,7 +25,7 @@ def get_es(request: Request) -> Any:
 
 
 def get_classifier() -> Any:
-    return True  # service default: OpenAI when configured, else fallback
+    return True  # service default: FD_TRIAGE_PROVIDER (elastic), else fallback
 
 
 def _load_report(backend: Any, client: Any, report_id: str) -> Report:
