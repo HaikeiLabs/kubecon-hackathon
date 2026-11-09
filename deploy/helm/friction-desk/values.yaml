@@ -17,7 +17,16 @@ api:
       memory: 512Mi
 
 elasticsearch:
-  # Hosted Elastic deployment URL. The API key stays in a Kubernetes Secret.
+  # Hosted Elastic deployment URL. The API key stays in Secrets Manager/Kubernetes Secret.
   url: ""
-  apiKeySecretName: ""
+  secretName: friction-desk-elasticsearch
+  secretStoreName: aws-secrets-manager
+  remoteSecretName: kubecon-hackathon/friction-desk-elasticsearch
   apiKeySecretKey: api-key
+
+keaRuntime:
+  enabled: true
+  secretName: friction-desk-kea-runtime
+  secretStoreName: aws-secrets-manager
+  remoteSecretName: kubecon-hackathon/friction-desk-kea-runtime
+  tokenSecretKey: KEI_RUNTIME_TOKEN

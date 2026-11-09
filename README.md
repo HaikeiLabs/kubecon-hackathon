@@ -2,38 +2,59 @@
 
 A conference feedback-to-fix demo. Attendee reports are anonymous; organizers review reports grouped into existing issue buckets or proposed as new buckets.
 
-## Current foundation
+## Infrastructure ownership and safety
 
-- Python 3.11+ / FastAPI backend.
-- Hosted Elasticsearch is the canonical report and bucket store; the app's Kubernetes deployment does not provision or delete Elasticsearch.
-- A Helm release deploys the API into a dedicated `kubecon-hackathon` namespace on the existing Kubernetes cluster.
-- The API currently provides anonymous report submission, report/bucket listing, lexical bucket search, and health probes. Model triage and the Kei runtime integration are the next backend milestone.
-- No CI pipeline is introduced; `make` targets support local build, deploy, inspection, and teardown.
+- `deploy/terraform` owns AWS resources only: dedicated ECR repository (`kei/kubecon-hackathon-friction-desk`) and metadata for two AWS Secrets Manager secrets.
+- Helm owns all Kubernetes resources, including the app release and ExternalSecret mappings. The existing `kubecon-hackathon` namespace is neither managed nor imported by Terraform; deploy into it without creating or deleting it.
+- The existing `aws-secrets-manager` `ClusterSecretStore` and ExternalSecrets CRD are referenced by chart resources and are not owned by this project.
+- Hosted Elasticsearch and all its indices/data remain external; Terraform/Helm never create, modify, or delete them.
+- Terraform declares secret metadata only. Populate the exact secrets `kubecon-hackathon/friction-desk-elasticsearch` (JSON property `api-key`) and `kubecon-hackathon/friction-desk-kea-runtime` (JSON property `KEI_RUNTIME_TOKEN`) through the approved secret-management process. Do not pass secret values to Terraform or Helm; values must never enter Terraform state. ExternalSecrets materialize Kubernetes Secrets in `kubecon-hackathon`.
+- The Terraform backend uses the existing team bucket `kei-terraform-state-726299224953`, unique key `kubecon-hackathon/friction-desk/terraform.tfstate`, encryption, and S3 native locking. Initialize only after confirming access to this existing bucket.
 
-## Kubernetes prerequisites
+## Prerequisites
 
-- `kubectl`, Helm 3, Docker Buildx, Python 3.11+, `pytest`, and Ruff.
-- Access to the existing cluster and a container registry it can pull from.
-- A hosted Elasticsearch HTTPS endpoint and an API key scoped to `friction-desk-*` with index creation, read, and write privileges.
-- A Kubernetes Secret named `friction-desk-elasticsearch` (or override `ELASTICSEARCH_SECRET_NAME`) in namespace `kubecon-hackathon`, with the API key under key `api-key`.
+Terraform 1.15.8, AWS credentials for the selected account/region, Helm 3, Docker Buildx, `kubectl` access to the existing cluster, Python 3.11+, `uv`, and access to the team's S3 state backend. The cluster must already have the healthy `aws-secrets-manager` ClusterSecretStore and ExternalSecrets CRD. Supply the hosted Elasticsearch HTTPS URL; its API key is managed out-of-band in Secrets Manager.
 
-Do not put the API key in Helm values, command-line flags, git, or chat. Create/populate the Kubernetes Secret through the team's approved secret manager workflow. The chart expects the secret to exist before the API pod starts; it passes the key to the backend as `ELASTICSEARCH_API_KEY`.
-
-## Deploy from a workstation
+## Review before deployment
 
 ```sh
 make test
-make render
-make deploy \
-  IMAGE_REPOSITORY=registry.example.com/team/conference-friction-desk \
-  ELASTICSEARCH_URL=https://your-deployment.example.es.io
+make lint
+make tf-init
+make tf-fmt
+make tf-validate
+make tf-plan AWS_REGION=us-east-1
 ```
 
-`make deploy` builds and pushes the backend image, then installs/upgrades the Helm release. It uses the current Kubernetes context by default; specify `KUBE_CONTEXT=...` to target another context. The hosted cluster is accessed over HTTPS; Elasticsearch is not exposed through a Kubernetes Service.
+Terraform plans only AWS resources. `terraform apply` is an operator action; this repository task intentionally does not apply changes. No secret values belong in `*.tfvars`, Terraform CLI arguments, Helm values, or source control.
 
-Access the API locally:
+## Deploy
+
+The ECR repository must exist before Docker can push an image. For first-time setup, provision AWS resources, populate the metadata-only Secrets Manager secrets out-of-band, then push the image and install the Helm release:
 
 ```sh
+make provision AWS_REGION=us-east-1
+# Populate both Secrets Manager secrets via the approved secret workflow.
+make build IMAGE_REPOSITORY=$(cd deploy/terraform && terraform output -raw image_repository) IMAGE_TAG=$(git rev-parse --short HEAD)
+make release ELASTICSEARCH_URL=https://your-deployment.example.es.io IMAGE_TAG=$(git rev-parse --short HEAD)
+```
+
+`make deploy` is a convenience for environments where both secret values have already been populated; it runs Terraform, pushes the image, then installs/updates the Helm release. Confirm the active Kubernetes context before using it. Terraform/Helm do not create secret values.
+
+## Teardown
+
+```sh
+make destroy
+```
+
+This uninstalls the Helm release and its ExternalSecret resources. The namespace is preserved. Terraform destroy is a separate AWS-only operation; see [docs/teardown.md](docs/teardown.md) for the reviewed destroy-plan workflow and data-safety boundaries.
+
+AWS teardown is separate and deliberate; see [docs/teardown.md](docs/teardown.md) for the explicit destroy-plan and approval steps. Terraform force-deletes ECR images only in that reviewed AWS teardown workflow. Hosted Elasticsearch and its data are never part of teardown. Secret values/rotation are controlled through the approved Secrets Manager process, not Terraform.
+
+## Local access
+
+```sh
+make status
 make port-forward
 curl http://localhost:8080/health/ready
 curl -X POST http://localhost:8080/api/reports \
@@ -41,14 +62,6 @@ curl -X POST http://localhost:8080/api/reports \
   -d '{"description":"The accessible entrance near Hall B is blocked","location":"Hall B"}'
 curl 'http://localhost:8080/api/buckets/search?q=accessible%20entrance'
 ```
-
-## Tear down
-
-```sh
-make destroy
-```
-
-This removes the Helm release and deletes the dedicated `kubecon-hackathon` namespace. It does **not** delete the hosted Elasticsearch deployment or its data. The namespace is reserved for this project; do not point `NAMESPACE` at a shared namespace when using `make destroy`.
 
 ## API endpoints
 
@@ -58,5 +71,3 @@ This removes the Helm release and deletes the dedicated `kubecon-hackathon` name
 - `GET /api/reports` — list recent reports.
 - `GET /api/buckets` — list issue buckets.
 - `GET /api/buckets/search?q=...` — retrieve open candidate buckets with Elasticsearch lexical relevance. Agent triage and hybrid/vector search are not implemented yet.
-
-The attendee UI and organizer UI will be added after the core backend and infrastructure boundary is established.
