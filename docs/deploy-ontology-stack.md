@@ -6,33 +6,34 @@ Follow it top to bottom. Do not skip the secrets step.
 
 ## Prerequisites
 
-- Docker with `docker buildx` available (Docker Desktop works).
-- `kubectl` installed and pointed at your cluster (set `KUBE_CONTEXT=...` if
-  you do not want the default context).
-- `helm` v3 installed.
-- [`uv`](https://docs.astral.sh/uv/) installed (Python package runner).
-- A container registry push image (`IMAGE_REPOSITORY`, e.g.
-  `ghcr.io/<you>/friction-desk`).
-- An Elasticsearch Cloud Serverless endpoint and API key. The app writes to
-  and reads **v2 indices only**; any existing `friction-desk-*-v1` indices
-  (Colin's data) are never touched.
-- An OpenAI API key (triage uses `gpt-4.1-mini` by default).
+This runbook layers on Colin's AWS/Helm workflow (PR #7, `docs/miriah-handoff.md`).
+Terraform (ECR, Secrets Manager wiring) must already be planned and applied
+there as its own approved step; this runbook never runs Terraform.
 
-## 1. Create the Kubernetes Secrets
+- Docker with `docker buildx`, `kubectl`, `helm` v3, `terraform`, and
+  [`uv`](https://docs.astral.sh/uv/).
+- `kubectl` pointed at the cluster that has the `kubecon-hackathon` namespace.
+- The Elasticsearch Cloud Serverless endpoint. The app writes to and reads
+  `friction-desk-concepts-v1`, `friction-desk-reports-v2` and
+  `friction-desk-buckets-v2` only; Colin's `friction-desk-reports-v1` and
+  `friction-desk-buckets-v1` are never touched.
+- Optional: an OpenAI API key for LLM triage. Without it triage uses its
+  deterministic concept-overlap fallback, which is the demo default.
+
+## 1. Secrets
 
 The API keys come from **your own environment**. Never paste them into chat,
-tickets, or commits.
+tickets, commits, Terraform arguments, or Helm values.
+
+- Elasticsearch: populate Secrets Manager `kubecon-hackathon/friction-desk-elasticsearch`
+  (key `api-key`) out-of-band, as in Colin's handoff. The chart's ExternalSecret
+  syncs it into the `friction-desk-elasticsearch` Secret.
+- OpenAI (optional): create a plain Kubernetes Secret and pass its name at release time:
 
 ```sh
-kubectl -n kubecon-hackathon create secret generic friction-desk-elasticsearch \
-  --from-literal=api-key="$ELASTICSEARCH_API_KEY"
-
 kubectl -n kubecon-hackathon create secret generic friction-desk-openai \
   --from-literal=api-key="$OPENAI_API_KEY"
 ```
-
-Both secrets must have a literal key named `api-key`. Re-run the commands
-(with `--dry-run=client -o yaml | kubectl apply -f -`) to rotate keys.
 
 ## 2. Run the tests
 
@@ -45,24 +46,31 @@ Unit tests do not require Elasticsearch or an OpenAI key.
 ## 3. Build and deploy
 
 `make deploy` builds the API image with the repository root as build context
-(so the image contains `ontology/build/` and `backend/seed/`) and upgrades the
-Helm release.
+(so the image contains `ontology/build/` and `backend/seed/`), builds the UI
+image, and upgrades the Helm release. The image repository comes from
+Terraform output.
 
 ```sh
-make deploy \
-  IMAGE_REPOSITORY=<registry>/friction-desk \
-  ELASTICSEARCH_URL=https://my-vectordb-project-e7833d.es.us-east-1.aws.elastic.cloud:443
+make deploy ELASTICSEARCH_URL=https://<hosted-elasticsearch-endpoint> IMAGE_TAG=$(git rev-parse --short HEAD)
+```
+
+To enable LLM triage, re-run the release with the OpenAI secret:
+
+```sh
+helm upgrade friction-desk deploy/helm/friction-desk -n kubecon-hackathon --reuse-values \
+  --set-string openai.apiKeySecretName=friction-desk-openai
 ```
 
 Wait for status: `make status`. To follow logs: `make logs`.
 
-## 4. Create the app port-forward
+## 4. Port-forward
 
 ```sh
-make port-forward
+make port-forward      # API on http://localhost:8080
+make port-forward-ui   # UI (proxies /api) on http://localhost:8081
 ```
 
-This forwards `localhost:8080` to the API service. Leave it running.
+Leave them running.
 
 ## 5. Reset and seed the indices
 
@@ -80,7 +88,7 @@ Create a report (concept tagging + triage run synchronously):
 ```sh
 curl -s -X POST localhost:8080/api/reports \
   -H 'Content-Type: application/json' \
-  -d '{"text": "The wifi on the second floor of the venue keeps dropping out."}' | jq
+  -d '{"description": "The wifi on the second floor of the venue keeps dropping out.", "location": "Level 2"}' | jq
 ```
 
 List reports:
@@ -105,17 +113,10 @@ curl -s -X POST localhost:8080/api/reports/<id>/confirm \
   -d '{}' | jq
 ```
 
-## 7. Run the frontend locally
+## 7. Open the UI
 
-In a second terminal:
-
-```sh
-cd frontend
-npm ci
-VITE_API_BASE=http://localhost:8080 npm run dev
-```
-
-Open the printed local URL (usually http://localhost:5173).
+Open http://localhost:8081 (from `make port-forward-ui`). For local frontend
+development instead: `cd frontend && npm ci && VITE_API_BASE=http://localhost:8080 npm run dev`.
 
 ## 8. Teardown
 
@@ -123,21 +124,14 @@ Open the printed local URL (usually http://localhost:5173).
 make destroy
 ```
 
-This removes the Helm release and its namespace only. **External
-Elasticsearch is never deleted**: your v1 indices stay untouched and the v2
-indices survive a re-deploy (a fresh deploy reseeds only via the
-`/api/admin/reset` call in step 5).
+This uninstalls the Helm release only; see `docs/teardown.md` for AWS
+resources. **External Elasticsearch is never deleted**: the v2 indices
+survive a re-deploy and are only reseeded by the `/api/admin/reset` call in step 5.
 
-## Merge order for the stack
+## Merge order
 
-Branches stack bottom-up:
+1. #1 `fd/ontology` → #2 `fd/search` → #3 `fd/triage` → #4 `fd/frontend`
+2. #5 `fd/eval-gold` (on #3) and the seed-data PR (on #2) any time after their parents
+3. #7 `t206-ui-hosting` (Colin), then #6 `fd/helm-env` (this runbook, stacked on #7)
 
-1. `fd/ontology`
-2. `fd/search`
-3. `fd/triage`
-4. `fd/frontend`
-5. `fd/helm-env` (this one)
-
-Merge with `gh stack merge`, or merge via the GitHub UI starting at the
-bottom of the stack and re-targeting the once-merged parents upward until
-the last PR targets `main`.
+Merge bottom-up, re-targeting each child to `main` as its parent merges.
