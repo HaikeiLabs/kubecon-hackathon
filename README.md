@@ -4,8 +4,8 @@ A conference feedback-to-fix demo. Attendee reports are anonymous; organizers re
 
 ## Infrastructure ownership and safety
 
-- `deploy/terraform` owns AWS resources only: dedicated ECR repository (`kei/kubecon-hackathon-friction-desk`) and metadata for two AWS Secrets Manager secrets.
-- Helm owns all Kubernetes resources, including the app release and ExternalSecret mappings. The existing `kubecon-hackathon` namespace is neither managed nor imported by Terraform; deploy into it without creating or deleting it.
+- `deploy/terraform` owns AWS resources only: dedicated ECR repository (`kei/kubecon-hackathon-friction-desk`) and metadata for two AWS Secrets Manager secrets. The API and frontend images share that repository and are distinguished by tag (`<sha>` for the API, `frontend-<sha>` for the UI); no extra AWS resources are needed.
+- Helm owns all Kubernetes resources, including the API and frontend Deployments/Services and ExternalSecret mappings. The existing `kubecon-hackathon` namespace is neither managed nor imported by Terraform; deploy into it without creating or deleting it.
 - The existing `aws-secrets-manager` `ClusterSecretStore` and ExternalSecrets CRD are referenced by chart resources and are not owned by this project.
 - Hosted Elasticsearch and all its indices/data remain external; Terraform/Helm never create, modify, or delete them.
 - Terraform declares secret metadata only. Populate the exact secrets `kubecon-hackathon/friction-desk-elasticsearch` (JSON property `api-key`) and `kubecon-hackathon/friction-desk-kei-runtime` (JSON property `KEI_RUNTIME_TOKEN`) through the approved secret-management process. Do not pass secret values to Terraform or Helm; values must never enter Terraform state. ExternalSecrets materialize `friction-desk-elasticsearch` and `friction-desk-kei-runtime` Kubernetes Secrets in `kubecon-hackathon`.
@@ -13,13 +13,16 @@ A conference feedback-to-fix demo. Attendee reports are anonymous; organizers re
 
 ## Prerequisites
 
-Terraform 1.15.8, AWS credentials for the selected account/region, Helm 3, Docker Buildx, `kubectl` access to the existing cluster, Python 3.11+, `uv`, and access to the team's S3 state backend. The cluster must already have the healthy `aws-secrets-manager` ClusterSecretStore and ExternalSecrets CRD. Supply the hosted Elasticsearch HTTPS URL; its API key is managed out-of-band in Secrets Manager.
+Terraform 1.15.8, AWS credentials for the selected account/region, Helm 3, Docker Buildx, `kubectl` access to the existing cluster, Python 3.11+, `uv`, Node.js 22 with npm (frontend), and access to the team's S3 state backend. The cluster must already have the healthy `aws-secrets-manager` ClusterSecretStore and ExternalSecrets CRD. Supply the hosted Elasticsearch HTTPS URL; its API key is managed out-of-band in Secrets Manager.
 
 ## Review before deployment
 
 ```sh
 make test
 make lint
+make frontend-build
+make frontend-proxy-check   # local Docker only: builds the UI image, never pushes
+make render
 make tf-init
 make tf-fmt
 make tf-validate
@@ -41,7 +44,7 @@ The ECR repository must exist before Docker can push an image. After the reviewe
 make deploy ELASTICSEARCH_URL=https://your-deployment.example.es.io IMAGE_TAG=$(git rev-parse --short HEAD)
 ```
 
-`make deploy` only builds/pushes the image and installs/upgrades Helm; it does not run Terraform. Confirm the active Kubernetes context and that the ExternalSecrets have produced the expected Kubernetes Secrets before deploying. Terraform/Helm do not create secret values.
+`make deploy` only builds/pushes the API (`$(IMAGE_TAG)`) and frontend (`frontend-$(IMAGE_TAG)`) images and installs/upgrades Helm; it does not run Terraform. Confirm the active Kubernetes context and that the ExternalSecrets have produced the expected Kubernetes Secrets before deploying. Terraform/Helm do not create secret values.
 
 ## Teardown
 
@@ -53,11 +56,32 @@ This uninstalls the Helm release and its ExternalSecret resources. The namespace
 
 AWS teardown is separate and deliberate; see [docs/teardown.md](docs/teardown.md) for the explicit saved destroy-plan, review, and interactive apply steps. Terraform force-deletes ECR images only in that reviewed AWS teardown workflow. Hosted Elasticsearch and its data are never part of teardown. Secret values/rotation are controlled through the approved Secrets Manager process, not Terraform.
 
+## Frontend hosting
+
+The React UI ships as a static image (`frontend/Dockerfile`: Vite build served by unprivileged nginx). It is same-origin with the API: the browser only calls relative `/api/*` and `/health/*`, and nginx (`frontend/nginx/default.conf.template`) proxies those paths unchanged to `API_UPSTREAM`, which Helm sets to `http://<release>-api:8080` (`http://friction-desk-api:8080` by default). Every other path serves the built assets, falling back to `index.html`; `/frontend-healthz` is the frontend's own probe. Production builds force `VITE_USE_MOCK=false`. No CORS configuration is needed or present.
+
+The frontend Service is `ClusterIP` only. There is no Ingress, LoadBalancer, or DNS; public exposure needs separate approval. Demo access is via port-forward:
+
+```sh
+make port-forward-ui   # UI on http://localhost:8081, with /api and /health proxied to the API
+```
+
+`make frontend-proxy-check` verifies the proxy contract locally: it builds the frontend image, runs it read-only beside a stub API on a private Docker network, and asserts SPA fallback, asset 404s, and that `/api/*` and `/health/*` reach the upstream with method, path, query, and body intact. It does not test the real API, Elasticsearch, or the cluster.
+
+### UI/API contract status
+
+The static contract is partial; the UI does not claim more than the API supports:
+
+- Supported by the live API: submit report, list reports, list buckets, bucket search.
+- Triage in the organizer view is computed in the browser: lexical `GET /api/buckets/search` candidates plus local heuristics (`frontend/src/triage.ts`). It is not agent or semantic triage.
+- Confirming/correcting an organizer assignment is **not** supported by the API. Against the live API the UI shows an explicit error; it works only in mock mode (`npm run dev:mock`), which the production image never uses.
+
 ## Local access
 
 ```sh
 make status
-make port-forward
+make port-forward-ui   # UI: http://localhost:8081
+make port-forward      # API directly: http://localhost:8080
 curl http://localhost:8080/health/ready
 curl -X POST http://localhost:8080/api/reports \
   -H 'content-type: application/json' \
