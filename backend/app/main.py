@@ -15,6 +15,7 @@ from fastapi import FastAPI, HTTPException, Query, Request, status
 from app import search
 from app.models import Bucket, BucketSearchResult, Report, ReportSubmission, TriageResult
 from app.search import BUCKETS_INDEX, REPORTS_INDEX
+from app.triage.router import router as triage_router
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,7 @@ app = FastAPI(
     description="Anonymous attendee reports and organizer search API.",
     lifespan=lifespan,
 )
+app.include_router(triage_router)
 
 
 @app.get("/health/live", tags=["health"])
