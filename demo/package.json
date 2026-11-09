@@ -1,0 +1,12 @@
+{
+  "name": "friction-desk-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "walkthrough": "node walkthrough.mjs",
+    "record": "./record.sh"
+  },
+  "devDependencies": {
+    "playwright": "1.65.0"
+  }
+}
