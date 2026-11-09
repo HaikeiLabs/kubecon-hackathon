@@ -81,6 +81,8 @@ def confirm(
         args["new_bucket_summary"] = body.new_bucket_summary or ""
     try:
         call = governor.call(build_registry(backend, client), ASSIGN_REPORT, args, caller)
+    except LookupError as exc:  # authorized, but the report or bucket does not exist
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
     except Exception as exc:  # noqa: BLE001 - authorized, but the store failed
         raise HTTPException(status_code=503, detail="could not assign report") from exc
     if not call.allowed:

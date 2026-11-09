@@ -325,3 +325,18 @@ def test_confirm_rejects_ambiguous_body(api):
 def test_concepts_endpoint(api):
     client, _ = api
     assert client.get("/api/concepts?q=wifi").json()[0]["concept_id"] == "fd:WifiOutage"
+
+
+def test_confirm_unknown_report_is_404(api):
+    client, backend = api
+    resp = client.post("/api/reports/nope/confirm", json={"bucket_id": "bWifi"},
+                       headers={"X-Role": "organizer"})
+    assert resp.status_code == 404
+
+
+def test_main_app_mounts_triage_routes():
+    from app.main import app
+
+    paths = set(app.openapi()["paths"])
+    assert {"/api/reports/{report_id}/triage", "/api/reports/{report_id}/confirm",
+            "/api/audit", "/api/concepts"} <= paths
