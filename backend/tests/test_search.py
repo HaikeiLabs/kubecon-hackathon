@@ -74,24 +74,70 @@ class StubSearchClient:
         return {"hits": {"hits": self.hits}}
 
 
-def test_link_concepts_adds_hybrid_hits_above_threshold(concepts: list[dict]) -> None:
+def _hit(concept_id: str, score: float) -> dict:
+    return {"_score": score, "_source": {"id": concept_id, "pref_label": concept_id[3:]}}
+
+
+def test_hybrid_selection_keeps_only_near_best_above_floor() -> None:
+    # Live shape of 'wi-fi ... totally dead' with rank_constant=1 RRF.
+    hits = [
+        _hit("fd:Wifi", 0.833),
+        _hit("fd:WifiOutage", 0.75),
+        _hit("fd:SlowWifi", 0.533),
+        _hit("fd:WifiLoginProblem", 0.45),
+    ]
+
+    assert [t.concept_id for t in search.select_hybrid_concepts(hits)] == ["fd:Wifi"]
+    # Relative cut is taken against the best hit not already covered by exact matches.
+    kept = search.select_hybrid_concepts(hits, exclude=["fd:Wifi", "fd:Connectivity"])
+    assert [(t.concept_id, t.method) for t in kept] == [("fd:WifiOutage", "hybrid")]
+
+
+def test_hybrid_selection_absolute_floor_and_max_three() -> None:
+    assert search.select_hybrid_concepts([_hit("fd:Wifi", 0.6)]) == []
+    ties = [_hit(f"fd:C{i}", 0.75) for i in range(5)]
+    assert len(search.select_hybrid_concepts(ties)) == 3
+
+
+def test_prune_ancestor_tags_keeps_most_specific(concepts: list[dict]) -> None:
+    tags = [
+        search.ConceptTag(concept_id=cid, label=cid, confidence=0.9, method=method)
+        for cid, method in [
+            ("fd:Wifi", "exact"),
+            ("fd:WifiOutage", "hybrid"),
+            ("fd:Connectivity", "hybrid"),
+            ("fd:StepFreeAccess", "exact"),
+        ]
+    ]
+
+    kept = search.prune_ancestor_tags(tags, concepts)
+
+    assert [t.concept_id for t in kept] == ["fd:WifiOutage", "fd:StepFreeAccess"]
+
+
+def test_link_concepts_prefers_exact_and_drops_parent_of_hybrid(concepts: list[dict]) -> None:
     client = StubSearchClient(
         [
-            {"_score": 0.04, "_source": {"id": "fd:StepFreeAccess", "pref_label": "Step-free"}},
-            {"_score": 0.03, "_source": {"id": "fd:Wifi", "pref_label": "Wi-Fi"}},
-            {"_score": 0.01, "_source": {"id": "fd:Connectivity", "pref_label": "Conn"}},
+            _hit("fd:Wifi", 0.833),
+            _hit("fd:WifiOutage", 0.75),
+            _hit("fd:StepFreeAccess", 0.533),
         ]
     )
 
-    tags = search.link_concepts(client, "cannot connect to wifi", concepts=concepts)
+    tags = search.link_concepts(client, "the wi-fi in hall A is totally dead", concepts=concepts)
 
-    # fd:Wifi is implied by the exact match; fd:Connectivity falls under the 0.6 cut.
-    assert [(t.concept_id, t.method) for t in tags] == [
-        ("fd:WifiOutage", "exact"),
-        ("fd:StepFreeAccess", "hybrid"),
-    ]
+    # Exact fd:Wifi is superseded by its hybrid child; the weak sibling is cut.
+    assert [(t.concept_id, t.method) for t in tags] == [("fd:WifiOutage", "hybrid")]
     assert client.calls[0]["index"] == search.CONCEPTS_INDEX
-    assert "rrf" in client.calls[0]["retriever"]
+    assert client.calls[0]["retriever"]["rrf"]["rank_constant"] == 1
+
+
+def test_link_concepts_exact_wins_over_same_hybrid_hit(concepts: list[dict]) -> None:
+    client = StubSearchClient([_hit("fd:WifiOutage", 1.0), _hit("fd:StepFreeAccess", 0.5)])
+
+    tags = search.link_concepts(client, "no internet here", concepts=concepts)
+
+    assert [(t.concept_id, t.method) for t in tags] == [("fd:WifiOutage", "exact")]
 
 
 def test_synonym_rules_from_labels(concepts: list[dict]) -> None:

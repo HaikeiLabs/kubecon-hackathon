@@ -33,7 +33,13 @@ SYNONYMS_SET = "friction-desk-concepts"
 SEMANTIC_FIELD = "semantic"
 
 EXACT_CONFIDENCE = 0.95
-HYBRID_MIN_NORMALIZED_SCORE = 0.6
+# Hybrid concept linking uses RRF with rank_constant=1 so fused scores spread by rank:
+# score = 1/(1+lexical_rank) + 1/(1+semantic_rank), max 1.0. Calibrated live 2026-11-09:
+# a floor of 0.68 requires rank 1 in one retriever and top-4 in the other.
+HYBRID_RANK_CONSTANT = 1
+HYBRID_MIN_SCORE = 0.68
+HYBRID_RELATIVE_CUTOFF = 0.95
+HYBRID_MAX_TAGS = 3
 HYBRID_CANDIDATES = 10
 MAX_CONCEPT_TAGS = 5
 
@@ -301,7 +307,8 @@ def build_concept_search_body(text: str, size: int = HYBRID_CANDIDATES) -> dict[
                     },
                     {"standard": {"query": {"semantic": {"field": SEMANTIC_FIELD, "query": text}}}},
                 ],
-                "rank_window_size": 50,
+                "rank_window_size": size,
+                "rank_constant": HYBRID_RANK_CONSTANT,
             }
         },
     }
@@ -341,45 +348,59 @@ def build_bucket_search_body(
     }
 
 
-def _hybrid_concept_matches(client: Any, text: str) -> list[ConceptTag]:
+def _hybrid_concept_hits(client: Any, text: str) -> list[dict[str, Any]]:
     try:
         result = client.search(index=CONCEPTS_INDEX, **build_concept_search_body(text))
     except (ApiError, TransportError) as exc:
         logger.warning("hybrid concept search failed: %s", exc)
         return []
-    hits = result["hits"]["hits"]
-    if not hits:
+    return result["hits"]["hits"]
+
+
+def select_hybrid_concepts(
+    hits: Sequence[dict[str, Any]], exclude: Iterable[str] = ()
+) -> list[ConceptTag]:
+    """Keep near-best hybrid hits: >= the absolute floor and within 0.95x of the best hit
+    that is not already excluded (exact matches and their ancestors). At most 3."""
+    excluded = set(exclude)
+    candidates = [h for h in hits if h["_source"]["id"] not in excluded]
+    if not candidates:
         return []
-    top = hits[0]["_score"] or 1.0
-    tags = []
-    for hit in hits:
-        normalized = (hit["_score"] or 0.0) / top
-        if normalized >= HYBRID_MIN_NORMALIZED_SCORE:
-            tags.append(
-                ConceptTag(
-                    concept_id=hit["_source"]["id"],
-                    label=hit["_source"]["pref_label"],
-                    confidence=round(min(0.9, 0.9 * normalized), 3),
-                    method="hybrid",
-                )
-            )
-    return tags
+    best = max(h["_score"] or 0.0 for h in candidates)
+    cutoff = max(HYBRID_MIN_SCORE, HYBRID_RELATIVE_CUTOFF * best)
+    tags = [
+        ConceptTag(
+            concept_id=h["_source"]["id"],
+            label=h["_source"]["pref_label"],
+            confidence=round(min(0.9, 0.9 * (h["_score"] or 0.0)), 3),
+            method="hybrid",
+        )
+        for h in sorted(candidates, key=lambda h: -(h["_score"] or 0.0))
+        if (h["_score"] or 0.0) >= cutoff
+    ]
+    return tags[:HYBRID_MAX_TAGS]
+
+
+def prune_ancestor_tags(
+    tags: Sequence[ConceptTag], concepts: Sequence[Concept]
+) -> list[ConceptTag]:
+    """Drop any tag whose concept is an ancestor of another kept tag (most specific wins)."""
+    by_id = {c["id"]: c for c in concepts}
+    implied = {a for t in tags for a in by_id.get(t.concept_id, {}).get("ancestors", [])}
+    return [t for t in tags if t.concept_id not in implied]
 
 
 def link_concepts(
     client: Any, text: str, *, concepts: Sequence[Concept] | None = None
 ) -> list[ConceptTag]:
-    """Link free text to ontology concepts: exact label matches, then hybrid search."""
+    """Link free text to ontology concepts: exact label matches first, then precise hybrid
+    matches; ancestors of other kept concepts are dropped (they live in concept_ancestors)."""
     concepts = read_concepts() if concepts is None else concepts
     tags = exact_concept_matches(text, concepts)
-    if client is not None and len(tags) < MAX_CONCEPT_TAGS:
-        exact_ids = {t.concept_id for t in tags}
-        implied = set(concept_closure(exact_ids, concepts))
-        for tag in _hybrid_concept_matches(client, text):
-            if tag.concept_id not in implied:
-                tags.append(tag)
-                implied.add(tag.concept_id)
-    return tags[:MAX_CONCEPT_TAGS]
+    if client is not None:
+        covered = concept_closure([t.concept_id for t in tags], concepts)
+        tags += select_hybrid_concepts(_hybrid_concept_hits(client, text), exclude=covered)
+    return prune_ancestor_tags(tags, concepts)[:MAX_CONCEPT_TAGS]
 
 
 def search_candidate_buckets(
