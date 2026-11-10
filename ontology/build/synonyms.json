@@ -213,7 +213,7 @@
   },
   {
     "id": "fd:MicrophoneProblem",
-    "synonyms": "microphone problem, audience mic, audio feedback, feedback squeal, mic, mic broken, mic buzzing, mic crackling, mic cut out, mic cutting out, mic dropping out, mic feedback, mic not working, microphone, mike, no mic"
+    "synonyms": "microphone problem, audience mic, audio feedback, feedback squeal, mic, mic broken, mic buzzing, mic crackling, mic cut out, mic cutting out, mic dropping out, mic feedback, mic is dead, mic not working, microphone broken, microphone cutting out, microphone not working, mike, no mic, no microphone"
   },
   {
     "id": "fd:MissingAllergenInfo",
@@ -269,11 +269,11 @@
   },
   {
     "id": "fd:NoVeganOption",
-    "synonyms": "no vegan option, no vegan, plant based, plant-based, vegan, vegan lunch, vegan option, vegan options, vegan ran out, vegan sold out"
+    "synonyms": "no vegan option, no plant based options, no plant-based options, no vegan, no vegan options, nothing vegan, vegan ran out, vegan sold out"
   },
   {
     "id": "fd:NoVegetarianOption",
-    "synonyms": "no vegetarian option, no vegetarian, no veggie, only meat, vegetarian, vegetarian options, vegetarian ran out, veggie options"
+    "synonyms": "no vegetarian option, no vegetarian, no vegetarian options, no veggie, no veggie options, nothing vegetarian, only meat, out of vegetarian, vegetarian ran out, vegetarian sold out"
   },
   {
     "id": "fd:NotEnoughSeating",
@@ -377,7 +377,7 @@
   },
   {
     "id": "fd:RoomChange",
-    "synonyms": "room change, changed rooms, moved rooms, moved to another room, new room, relocated, room changed, room moved, session moved, talk moved"
+    "synonyms": "room change, changed rooms, moved rooms, moved to another room, relocated, room changed, room moved, session moved, talk moved"
   },
   {
     "id": "fd:RoomOverCapacity",
@@ -461,7 +461,7 @@
   },
   {
     "id": "fd:SlowWifi",
-    "synonyms": "slow wi-fi, bandwidth, flaky wifi, laggy wifi, low bandwidth, slow internet, slow network, slow wifi, spotty wifi, throttled, throughput, wi-fi is slow, wi-fi keeps cutting out, wifi cutting out, wifi dropping, wifi is flaky, wifi is slow, wifi is spotty, wifi is unusable, wifi keeps cutting out, wifi keeps dropping, wifi slow, wifi unusable, wifi was slow"
+    "synonyms": "slow wi-fi, bandwidth is terrible, flaky wifi, laggy wifi, low bandwidth, no bandwidth, slow internet, slow network, slow wifi, spotty wifi, throttled, throughput is terrible, wi-fi is slow, wi-fi keeps cutting out, wifi cutting out, wifi dropping, wifi is flaky, wifi is slow, wifi is spotty, wifi is unusable, wifi keeps cutting out, wifi keeps dropping, wifi slow, wifi unusable, wifi was slow"
   },
   {
     "id": "fd:SponsorConduct",
