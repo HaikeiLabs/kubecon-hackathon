@@ -50,3 +50,12 @@ keiRuntime:
   secretStoreName: aws-secrets-manager
   remoteSecretName: kubecon-hackathon/friction-desk-kei-runtime
   tokenSecretKey: KEI_RUNTIME_TOKEN
+
+openai:
+  # Kubernetes Secret holding the OpenAI key for triage. Empty means no
+  # OPENAI_API_KEY is injected and triage falls back deterministically.
+  apiKeySecretName: ""
+  apiKeySecretKey: api-key
+
+triage:
+  model: gpt-4.1-mini

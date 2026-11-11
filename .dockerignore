@@ -1,0 +1,7 @@
+.git
+.agents
+.claude
+.env
+.venv
+**/__pycache__
+frontend/node_modules

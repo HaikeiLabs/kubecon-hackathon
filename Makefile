@@ -50,7 +50,7 @@ build: build-api build-frontend
 
 build-api:
 	@test -n "$(IMAGE_REPOSITORY)" || (echo "Set IMAGE_REPOSITORY to the ECR repository URI" >&2; exit 2)
-	docker buildx build --platform linux/amd64 --push --tag $(IMAGE_REPOSITORY):$(IMAGE_TAG) --file backend/Dockerfile backend
+	docker buildx build --platform linux/amd64 --push --tag $(IMAGE_REPOSITORY):$(IMAGE_TAG) --file backend/Dockerfile .
 
 build-frontend:
 	@test -n "$(IMAGE_REPOSITORY)" || (echo "Set IMAGE_REPOSITORY to the ECR repository URI" >&2; exit 2)

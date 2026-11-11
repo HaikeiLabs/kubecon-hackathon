@@ -39,6 +39,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.elasticsearch.secretName | quote }}
                   key: {{ .Values.elasticsearch.apiKeySecretKey | quote }}
+            - name: FD_TRIAGE_MODEL
+              value: {{ .Values.triage.model | quote }}
+{{- if .Values.openai.apiKeySecretName }}
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.openai.apiKeySecretName | quote }}
+                  key: {{ .Values.openai.apiKeySecretKey | quote }}
+                  optional: true
+{{- end }}
           startupProbe:
             httpGet:
               path: /health/ready
